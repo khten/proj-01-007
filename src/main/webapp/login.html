@@ -6,5 +6,20 @@
 </head>
 <body>
 
+<!--  POST requests obfuscate (hide) the parameters and dont' show it in the URL -->
+	<form method="POST" action="login">
+		<!-- http://localhost:8080/employee-servlet-app/login -->
+        <label>First Name</label> 
+		<input type="text" name="firstname" placeholder="First Name"> <br /> 
+
+	    <label>Last Name</label> 
+		<input type="text" name="lastname" placeholder="Last Name"> <br /> 
+	
+		<label>Username</label> 
+		<input type="text" name="username" placeholder="Enter a Username"> <br /> 
+			
+		<label>Password</label>
+		<input type="password" name="password" placeholder="Enter a Password">
+		</form>
 </body>
 </html>
