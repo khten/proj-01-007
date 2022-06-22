@@ -9,11 +9,12 @@ import com.revature.models.Employee;
 import com.revature.util.HibernateUtil;
 
 // servlet -> calls service --> calls dao
-public class EmployeeDao {
+public class EmployeeDao implements EmployeeDaoI {
 	
 	// CRUD methods
 	
 	// Create (think that in the service layer we'll have a REGISTER()
+	@Override
 	public int insert(Employee e) {
 		
 		// grab the session object
@@ -29,10 +30,10 @@ public class EmployeeDao {
 		
 		// return the pk
 		return pk;
-		
 	}
 	
 	// Read
+	@Override
 	public List<Employee> findAll() {
 		
 		// grab the session
@@ -43,17 +44,15 @@ public class EmployeeDao {
 		
 		 // return the list of employees
 		return emps;
-		
 	}
 	
+	@Override
 	public boolean delete(int id) {
 		return false;
-		
 	}
 	
+	@Override
 	public boolean update(Employee e) {
 		return false;
 	}
-	
-
 }
