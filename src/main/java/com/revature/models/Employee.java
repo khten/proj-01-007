@@ -140,10 +140,4 @@ public class Employee {
 		return "Employee [id=" + id + ", firstName=" + firstName + ", lastName=" + lastName + ", username=" + username
 				+ ", password=" + password + ", role=" + role + "]";
 	}
-<<<<<<< HEAD
-=======
-	
-	
-
->>>>>>> 39fa96eb402cb6d063ff11cda774c3a110006ff1
 }
