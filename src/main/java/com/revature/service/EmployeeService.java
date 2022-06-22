@@ -52,15 +52,7 @@ public class EmployeeService {
 		return edao.findAll();
 		
 	}
-<<<<<<< HEAD
-	//Quick and dirty....improve later
-	public int register(Employee e) {
-		return edao.insert(e);
-	}
-	
-	
+
 	
 
-=======
->>>>>>> bbb80ef48e48b0f42f4f890419586ed8c9ee4ade
 }

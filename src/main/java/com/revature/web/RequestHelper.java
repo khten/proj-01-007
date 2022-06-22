@@ -22,7 +22,6 @@ public class RequestHelper {
 	// object mapper (for frontend)
 	private static ObjectMapper om = new ObjectMapper();
 	
-<<<<<<< HEAD
 	public static void processEmployees(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException{
 		
 		//1. set the content type .... application/json
@@ -41,50 +40,7 @@ public class RequestHelper {
 		out.write(jsonString); //write the string to the response body
 		
 	}
-	public static void processRegistration(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException{
-		String firstname = request.getParameter("firstname");
-		String lastname = request.getParameter("lastname"); // use fn + arrow key < or > to get to the beginning or end of a line of code
-		
-		
-		String username = request.getParameter("username");
-		String password = request.getParameter("password"); // use fn + arrow key < or > to get to the beginning or end of a line of code
-		
-		Employee e = new Employee(firstname, lastname, username, password);
-		
-		int pk = eserv.register(e);
-		
-		if(pk > 0) {
-			e.setId(pk);
-			HttpSession session = request.getSession();
-			session.setAttribute("the-user", e);
-			
-			request.getRequestDispatcher("welcome.html").forward(request, response);
-		}
-		else {
-			//PrintWriter to printout "user already logged in"
-			
-			PrintWriter out = response.getWriter();
-			response.setContentType("text/html");
-			out.println("<h1>Registration Failed.  User already exists!");
-		    out.println("<a href=\"index.html\">Back<</a>");	
-		}
-		/*
-		 * 1 Extract all values from the parameters
-		 * 
-		 * 2 construct a new employee object
-		 * 
-		 * 3 call register method form the service layer
-		 * 
-		 * 4 check the id  if it's > 0 then user creation is successful (-1 method failed and probably a duplicate)
-		 *    (TODO extra validation to ensure emp exists)
-		 *    using request dispatcher forward request and response to a new resource...
-		 *    send the user to a new page -- welcome.html
-		 *    
-		 */
-	}
 	
-=======
->>>>>>> bbb80ef48e48b0f42f4f890419586ed8c9ee4ade
 	/**
 	 * What does this method do?
 	 * 
@@ -135,17 +91,7 @@ public class RequestHelper {
 			// Shout out to Gavin for figuring this out -- 204 doesn't return a response body
 //			response.setStatus(204); // 204 meants successful connection to the server, but no content found
 		}
-<<<<<<< HEAD
-		
-		
-		
-		
-		
-		
-		
-=======
->>>>>>> bbb80ef48e48b0f42f4f890419586ed8c9ee4ade
-	}
+}
 	
 	public static void processRegistration(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
