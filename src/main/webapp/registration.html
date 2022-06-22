@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>Registration</title>
+</head>
+<body>
+
+<h1>Welcome Stranger</h1>
+	<h3>Please register below:</h3>
+
+
+	<!--  POST requests obfuscate (hide) the parameters and dont' show it in the URL -->
+	<form method="POST" action="register">
+		<!-- http://localhost:8080/employee-servlet-app/login -->
+		
+		<label>First Name</label> 
+		<input type="text" name="firstname" placeholder="Enter a first name"> <br /> 
+		
+		<label>Last Name</label> 
+		<input type="text" name="lastname" placeholder="Enter a last name"> <br /> 
+		
+		
+		<label>Username</label>
+		 <input type="text" name="username"placeholder="Enter a username"> <br /> 
+		 
+		<label>Password</label>
+		<input type="password" name="password" placeholder="Enter a password">
+
+		<input type="submit" value="Register!">
+
+	</form>
+
+
+</body>
+</html>
