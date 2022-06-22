@@ -46,6 +46,10 @@ public class EmployeeService {
 		return edao.findAll();
 		
 	}
+	//Quick and dirty....improve later
+	public int register(Employee e) {
+		return edao.insert(e);
+	}
 	
 	
 	

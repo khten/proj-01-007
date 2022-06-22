@@ -2,6 +2,7 @@ package com.revature.web;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.List;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
@@ -20,6 +21,65 @@ public class RequestHelper {
 	// object mapper (for frontend)
 	private static ObjectMapper om = new ObjectMapper();
 	
+	public static void processEmployees(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException{
+		
+		//1. set the content type .... application/json
+		//response.setContentType("application/json");
+		
+		response.setContentType("text/html");
+		
+		//2. Call the getAll() method form the employee service
+		
+		List<Employee> emps = eserv.getAll();             
+		//3. transform the list to a string
+		String jsonString = om.writeValueAsString(emps);
+		//4. write it out
+	        //get printwriter
+		PrintWriter out = response.getWriter();
+		out.write(jsonString); //write the string to the response body
+		
+	}
+	public static void processRegistration(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException{
+		String firstname = request.getParameter("firstname");
+		String lastname = request.getParameter("lastname"); // use fn + arrow key < or > to get to the beginning or end of a line of code
+		
+		
+		String username = request.getParameter("username");
+		String password = request.getParameter("password"); // use fn + arrow key < or > to get to the beginning or end of a line of code
+		
+		Employee e = new Employee(firstname, lastname, username, password);
+		
+		int pk = eserv.register(e);
+		
+		if(pk > 0) {
+			e.setId(pk);
+			HttpSession session = request.getSession();
+			session.setAttribute("the-user", e);
+			
+			request.getRequestDispatcher("welcome.html").forward(request, response);
+		}
+		else {
+			//PrintWriter to printout "user already logged in"
+			
+			PrintWriter out = response.getWriter();
+			response.setContentType("text/html");
+			out.println("<h1>Registration Failed.  User already exists!");
+		    out.println("<a href=\"index.html\">Back<</a>");	
+		}
+		/*
+		 * 1 Extract all values from the parameters
+		 * 
+		 * 2 construct a new employee object
+		 * 
+		 * 3 call register method form the service layer
+		 * 
+		 * 4 check the id  if it's > 0 then user creation is successful (-1 method failed and probably a duplicate)
+		 *    (TODO extra validation to ensure emp exists)
+		 *    using request dispatcher forward request and response to a new resource...
+		 *    send the user to a new page -- welcome.html
+		 *    
+		 */
+	}
 	
 	/**
 	 * What does this method do?
@@ -42,7 +102,7 @@ public class RequestHelper {
 		Employee e = eserv.confirmLogin(username, password);
 		
 		// 3. If the user exists, lets print their info to the screen
-		if (e != null && e.getId() > 0) {
+		if (e.getId() > 0) {
 			
 			// grab the session
 			HttpSession session = request.getSession();
@@ -73,7 +133,9 @@ public class RequestHelper {
 //			response.setStatus(204); // 204 meants successful connection to the server, but no content found
 		}
 		
-			
+		
+		
+		
 		
 		
 		
