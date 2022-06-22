@@ -41,11 +41,18 @@ public class EmployeeService {
 		// ideally you should optimize this and set up a custom exception to be returned
 	}
 	
+	// this service method returns the PK returned by the DAO
+	public int register(Employee e) {
+		// the dao method returns the PK
+		return edao.insert(e);
+	}
+	
 	public List<Employee> getAll() {
 		
 		return edao.findAll();
 		
 	}
+<<<<<<< HEAD
 	//Quick and dirty....improve later
 	public int register(Employee e) {
 		return edao.insert(e);
@@ -54,4 +61,6 @@ public class EmployeeService {
 	
 	
 
+=======
+>>>>>>> bbb80ef48e48b0f42f4f890419586ed8c9ee4ade
 }

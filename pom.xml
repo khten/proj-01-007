@@ -62,10 +62,14 @@
 
 
 	</dependencies>
+<<<<<<< HEAD
 
 
 
 
+=======
+	
+>>>>>>> bbb80ef48e48b0f42f4f890419586ed8c9ee4ade
 	<build>
 	    <finalName>${project.artifactId}</finalName>
 	
@@ -87,6 +91,9 @@
 
 	</build>
 
+<<<<<<< HEAD
 
 
+=======
+>>>>>>> bbb80ef48e48b0f42f4f890419586ed8c9ee4ade
 </project>

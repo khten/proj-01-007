@@ -20,7 +20,7 @@ public class FrontController extends HttpServlet {
 		// 1. URI rewriting
 		// http://localhost:8080/employee-servlet-app/login -- we want to capture login
 		// http://localhost:8080/employee-servlet-app/employees -- if they go here it returns all employees in the DB
-		final String URI = request.getRequestURI().replace("/employee-servlet-app/", "");
+		final String URI = request.getRequestURI().replace("/proj-01-team07/", "");
 		// we're capturing the very last part of the URI
 		
 		// set up a switch case statement in which we call the appropriate functionality based on the URI returned

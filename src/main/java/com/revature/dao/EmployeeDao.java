@@ -9,11 +9,12 @@ import com.revature.models.Employee;
 import com.revature.util.HibernateUtil;
 
 // servlet -> calls service --> calls dao
-public class EmployeeDao {
+public class EmployeeDao implements EmployeeDaoI {
 	
 	// CRUD methods
 	
 	// Create (think that in the service layer we'll have a REGISTER()
+	@Override
 	public int insert(Employee e) {
 		
 		// grab the session object
@@ -25,14 +26,18 @@ public class EmployeeDao {
 		// capture the pk returned when the session method save() is called
 		int pk = (int) ses.save(e);
 		
+<<<<<<< HEAD
 		tx.commit();  //MUST commit
+=======
+		tx.commit();
+>>>>>>> bbb80ef48e48b0f42f4f890419586ed8c9ee4ade
 		
 		// return the pk
 		return pk;
-		
 	}
 	
 	// Read
+	@Override
 	public List<Employee> findAll() {
 		
 		// grab the session
@@ -43,17 +48,15 @@ public class EmployeeDao {
 		
 		 // return the list of employees
 		return emps;
-		
 	}
 	
+	@Override
 	public boolean delete(int id) {
 		return false;
-		
 	}
 	
+	@Override
 	public boolean update(Employee e) {
 		return false;
 	}
-	
-
 }
