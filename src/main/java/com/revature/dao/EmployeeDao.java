@@ -26,6 +26,8 @@ public class EmployeeDao implements EmployeeDaoI {
 		// capture the pk returned when the session method save() is called
 		int pk = (int) ses.save(e);
 		
+		tx.commit();
+		
 		// return the pk
 		return pk;
 	}

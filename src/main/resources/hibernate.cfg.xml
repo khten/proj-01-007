@@ -14,8 +14,12 @@
       
       <!-- Assume test is the database name -->
       <property name = "hibernate.connection.url">
+<<<<<<< HEAD
       	jdbc:postgresql://team-7.cvtq9j4axrge.us-east-1.rds.amazonaws.com:5432/postgres
         <!-- jdbc:postgresql://localhost:5432/postgres -->
+=======
+        jdbc:postgresql://team-7.cvtq9j4axrge.us-east-1.rds.amazonaws.com:5432/postgres
+>>>>>>> 39fa96eb402cb6d063ff11cda774c3a110006ff1
       </property>
       
       <property name = "hibernate.connection.username">
