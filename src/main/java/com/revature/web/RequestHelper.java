@@ -11,6 +11,7 @@ import javax.servlet.http.HttpSession;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.revature.dao.EmployeeDao;
 import com.revature.models.Employee;
+import com.revature.models.Role;
 import com.revature.service.EmployeeService;
 
 public class RequestHelper {
@@ -19,7 +20,6 @@ public class RequestHelper {
 	private static EmployeeService eserv = new EmployeeService(new EmployeeDao());
 	// object mapper (for frontend)
 	private static ObjectMapper om = new ObjectMapper();
-	
 	
 	/**
 	 * What does this method do?
@@ -63,7 +63,6 @@ public class RequestHelper {
 			String jsonString = om.writeValueAsString(e);
 			out.println(jsonString);
 			
-			
 		} else {
 			PrintWriter out = response.getWriter();
 			response.setContentType("text/html");
@@ -72,14 +71,46 @@ public class RequestHelper {
 			// Shout out to Gavin for figuring this out -- 204 doesn't return a response body
 //			response.setStatus(204); // 204 meants successful connection to the server, but no content found
 		}
-		
-			
-		
-		
-		
 	}
 	
-	
-	
-
+	public static void processRegistration(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		
+		// 1. extract all values from the parameters
+		String firstname = request.getParameter("firstname");
+		String lastname = request.getParameter("lastname");
+		String username = request.getParameter("username");
+		String password = request.getParameter("password");
+				
+		// 2. construct a new employee object
+		Employee e = new Employee(firstname, lastname, username, password, Role.Employee);
+		
+		// 3. call the register() method from the service layer
+		int pk = eserv.register(e);
+			
+		// 4. check it's ID...if it's > 0 it's successfull
+		if (pk > 0 ) {
+			
+			e.setId(pk);
+			// add the user to the session
+			HttpSession session = request.getSession();
+			session.setAttribute("the-user", e);
+			
+			request.getRequestDispatcher("welcome.html").forward(request, response);
+			// using the request dispatcher, forward the request and response to a new resource...
+			// send the user to a new page -- welcome.html
+				
+		} else {
+			// if it's -1, that means the register method failed (and there's probably a duplicate user)
+		// use the PrintWriter to print out
+			
+			// TODO: provide better logic in the Service layer to check for PSQL exceptions
+			
+			
+			PrintWriter out = response.getWriter();
+			response.setContentType("text/html");
+			
+			out.println("<h1>Registration failed.  Username already exists</h1>");
+			out.println("<a href=\"index.html\">Back</a>");
+		}
+	}
 }
