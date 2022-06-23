@@ -2,6 +2,7 @@ package com.revature.web;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.servlet.ServletException;
@@ -13,6 +14,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.revature.dao.EmployeeDao;
 import com.revature.models.Employee;
 import com.revature.models.Role;
+import com.revature.models.Ticket;
 import com.revature.service.EmployeeService;
 
 public class RequestHelper {
@@ -24,13 +26,14 @@ public class RequestHelper {
 	
 	public static void processEmployees(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException{
 		
+		
 		//1. set the content type .... application/json
 		//response.setContentType("application/json");
 		
-		response.setContentType("text/html");
-		
+		//response.setContentType("text/html");
+		response.setContentType("application/json");
 		//2. Call the getAll() method form the employee service
-		
+		response.addHeader("Access-Control-Allow-Origin", "*");
 		List<Employee> emps = eserv.getAll();             
 		//3. transform the list to a string
 		String jsonString = om.writeValueAsString(emps);
@@ -102,7 +105,7 @@ public class RequestHelper {
 		String password = request.getParameter("password");
 				
 		// 2. construct a new employee object
-		Employee e = new Employee(firstname, lastname, username, password, Role.Employee);
+		Employee e = new Employee(firstname, lastname, username, password, Role.Employee, new ArrayList<Ticket>());
 		
 		// 3. call the register() method from the service layer
 		int pk = eserv.register(e);
