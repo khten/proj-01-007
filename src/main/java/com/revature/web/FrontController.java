@@ -39,10 +39,14 @@ public class FrontController extends HttpServlet {
 		case "employees":
 			
 			RequestHelper.processEmployees(request, response);
-			// invoke some functionality from the request helper which would return all employees
+			//TODO: invoke some functionality from the request helper which would return all employees
 			break;
 		
-			
+		case "admin":
+			RequestHelper.processEmployees(request, response);
+			//TODO: invoke some functionality
+			break;
+		
 			
 		default:
 			// custom error page

@@ -28,9 +28,8 @@ public class Ticket {
 	@Column(name="id")
 	private int transactionId;
 	
-	@Column(name="desc", nullable=false, length=50)
+	@Column(name="description", nullable=false, length=50)
 	private String description;
-	
 
 	@ManyToOne(cascade=CascadeType.ALL, fetch=FetchType.LAZY)
 	@JoinColumn(name="employeeId")
@@ -49,7 +48,9 @@ public class Ticket {
 	 * @param employeeId
 	 * @param status
 	 */
-	public Ticket(int transactionId, String description, Employee emp, Status status) {
+
+	public Ticket(int transactionId, String description, Employee employeeId, Status status) {
+
 		super();
 		this.transactionId = transactionId;
 		this.description = description;
