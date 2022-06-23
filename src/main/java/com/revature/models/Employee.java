@@ -43,8 +43,8 @@ public class Employee {
 	@Column(name = "role")
 	private Role role;
 	
-	@OneToMany(mappedBy="employees", fetch=FetchType.LAZY)
-	private List<Ticket> ticketList;
+	@OneToMany(mappedBy="employeeId", fetch=FetchType.LAZY)
+	List<Ticket> ticketList;
 
 	/**
 	 * no args constructor, all args constructor, all args except ID constructor
