@@ -16,4 +16,8 @@ buildNumber.properties
 **/.settings
 **/logs/*
 .vscode
+<<<<<<< HEAD
 .metadata/
+=======
+.metadata/
+>>>>>>> bbb80ef48e48b0f42f4f890419586ed8c9ee4ade

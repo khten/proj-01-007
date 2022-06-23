@@ -38,8 +38,11 @@ public class FrontController extends HttpServlet {
 			
 		case "employees":
 			
+			RequestHelper.processEmployees(request, response);
 			// invoke some functionality from the request helper which would return all employees
 			break;
+		
+			
 			
 		default:
 			// custom error page

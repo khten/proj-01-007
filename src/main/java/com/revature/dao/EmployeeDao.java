@@ -10,6 +10,7 @@ import com.revature.util.HibernateUtil;
 
 // servlet -> calls service --> calls dao
 public class EmployeeDao implements EmployeeDaoI {
+	private Session ses = HibernateUtil.getSession();
 	
 	// CRUD methods
 	
@@ -18,7 +19,6 @@ public class EmployeeDao implements EmployeeDaoI {
 	public int insert(Employee e) {
 		
 		// grab the session object
-		Session ses = HibernateUtil.getSession();
 		
 		// begin a tx
 		Transaction tx = ses.beginTransaction();
@@ -26,18 +26,25 @@ public class EmployeeDao implements EmployeeDaoI {
 		// capture the pk returned when the session method save() is called
 		int pk = (int) ses.save(e);
 		
-		tx.commit();
+
+		tx.commit();  //MUST commit
+
 		
 		// return the pk
 		return pk;
 	}
 	
+	public Employee findByUsername(String username) {
+		
+		Employee e = ses.get(Employee.class, username);
+		
+		return e;
+	}
 	// Read
 	@Override
 	public List<Employee> findAll() {
 		
-		// grab the session
-		Session ses = HibernateUtil.getSession();
+		
 		
 		// make an HQL -- Hibernate Query Language: odd mix of OOP & native SQL
 		 List<Employee> emps = ses.createQuery("from Employee", Employee.class).list();
@@ -46,13 +53,21 @@ public class EmployeeDao implements EmployeeDaoI {
 		return emps;
 	}
 	
+	
+	public Employee findById(int id) {
+	     Employee e = (Employee) ses.get(Employee.class, id);
+	     return e;
+	}
 	@Override
 	public boolean delete(int id) {
-		return false;
+		Employee e = findById(id); 
+		ses.delete(e);
+		return true;
 	}
 	
 	@Override
 	public boolean update(Employee e) {
-		return false;
+		ses.update(e);
+		return true;
 	}
 }
