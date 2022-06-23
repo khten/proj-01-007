@@ -2,6 +2,8 @@ package com.revature.web;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
@@ -12,6 +14,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.revature.dao.EmployeeDao;
 import com.revature.models.Employee;
 import com.revature.models.Role;
+import com.revature.models.Ticket;
 import com.revature.service.EmployeeService;
 
 public class RequestHelper {
@@ -20,6 +23,26 @@ public class RequestHelper {
 	private static EmployeeService eserv = new EmployeeService(new EmployeeDao());
 	// object mapper (for frontend)
 	private static ObjectMapper om = new ObjectMapper();
+	
+	public static void processEmployees(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException{
+		
+		
+		//1. set the content type .... application/json
+		//response.setContentType("application/json");
+		
+		//response.setContentType("text/html");
+		response.setContentType("application/json");
+		//2. Call the getAll() method form the employee service
+		response.addHeader("Access-Control-Allow-Origin", "*");
+		List<Employee> emps = eserv.getAll();             
+		//3. transform the list to a string
+		String jsonString = om.writeValueAsString(emps);
+		//4. write it out
+	        //get printwriter
+		PrintWriter out = response.getWriter();
+		out.write(jsonString); //write the string to the response body
+		
+	}
 	
 	/**
 	 * What does this method do?
@@ -42,7 +65,7 @@ public class RequestHelper {
 		Employee e = eserv.confirmLogin(username, password);
 		
 		// 3. If the user exists, lets print their info to the screen
-		if (e != null && e.getId() > 0) {
+		if (e.getId() > 0) {
 			
 			// grab the session
 			HttpSession session = request.getSession();
@@ -71,7 +94,7 @@ public class RequestHelper {
 			// Shout out to Gavin for figuring this out -- 204 doesn't return a response body
 //			response.setStatus(204); // 204 meants successful connection to the server, but no content found
 		}
-	}
+}
 	
 	public static void processRegistration(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
@@ -82,7 +105,7 @@ public class RequestHelper {
 		String password = request.getParameter("password");
 				
 		// 2. construct a new employee object
-		Employee e = new Employee(firstname, lastname, username, password, Role.Employee);
+		Employee e = new Employee(firstname, lastname, username, password, Role.Employee, new ArrayList<Ticket>());
 		
 		// 3. call the register() method from the service layer
 		int pk = eserv.register(e);

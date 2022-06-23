@@ -1,14 +1,17 @@
 package com.revature.models;
 
+import java.util.List;
 import java.util.Objects;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 /**
@@ -37,8 +40,11 @@ public class Employee {
 	private String password;
 
 	@Enumerated(EnumType.STRING)
-	@Column(name = "role")
-	private Role role;
+	@Column(name = "role_name")
+	private Role role_name;
+	
+	@OneToMany(mappedBy="employees", fetch=FetchType.LAZY)
+	private List<Ticket> ticketList;
 
 	/**
 	 * no args constructor, all args constructor, all args except ID constructor
@@ -49,23 +55,27 @@ public class Employee {
 		super();
 	}
 
-	public Employee(int id, String firstName, String lastName, String username, String password, Role role) {
+	public Employee(int id, String firstName, String lastName, String username, String password, Role role_name_name, List<Ticket> ticketList) {
 		super();
 		this.id = id;
 		this.firstName = firstName;
 		this.lastName = lastName;
 		this.username = username;
 		this.password = password;
-		this.role = role;
+		this.role_name = role_name_name;
+		this.ticketList = ticketList;
 	}
 
-	public Employee(String firstName, String lastName, String username, String password, Role role) {
+	
+
+	public Employee(String firstName, String lastName, String username, String password, Role role_name, List<Ticket> ticketList) {
 		super();
 		this.firstName = firstName;
 		this.lastName = lastName;
 		this.username = username;
 		this.password = password;
-		this.role = role;
+		this.role_name = role_name;
+		this.ticketList = ticketList;
 	}
 
 	public int getId() {
@@ -109,16 +119,24 @@ public class Employee {
 	}
 
 	public Role getRole() {
-		return role;
+		return role_name;
 	}
 
-	public void setRole(Role role) {
-		this.role = role;
+	public void setRole(Role role_name) {
+		this.role_name = role_name;
 	}
 
+	public List<Ticket> getTicketList() {
+		return ticketList;
+	}
+
+	public void setTicketList(List<Ticket> ticketList) {
+		this.ticketList = ticketList;
+	}
+	
 	@Override
 	public int hashCode() {
-		return Objects.hash(firstName, id, lastName, password, role, username);
+		return Objects.hash(firstName, id, lastName, password, role_name, ticketList, username);
 	}
 
 	@Override
@@ -131,13 +149,13 @@ public class Employee {
 			return false;
 		Employee other = (Employee) obj;
 		return Objects.equals(firstName, other.firstName) && id == other.id && Objects.equals(lastName, other.lastName)
-				&& Objects.equals(password, other.password) && role == other.role
-				&& Objects.equals(username, other.username);
+				&& Objects.equals(password, other.password) && role_name == other.role_name
+				&& Objects.equals(ticketList, other.ticketList) && Objects.equals(username, other.username);
 	}
 
 	@Override
 	public String toString() {
 		return "Employee [id=" + id + ", firstName=" + firstName + ", lastName=" + lastName + ", username=" + username
-				+ ", password=" + password + ", role=" + role + "]";
+				+ ", password=" + password + ", role_name=" + role_name + ", ticketList=" + ticketList + "]";
 	}
 }

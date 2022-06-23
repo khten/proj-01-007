@@ -40,8 +40,11 @@
       <!--  This will show all of the SQL statemnets that hibernate is generating for us -->
       <property name="hibernate.show_sql">true</property>
       
+      <property name="hibernate.temp.use_jdbc_metadata_defaults">false</property>
+      
       <!-- List of persistent classes -->
       <mapping class = "com.revature.models.Employee"/>
+      <mapping class = "com.revature.models.Ticket"/>
       
    </session-factory>
 </hibernate-configuration>
