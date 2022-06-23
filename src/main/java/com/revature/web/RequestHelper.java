@@ -26,7 +26,6 @@ public class RequestHelper {
 	
 	public static void processEmployees(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException{
 		
-		
 		//1. set the content type .... application/json
 		//response.setContentType("application/json");
 		
@@ -58,34 +57,34 @@ public class RequestHelper {
 		
 		// 1. Extract the parameters from the request (username & password)
 		String username = request.getParameter("username");
-		String password = request.getParameter("password"); // use fn + arrow key < or > to get to the beginning or end of a line of code
-		// use ctrl + arrow key to go from word to word
+		String password = request.getParameter("password");
 		
+		// grab the session
+		HttpSession session = request.getSession();
+
 		// 2. call the confirm login(0 method from the employeeService and see what it returns
 		Employee e = eserv.confirmLogin(username, password);
 		
 		// 3. If the user exists, lets print their info to the screen
 		if (e.getId() > 0) {
-			
-			// grab the session
-			HttpSession session = request.getSession();
-			
-			// add the user to the session
+
 			session.setAttribute("the-user", e);
-			
-			// alternatively you can redirect to another resource instead of printing out dynamically
-			
+
 			// print out the user's data with the print writer
 			PrintWriter out = response.getWriter();
 			response.setContentType("text/html");
-			
 			out.println("<h1>Welcome " + e.getFirstName() + "!</h1>");
-			out.println("<h3>You have successfully logged in!</h3>");
+
+			if (e.getRole() == Role.Admin) {
+				out.println("<h3>You have successfully logged in Admin!</h3>");
+			} else {
+				out.println("<h3>You have successfully logged in Employee!</h3>");
+			}
 			
 			// you COULD print the object out as a JSON string
 			String jsonString = om.writeValueAsString(e);
 			out.println(jsonString);
-			
+
 		} else {
 			PrintWriter out = response.getWriter();
 			response.setContentType("text/html");
