@@ -43,9 +43,10 @@ public class FrontController extends HttpServlet {
 			break;
 		
 		case "admin":
-			RequestHelper.processEmployees(request, response);
+			RequestHelper.processShowAllTickets(request, response);
 			//TODO: invoke some functionality
 			break;
+
 		
 			
 		default:
