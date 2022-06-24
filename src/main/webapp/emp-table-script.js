@@ -10,7 +10,7 @@ let button = document.getElementById('all-emps');
 // fetch the json data
 // parse the data
 // append to the table
-button.addEventListener('click', fetchEmps);
+button.addEventListener('click', fetchEmps());
 
 function buildTable(data){
     console.log("buildTable method triggered");
@@ -38,17 +38,17 @@ function buildTable(data){
     headerRow.appendChild(th2);
     headerRow.appendChild(th3);
     
-    data.forEach(e=> {
-         console.log(e);
+    data.forEach(e => {
+        
          let row = document.createElement('tr');
          let td1 = document.createElement('td');
          let td2 = document.createElement('td');
          let td3 = document.createElement('td');
 
          //set inner HTML of each cell to the diff properties
-         td1.innerHTML=e.firstName;
-         td2.innerHTML=e.lastName;
-         td3.innerHTML=e.userName;
+         td1.innerHTML = e.firstName;
+         td2.innerHTML = e.lastName;
+         td3.innerHTML = e.userName;
 
          //finally append values to the row
           row.appendChild(td1);
@@ -64,21 +64,12 @@ function fetchEmps(){
     //fetch API is a modern interface that allows you to make HTTP requests
     let hostname=window.location.hostname; //grabs ip with where its located
     //FOR LOCALHOST we need the port :8080 after hostname...but remove the port number because when it is deployed it won't need it  (provided by ec2)
-    fetch(`http://${hostname}/proj-01-team07/employees`)
+    fetch(`http://${hostname}:8080/proj-01-team07/employees`)
     .then(response => response.json()) //takes a json string and transforms it
                                        //to a javascript object
     .then(obj => console.log(obj))
     .then(buildTable); //automatically passes the data that's been parsed
                        //passes to the build table
 }
-/*let user = {
-    firstName: "fn",
-    lastName: "ln",
-    username:"bob",
-    password: "secret",
-    role: "emp"
-}
-*/
-function sayHello(){
-    console.log('Hello there!');
-}
+
+
