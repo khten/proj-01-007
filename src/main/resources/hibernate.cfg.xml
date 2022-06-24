@@ -1,28 +1,27 @@
-<?xml version = "1.0" encoding = "utf-8"?>
-<!DOCTYPE hibernate-configuration SYSTEM 
-"http://www.hibernate.org/dtd/hibernate-configuration-3.0.dtd">
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE hibernate-configuration SYSTEM "http://www.hibernate.org/dtd/hibernate-configuration-3.0.dtd">
 <hibernate-configuration>
    <session-factory>
 
-      <property name = "hibernate.dialect">
+      <property name="hibernate.dialect">
          org.hibernate.dialect.PostgreSQLDialect
       </property>
 
-      <property name = "hibernate.connection.driver_class">
+      <property name="hibernate.connection.driver_class">
          org.postgresql.Driver
       </property>
 
       <!-- Assume test is the database name -->
-      <property name = "hibernate.connection.url">
-      	jdbc:postgresql://team-7.cvtq9j4axrge.us-east-1.rds.amazonaws.com:5432/postgres
-                 <!-- jdbc:postgresql://localhost:5432/postgres -->
+      <property name="hibernate.connection.url">
+         jdbc:postgresql://team-7.cvtq9j4axrge.us-east-1.rds.amazonaws.com:5432/postgres
+         <!-- jdbc:postgresql://localhost:5432/postgres -->
       </property>
 
-      <property name = "hibernate.connection.username">
+      <property name="hibernate.connection.username">
         postgres
       </property>
 
-      <property name = "hibernate.connection.password">
+      <property name="hibernate.connection.password">
         postgres
       </property>
 
@@ -43,8 +42,8 @@
       <property name="hibernate.temp.use_jdbc_metadata_defaults">false</property>
 
       <!-- List of persistent classes -->
-      <mapping class = "com.revature.models.Employee"/>
-      <mapping class = "com.revature.models.Ticket"/>
+      <mapping class="com.revature.models.Employee" />
+      <mapping class="com.revature.models.Ticket" />
 
    </session-factory>
 </hibernate-configuration>

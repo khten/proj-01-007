@@ -24,7 +24,6 @@ public class FrontController extends HttpServlet {
 		// returns all employees in the DB
 		final String URI = request.getRequestURI().replace("/proj-01-team07/", "");
 		// we're capturing the very last part of the URI
-<<<<<<< HEAD
 
 		// set up a switch case statement in which we call the appropriate functionality
 		// based on the URI returned
@@ -48,45 +47,13 @@ public class FrontController extends HttpServlet {
 				break;
 
 			case "admin":
-				RequestHelper.processEmployees(request, response);
+				RequestHelper.processShowAllTickets(request, response);
 				// TODO: invoke some functionality
 				break;
 
 			default:
 				// custom error page
 				break;
-=======
-		
-		// set up a switch case statement in which we call the appropriate functionality based on the URI returned
-		switch(URI) {
-		
-		case "login":
-			
-			// invoke some function from the RequestHelper
-			RequestHelper.processLogin(request, response);
-			break;
-		case "register":
-			
-			RequestHelper.processRegistration(request, response);
-			break;
-			
-		case "employees":
-			
-			RequestHelper.processEmployees(request, response);
-			//TODO: invoke some functionality from the request helper which would return all employees
-			break;
-		
-		case "admin":
-			RequestHelper.processShowAllTickets(request, response);
-			//TODO: invoke some functionality
-			break;
-
-		
-			
-		default:
-			// custom error page
-			break;
->>>>>>> 8dc651fc3418c5b9d4dee85092da1e0e327878ef
 		}
 	}
 

@@ -20,13 +20,9 @@ import com.revature.service.EmployeeService;
 import com.revature.service.TicketService;
 
 public class RequestHelper {
-<<<<<<< HEAD
 
-=======
-	
-	protected static TicketService tserv= new TicketService(new TicketDao());
-	
->>>>>>> 8dc651fc3418c5b9d4dee85092da1e0e327878ef
+	protected static TicketService tserv = new TicketService(new TicketDao());
+
 	// employeeservice
 	private static EmployeeService eserv = new EmployeeService(new EmployeeDao());
 	// object mapper (for frontend)
@@ -36,7 +32,6 @@ public class RequestHelper {
 			throws IOException, ServletException {
 
 		// 1. set the content type .... application/json
-		// response.setContentType("application/json");
 
 		// response.setContentType("text/html");
 		response.setContentType("application/json");
@@ -84,37 +79,22 @@ public class RequestHelper {
 			PrintWriter out = response.getWriter();
 			out.println("before role" + e.getRole());
 
-			if (e.getRole()==Role.Admin){
-				System.out.println("You got here.  You are an admin!");
-					request.getRequestDispatcher("admin.html").forward(request, response);
+			if (e.getRole() == Role.Admin) {
 
+				request.getRequestDispatcher("admin.html").forward(request, response);
 				out.println("<h3>You have successfully logged in Admin!</h3>");
-			} else if(e.getRole()==Role.Employee) { 
-				out.println("<h3>You have successfully logged in Employee!</h3>");
-				String jsonString = om.writeValueAsString(e);
-				out.println(jsonString);
-			}
 
-	
+			} else if (e.getRole() == Role.Employee) {
+
+				request.getRequestDispatcher("employee.html").forward(request, response);
+			}
 
 			// print out the user's data with the print writer
 
 			response.setContentType("text/html");
 			out.println("<h1>Welcome " + e.getFirstName() + "!</h1>");
 
-<<<<<<< HEAD
-			if (e.getRole() == Role.Admin) {
-				out.println("<h3>You have successfully logged in Admin!</h3>");
-			} else {
-				out.println("<h3>You have successfully logged in Employee!</h3>");
-			}
-
-=======
-
-			
->>>>>>> 8dc651fc3418c5b9d4dee85092da1e0e327878ef
 			// you COULD print the object out as a JSON string
-
 
 		} else {
 			PrintWriter out = response.getWriter();
@@ -151,7 +131,7 @@ public class RequestHelper {
 			HttpSession session = request.getSession();
 			session.setAttribute("the-user", e);
 
-			request.getRequestDispatcher("welcome.html").forward(request, response);
+			request.getRequestDispatcher("employee.html").forward(request, response);
 			// using the request dispatcher, forward the request and response to a new
 			// resource...
 			// send the user to a new page -- welcome.html
@@ -170,20 +150,22 @@ public class RequestHelper {
 			out.println("<a href=\"index.html\">Back</a>");
 		}
 	}
-		public static void processShowAllTickets(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-			
-			 response.setContentType("application/json");
-			 //response.setContentType("text/html");
 
-			response.addHeader("Access-Control-Allow-Origin", "*");
-			
-			List<Ticket> allTickets = tserv.getAll();
+	public static void processShowAllTickets(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
 
-			String jsonString = om.writeValueAsString(allTickets);
+		response.setContentType("application/json");
+		// response.setContentType("text/html");
 
-			PrintWriter out = response.getWriter();
-			//out.println("<p>Reached</p>");
-			out.write(jsonString);
-		
+		response.addHeader("Access-Control-Allow-Origin", "*");
+
+		List<Ticket> allTickets = tserv.getAll();
+
+		String jsonString = om.writeValueAsString(allTickets);
+
+		PrintWriter out = response.getWriter();
+		// out.println("<p>Reached</p>");
+		out.write(jsonString);
+
 	}
 }

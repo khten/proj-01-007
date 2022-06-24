@@ -1,84 +1,89 @@
-console.log('Hello Javascript world!!!');
+// grab the table  element from the page so
+// we can modify how it looks and add elements
 
-//grab the table elements from the page so we can modify it and add elements
-
+// var let const
 let table = document.querySelector('table');
-//this saves the table element to the variable
+// this saves teh table element to the variable
 
-let button = document.getElementById('all-emps');
-//when the button is clicked, we make a call to the server
-// fetch the json data
-// parse the data
-// append to the table
-button.addEventListener('click', fetchEmps);
+let button = document.getElementById('all-emps')
+// WHEN the button is clicked, we
+// make a call to the server, fetch the JSON
+// DATA and pasrse it and append it to the table
 
-function buildTable(data){
-    console.log("buildTable method triggered");
+// button.addEventListener('click', sayHello)
+button.addEventListener('click', fetchEmps());
+
+function buildTable(data) {
+
+    console.log('buildTable method triggered');
+
     console.log(data);
 
-    let header = document.createElement('thead');
+    let header = document.createElement('thead'); // these are HTML elements
     let headerRow = document.createElement('tr');
 
     header.appendChild(headerRow);
+    table.appendChild(header); 
 
-    //append the header to the table
-    table.appendChild(header);
+    // create a header column for FirstName
+    let th1 = document.createElement('th');
+    th1.innerHTML = 'First Name';
 
-    //create a header column for firstname, lastname, and username
-    let th1= document.createElement('th');
-    th1.innerHTML= 'First Name';
+    // create a header column for last Name
+    let th2 = document.createElement('th');
+    th2.innerHTML = 'Last Name';
 
-    let th2= document.createElement('th');
-    th1.innerHTML= 'Last Name';
+    // create a header column for username
+    let th3 = document.createElement('th');
+    th3.innerHTML = 'Username';
 
-    let th3= document.createElement('th');
-    th1.innerHTML= 'Username';
-    
+    // apend the child nodes onto the header
     headerRow.appendChild(th1);
     headerRow.appendChild(th2);
     headerRow.appendChild(th3);
-    
-    data.forEach(e=> {
-         console.log(e);
-         let row = document.createElement('tr');
-         let td1 = document.createElement('td');
-         let td2 = document.createElement('td');
-         let td3 = document.createElement('td');
 
-         //set inner HTML of each cell to the diff properties
-         td1.innerHTML=e.firstName;
-         td2.innerHTML=e.lastName;
-         td3.innerHTML=e.userName;
+    data.forEach(e => {
 
-         //finally append values to the row
-          row.appendChild(td1);
-          row.appendChild(td2);
-          row.appendChild(td3);
-          
-         //append the row to the table
-          table.appendChild(row);
+        console.log(e);
 
+        let row = document.createElement('tr');
+        let td1 = document.createElement('td');
+        let td2 = document.createElement('td');
+        let td3 = document.createElement('td');
+
+        // set the inner HTML of each cell to the diff propertie s (firstname, lastname, usewrnam )
+        td1.innerHTML = e.firstName;
+        td2.innerHTML = e.lastName;
+        td3.innerHTML = e.username;
+
+        // finally append each table cell to the row
+        row.appendChild(td1);
+        row.appendChild(td2);
+        row.appendChild(td3);
+
+        // append the row to table
+        table.appendChild(row);
     });
 }
-function fetchEmps(){
-    //fetch API is a modern interface that allows you to make HTTP requests
-    let hostname=window.location.hostname; //grabs ip with where its located
-    //FOR LOCALHOST we need the port :8080 after hostname...but remove the port number because when it is deployed it won't need it  (provided by ec2)
-    fetch(`http://${hostname}/proj-01-team07/employees`)
-    .then(response => response.json()) //takes a json string and transforms it
-                                       //to a javascript object
-    .then(obj => console.log(obj))
-    .then(buildTable); //automatically passes the data that's been parsed
-                       //passes to the build table
+
+function fetchEmps() {
+
+    // Fetch API is modern interface that allows you
+    // to make HTTP requests to a server and process the results that 
+    // you get back asynchrnously
+    let hostname = window.location.hostname;
+
+    console.log('fetchEmps triggered')
+
+    fetch(`http://${hostname}:8080/proj-01-team07/employees`)
+    .then(response => response.json()) 
+    //.then(obj => console.log(obj))
+    .then(data => buildTable(data)); // this automatically passes the data that's been parsed
+                      // The JS object is an array of Employee objects
+                      // passes to the build table
 }
-/*let user = {
-    firstName: "fn",
-    lastName: "ln",
-    username:"bob",
-    password: "secret",
-    role: "emp"
-}
-*/
-function sayHello(){
-    console.log('Hello there!');
+
+function sayHello() {
+
+    console.log('Hello there!')
 }

@@ -40,17 +40,10 @@ public class Employee {
 	private String password;
 
 	@Enumerated(EnumType.STRING)
-<<<<<<< HEAD
-	@Column(name = "role_name")
-	private Role role_name;
-
-	@OneToMany(mappedBy = "employeeId", fetch = FetchType.LAZY)
-=======
 	@Column(name = "role")
 	private Role role;
-	
-	@OneToMany(mappedBy="employeeId", fetch=FetchType.LAZY)
->>>>>>> 8dc651fc3418c5b9d4dee85092da1e0e327878ef
+
+	@OneToMany(mappedBy = "employeeId", fetch = FetchType.LAZY)
 	List<Ticket> ticketList;
 
 	/**
@@ -62,34 +55,20 @@ public class Employee {
 		super();
 	}
 
-<<<<<<< HEAD
-	public Employee(int id, String firstName, String lastName, String username, String password, Role role_name,
+	public Employee(int id, String firstName, String lastName, String username, String password, Role role,
 			List<Ticket> ticketList) {
-=======
-	public Employee(int id, String firstName, String lastName, String username, String password, Role role, List<Ticket> ticketList) {
->>>>>>> 8dc651fc3418c5b9d4dee85092da1e0e327878ef
 		super();
 		this.id = id;
 		this.firstName = firstName;
 		this.lastName = lastName;
 		this.username = username;
 		this.password = password;
-<<<<<<< HEAD
-		this.role_name = role_name;
-		this.ticketList = ticketList;
-	}
-
-	public Employee(String firstName, String lastName, String username, String password, Role role_name,
-			List<Ticket> ticketList) {
-=======
 		this.role = role;
 		this.ticketList = ticketList;
 	}
 
-	
-
-	public Employee(String firstName, String lastName, String username, String password, Role role, List<Ticket> ticketList) {
->>>>>>> 8dc651fc3418c5b9d4dee85092da1e0e327878ef
+	public Employee(String firstName, String lastName, String username, String password, Role role,
+			List<Ticket> ticketList) {
 		super();
 		this.firstName = firstName;
 		this.lastName = lastName;
