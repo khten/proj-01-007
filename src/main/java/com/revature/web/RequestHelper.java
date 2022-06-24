@@ -12,13 +12,21 @@ import javax.servlet.http.HttpSession;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.revature.dao.EmployeeDao;
+import com.revature.dao.TicketDao;
 import com.revature.models.Employee;
 import com.revature.models.Role;
 import com.revature.models.Ticket;
 import com.revature.service.EmployeeService;
+import com.revature.service.TicketService;
 
 public class RequestHelper {
+<<<<<<< HEAD
 
+=======
+	
+	protected static TicketService tserv= new TicketService(new TicketDao());
+	
+>>>>>>> 8dc651fc3418c5b9d4dee85092da1e0e327878ef
 	// employeeservice
 	private static EmployeeService eserv = new EmployeeService(new EmployeeDao());
 	// object mapper (for frontend)
@@ -73,20 +81,40 @@ public class RequestHelper {
 
 			session.setAttribute("the-user", e);
 
-			// print out the user's data with the print writer
 			PrintWriter out = response.getWriter();
+			out.println("before role" + e.getRole());
+
+			if (e.getRole()==Role.Admin){
+				System.out.println("You got here.  You are an admin!");
+					request.getRequestDispatcher("admin.html").forward(request, response);
+
+				out.println("<h3>You have successfully logged in Admin!</h3>");
+			} else if(e.getRole()==Role.Employee) { 
+				out.println("<h3>You have successfully logged in Employee!</h3>");
+				String jsonString = om.writeValueAsString(e);
+				out.println(jsonString);
+			}
+
+	
+
+			// print out the user's data with the print writer
+
 			response.setContentType("text/html");
 			out.println("<h1>Welcome " + e.getFirstName() + "!</h1>");
 
+<<<<<<< HEAD
 			if (e.getRole() == Role.Admin) {
 				out.println("<h3>You have successfully logged in Admin!</h3>");
 			} else {
 				out.println("<h3>You have successfully logged in Employee!</h3>");
 			}
 
+=======
+
+			
+>>>>>>> 8dc651fc3418c5b9d4dee85092da1e0e327878ef
 			// you COULD print the object out as a JSON string
-			String jsonString = om.writeValueAsString(e);
-			out.println(jsonString);
+
 
 		} else {
 			PrintWriter out = response.getWriter();
@@ -141,5 +169,21 @@ public class RequestHelper {
 			out.println("<h1>Registration failed.  Username already exists</h1>");
 			out.println("<a href=\"index.html\">Back</a>");
 		}
+	}
+		public static void processShowAllTickets(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+			
+			 response.setContentType("application/json");
+			 //response.setContentType("text/html");
+
+			response.addHeader("Access-Control-Allow-Origin", "*");
+			
+			List<Ticket> allTickets = tserv.getAll();
+
+			String jsonString = om.writeValueAsString(allTickets);
+
+			PrintWriter out = response.getWriter();
+			//out.println("<p>Reached</p>");
+			out.write(jsonString);
+		
 	}
 }

@@ -40,10 +40,17 @@ public class Employee {
 	private String password;
 
 	@Enumerated(EnumType.STRING)
+<<<<<<< HEAD
 	@Column(name = "role_name")
 	private Role role_name;
 
 	@OneToMany(mappedBy = "employeeId", fetch = FetchType.LAZY)
+=======
+	@Column(name = "role")
+	private Role role;
+	
+	@OneToMany(mappedBy="employeeId", fetch=FetchType.LAZY)
+>>>>>>> 8dc651fc3418c5b9d4dee85092da1e0e327878ef
 	List<Ticket> ticketList;
 
 	/**
@@ -55,26 +62,40 @@ public class Employee {
 		super();
 	}
 
+<<<<<<< HEAD
 	public Employee(int id, String firstName, String lastName, String username, String password, Role role_name,
 			List<Ticket> ticketList) {
+=======
+	public Employee(int id, String firstName, String lastName, String username, String password, Role role, List<Ticket> ticketList) {
+>>>>>>> 8dc651fc3418c5b9d4dee85092da1e0e327878ef
 		super();
 		this.id = id;
 		this.firstName = firstName;
 		this.lastName = lastName;
 		this.username = username;
 		this.password = password;
+<<<<<<< HEAD
 		this.role_name = role_name;
 		this.ticketList = ticketList;
 	}
 
 	public Employee(String firstName, String lastName, String username, String password, Role role_name,
 			List<Ticket> ticketList) {
+=======
+		this.role = role;
+		this.ticketList = ticketList;
+	}
+
+	
+
+	public Employee(String firstName, String lastName, String username, String password, Role role, List<Ticket> ticketList) {
+>>>>>>> 8dc651fc3418c5b9d4dee85092da1e0e327878ef
 		super();
 		this.firstName = firstName;
 		this.lastName = lastName;
 		this.username = username;
 		this.password = password;
-		this.role_name = role_name;
+		this.role = role;
 		this.ticketList = ticketList;
 	}
 
@@ -119,11 +140,11 @@ public class Employee {
 	}
 
 	public Role getRole() {
-		return role_name;
+		return role;
 	}
 
-	public void setRole(Role role_name) {
-		this.role_name = role_name;
+	public void setRole(Role role) {
+		this.role = role;
 	}
 
 	public List<Ticket> getTicketList() {
@@ -136,7 +157,7 @@ public class Employee {
 
 	@Override
 	public int hashCode() {
-		return Objects.hash(firstName, id, lastName, password, role_name, ticketList, username);
+		return Objects.hash(firstName, id, lastName, password, role, ticketList, username);
 	}
 
 	@Override
@@ -149,13 +170,13 @@ public class Employee {
 			return false;
 		Employee other = (Employee) obj;
 		return Objects.equals(firstName, other.firstName) && id == other.id && Objects.equals(lastName, other.lastName)
-				&& Objects.equals(password, other.password) && role_name == other.role_name
+				&& Objects.equals(password, other.password) && role == other.role
 				&& Objects.equals(ticketList, other.ticketList) && Objects.equals(username, other.username);
 	}
 
 	@Override
 	public String toString() {
 		return "Employee [id=" + id + ", firstName=" + firstName + ", lastName=" + lastName + ", username=" + username
-				+ ", password=" + password + ", role_name=" + role_name + ", ticketList=" + ticketList + "]";
+				+ ", password=" + password + ", role=" + role + ", ticketList=" + ticketList + "]";
 	}
 }
