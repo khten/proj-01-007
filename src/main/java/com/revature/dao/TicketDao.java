@@ -24,15 +24,26 @@ public class TicketDao implements TicketDaoI {
 
 	@Override
 	public Ticket findById(int ticketId) {
+<<<<<<< HEAD
 		Ticket t = (Ticket) ses.get(Ticket.class, ticketId);
 		return t;
 
+=======
+			return (Ticket) ses.get(Ticket.class, ticketId);
+			
+		
+>>>>>>> 03050b8c72ce3f98121c1eb30cf8c39da7a4555a
 	}
 
 	@Override
 	public List<Ticket> findAll() {
+<<<<<<< HEAD
 		List<Ticket> allTickets = ses.createQuery("from Ticket", Ticket.class).list();
 		return allTickets;
+=======
+		return ses.createQuery("from Ticket", Ticket.class).list(); 
+		
+>>>>>>> 03050b8c72ce3f98121c1eb30cf8c39da7a4555a
 	}
 
 	@Override

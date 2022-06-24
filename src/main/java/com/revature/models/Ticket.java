@@ -51,7 +51,9 @@ public class Ticket {
 	 * @param employeeId
 	 * @param status
 	 */
+
 	public Ticket(int transactionId, String description, Employee employeeId, Status status) {
+
 		super();
 		this.transactionId = transactionId;
 		this.description = description;
