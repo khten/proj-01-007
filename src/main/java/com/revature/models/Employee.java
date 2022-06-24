@@ -42,8 +42,8 @@ public class Employee {
 	@Enumerated(EnumType.STRING)
 	@Column(name = "role")
 	private Role role;
-	
-	@OneToMany(mappedBy="employeeId", fetch=FetchType.LAZY)
+
+	@OneToMany(mappedBy = "employeeId", fetch = FetchType.LAZY)
 	List<Ticket> ticketList;
 
 	/**
@@ -55,7 +55,8 @@ public class Employee {
 		super();
 	}
 
-	public Employee(int id, String firstName, String lastName, String username, String password, Role role, List<Ticket> ticketList) {
+	public Employee(int id, String firstName, String lastName, String username, String password, Role role,
+			List<Ticket> ticketList) {
 		super();
 		this.id = id;
 		this.firstName = firstName;
@@ -66,9 +67,8 @@ public class Employee {
 		this.ticketList = ticketList;
 	}
 
-	
-
-	public Employee(String firstName, String lastName, String username, String password, Role role, List<Ticket> ticketList) {
+	public Employee(String firstName, String lastName, String username, String password, Role role,
+			List<Ticket> ticketList) {
 		super();
 		this.firstName = firstName;
 		this.lastName = lastName;
@@ -133,7 +133,7 @@ public class Employee {
 	public void setTicketList(List<Ticket> ticketList) {
 		this.ticketList = ticketList;
 	}
-	
+
 	@Override
 	public int hashCode() {
 		return Objects.hash(firstName, id, lastName, password, role, ticketList, username);
