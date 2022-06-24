@@ -63,7 +63,8 @@ function buildTable(data){
 function fetchEmps(){
     //fetch API is a modern interface that allows you to make HTTP requests
     let hostname=window.location.hostname; //grabs ip with where its located
-    fetch(`http://${hostname}:8080/proj-01-team07/employees`)
+    //FOR LOCALHOST we need the port :8080 after hostname...but remove the port number because when it is deployed it won't need it  (provided by ec2)
+    fetch(`http://${hostname}/proj-01-team07/employees`)
     .then(response => response.json()) //takes a json string and transforms it
                                        //to a javascript object
     .then(obj => console.log(obj))
