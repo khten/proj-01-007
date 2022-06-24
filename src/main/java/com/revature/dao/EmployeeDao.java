@@ -36,27 +36,24 @@ public class EmployeeDao implements EmployeeDaoI {
 	
 	public Employee findByUsername(String username) {
 		
-		Employee e = ses.get(Employee.class, username);
+	   return ses.get(Employee.class, username);
 		
-		return e;
+		
 	}
 	// Read
 	@Override
 	public List<Employee> findAll() {
 		
-		
-		
 		// make an HQL -- Hibernate Query Language: odd mix of OOP & native SQL
-		 List<Employee> emps = ses.createQuery("from Employee", Employee.class).list();
+		return  ses.createQuery("from Employee", Employee.class).list();
 		
-		 // return the list of employees
-		return emps;
+		
 	}
 	
 	
 	public Employee findById(int id) {
-	     Employee e = (Employee) ses.get(Employee.class, id);
-	     return e;
+	     return (Employee) ses.get(Employee.class, id);
+	     
 	}
 	@Override
 	public boolean delete(int id) {
