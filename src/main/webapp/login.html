@@ -1,26 +1,31 @@
 <!DOCTYPE html>
 <html>
+<<<<<<< HEAD
+  <head>
+    <meta charset="ISO-8859-1" />
+    <title>Insert title here</title>
+  </head>
+  <body>
+    <!--  POST requests obfuscate (hide) the parameters and dont' show it in the URL -->
+    <form method="POST" action="login">
+      <!-- http://localhost:8080/employee-servlet-app/login -->
+      <label>First Name</label>
+      <input type="text" name="firstname" placeholder="First Name" /> <br />
+=======
 <head>
 <meta charset="ISO-8859-1">
 <title>Login</title>
+>>>>>>> 03050b8c72ce3f98121c1eb30cf8c39da7a4555a
 
-</head>
-<body>
+      <label>Last Name</label>
+      <input type="text" name="lastname" placeholder="Last Name" /> <br />
 
-<!--  POST requests obfuscate (hide) the parameters and dont' show it in the URL -->
-	<form method="POST" action="login">
-		<!-- http://localhost:8080/employee-servlet-app/login -->
-        <label>First Name</label> 
-		<input type="text" name="firstname" placeholder="First Name"> <br /> 
+      <label>Username</label>
+      <input type="text" name="username" placeholder="Enter a Username" />
+      <br />
 
-	    <label>Last Name</label> 
-		<input type="text" name="lastname" placeholder="Last Name"> <br /> 
-	
-		<label>Username</label> 
-		<input type="text" name="username" placeholder="Enter a Username"> <br /> 
-			
-		<label>Password</label>
-		<input type="password" name="password" placeholder="Enter a Password">
-		</form>
-</body>
+      <label>Password</label>
+      <input type="password" name="password" placeholder="Enter a Password" />
+    </form>
+  </body>
 </html>

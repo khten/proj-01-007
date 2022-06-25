@@ -3,14 +3,14 @@
   <display-name>proj-01-team07</display-name>
   <welcome-file-list>
     <welcome-file>index.html</welcome-file>
-    
+
   </welcome-file-list>
-  
-   <servlet>
+
+  <servlet>
     <servlet-name>FrontController</servlet-name>
     <servlet-class>com.revature.web.FrontController</servlet-class>
   </servlet>
-  
+
   <servlet-mapping>
     <servlet-name>FrontController</servlet-name>
     <url-pattern>/login</url-pattern>
@@ -20,7 +20,5 @@
     <!-- http://localhost:8080/employee-servlet-app/login -->
     <!-- http://localhost:8080/employee-servlet-app/employees -->
   </servlet-mapping>
-  
-  
-  
+
 </web-app>
