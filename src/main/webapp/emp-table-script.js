@@ -11,13 +11,13 @@ let button = document.getElementById('all-emps')
 // DATA and pasrse it and append it to the table
 
 // button.addEventListener('click', sayHello)
-button.addEventListener('click', fetchEmps());
+button.addEventListener("click", fetchEmps());
 
 function buildTable(data) {
 
     console.log('buildTable method triggered');
 
-    console.log(data);
+    // console.log(data);
 
     let header = document.createElement('thead'); // these are HTML elements
     let headerRow = document.createElement('tr');
@@ -44,7 +44,7 @@ function buildTable(data) {
 
     data.forEach(e => {
 
-        console.log(e);
+       // console.log(e);
 
         let row = document.createElement('tr');
         let td1 = document.createElement('td');
@@ -72,8 +72,9 @@ function fetchEmps() {
     // to make HTTP requests to a server and process the results that 
     // you get back asynchrnously
     let hostname = window.location.hostname;
+  //  console.log(hostname)
 
-    console.log('fetchEmps triggered')
+    //console.log('fetchEmps triggered')
 
     fetch(`http://${hostname}:8080/proj-01-team07/employees`)
     .then(response => response.json()) 
@@ -83,7 +84,7 @@ function fetchEmps() {
                       // passes to the build table
 }
 
-function sayHello() {
+// function sayHello() {
 
-    console.log('Hello there!')
-}
+//     console.log('Hello there!')
+// }
