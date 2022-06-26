@@ -34,7 +34,7 @@ public class Ticket {
 
 	@ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
 	@JoinColumn(name = "employeeId")
-	private Employee employeeId;
+	private int employeeId;
 
 	@Enumerated()
 	private Status status;
@@ -52,7 +52,7 @@ public class Ticket {
 	 * @param status        - The satus of the ticked, set by Role enum
 	 */
 
-	public Ticket(int transactionId, String description, Employee employeeId, Status status) {
+	public Ticket(int transactionId, String description, int employeeId, Status status) {
 		super();
 		this.transactionId = transactionId;
 		this.description = description;
@@ -60,7 +60,7 @@ public class Ticket {
 		this.status = status;
 	}
 
-	public Ticket(String description, Employee employeeId, Status status) {
+	public Ticket(String description, int employeeId, Status status) {
 		super();
 		this.description = description;
 		this.employeeId = employeeId;
@@ -83,11 +83,11 @@ public class Ticket {
 		this.description = description;
 	}
 
-	public Employee getEmployeeId() {
+	public int getEmployeeId() {
 		return employeeId;
 	}
 
-	public void setEmployeeId(Employee employeeId) {
+	public void setEmployeeId(int employeeId) {
 		this.employeeId = employeeId;
 	}
 
