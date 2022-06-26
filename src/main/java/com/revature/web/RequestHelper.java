@@ -151,11 +151,10 @@ public class RequestHelper {
 		}
 	}
 
-	public static void processShowAllTickets(HttpServletRequest request, HttpServletResponse response)
+	public static void showAllTickets(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 
 		response.setContentType("application/json");
-		// response.setContentType("text/html");
 
 		response.addHeader("Access-Control-Allow-Origin", "*");
 

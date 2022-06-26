@@ -30,29 +30,23 @@ public class FrontController extends HttpServlet {
 		switch (URI) {
 
 			case "login":
-
-				// invoke some function from the RequestHelper
 				RequestHelper.processLogin(request, response);
 				break;
-			case "register":
 
+			case "register":
 				RequestHelper.processRegistration(request, response);
 				break;
 
 			case "employees":
-
 				RequestHelper.processEmployees(request, response);
-				// TODO: invoke some functionality from the request helper which would return
-				// all employees
 				break;
 
 			case "admin":
-				RequestHelper.processShowAllTickets(request, response);
-				// TODO: invoke some functionality
+				RequestHelper.showAllTickets(request, response);
 				break;
 
 			default:
-				// custom error page
+				// TODO: Add custom error page
 				break;
 		}
 	}

@@ -14,13 +14,8 @@ import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
-/**
- * This is a persistent class meaning we need to provide a no-args constructor a
- * PK, getters & setters, hashCode & equals
- */
-
 @Entity
-@Table(name = "employees") // these annotations come from the JPA (that's the specification)
+@Table(name = "employees")
 public class Employee {
 
 	@Id
@@ -34,7 +29,7 @@ public class Employee {
 	private String lastName;
 
 	@Column(unique = true)
-	private String username; // this column will just be "username" since we didn't provide a name attribute
+	private String username;
 
 	@Column(name = "pwd")
 	private String password;
@@ -45,11 +40,6 @@ public class Employee {
 
 	@OneToMany(mappedBy = "employeeId", fetch = FetchType.LAZY)
 	List<Ticket> ticketList;
-
-	/**
-	 * no args constructor, all args constructor, all args except ID constructor
-	 * getters/setters hashCode & equals toString();
-	 */
 
 	public Employee() {
 		super();

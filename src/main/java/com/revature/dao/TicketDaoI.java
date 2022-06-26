@@ -6,12 +6,17 @@ import com.revature.models.Ticket;
 
 public interface TicketDaoI {
 
-	//Create
+	// Create
 	public int insert(Ticket t);
+
 	public Ticket findById(int ticketId);
+
 	public List<Ticket> findAll();
+
+	public List<Ticket> findByEmpId(int id);
+
 	public boolean update(Ticket t);
+
 	public boolean delete(int ticketId);
 
-	
 }
