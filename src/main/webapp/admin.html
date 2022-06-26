@@ -10,13 +10,20 @@
   <body>
 
     <h1>Welcome Admin!</h1>
-    <form method="POST" action="admin">
+  <!--    <form method="POST" action="admin">
       <input type="submit" value="View All Tickets!" />
     </form>
-
-
+    -->
+    
+    <form method="GET" action="approve">
+    	<label>Update Ticket Status</label>
+    	<input type="number" id="acct-id" name="acct-id" min="1" placeholder="Enter a Ticket Number">
+    	<input type="submit" value="Approve" />
+    </form>
+    
+	<button id="approve-button">Approve</button>
+   
   
-  
-  </body>
+   </body>
 </html>
 

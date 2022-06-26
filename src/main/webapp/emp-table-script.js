@@ -74,7 +74,7 @@ function fetchEmps() {
     // you get back asynchrnously
     let hostname = window.location.hostname;
 
-    console.log('fetchEmps triggered')
+   
 
     fetch(`http://${hostname}:8080/proj-01-team07/employees`)
     .then(response => response.json()) 
