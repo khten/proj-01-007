@@ -10,17 +10,10 @@ public class EmployeeService {
 
 	private EmployeeDao edao;
 
-	/**
-	 * Dependency Injection via Constructor Injection
-	 * 
-	 * Constructor Injection is a sophisticated way of ensuring
-	 * that the EmployeeService object ALWAYS has an EmployeeDao object
-	 * 
-	 */
+	// Ensure EmployeeService objects ALWAYS have a TicketDao via Dependency
+	// Injection
 	public EmployeeService(EmployeeDao edao) {
-
 		this.edao = edao;
-
 	}
 
 	/**
@@ -32,27 +25,24 @@ public class EmployeeService {
 	 */
 	public Employee confirmLogin(String username, String password) {
 
-		// let's stream through all the employees that are returned
+		// Stream through all returned employees
 		Optional<Employee> possibleEmp = edao.findAll().stream()
 				.filter(e -> (e.getUsername().equals(username) && e.getPassword().equals(password)))
 				.findFirst();
 
-		// IF the employee is present, return it, otherwise return empty Emp object
-		// (with id of 0)
+		// Return employee if present, or return empty employee object
 		return (possibleEmp.isPresent() ? possibleEmp.get() : new Employee());
-		// ideally you should optimize this and set up a custom exception to be returned
+
+		// TODO: Setup custom exception
 	}
 
-	// this service method returns the PK returned by the DAO
+	// Inserts employee into DB, returns PK from DAO
 	public int register(Employee e) {
-		// the dao method returns the PK
 		return edao.insert(e);
 	}
 
+	// Gets list of all employees in the DB
 	public List<Employee> getAll() {
-
 		return edao.findAll();
-
 	}
-
 }

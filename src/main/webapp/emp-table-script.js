@@ -1,23 +1,17 @@
-// grab the table  element from the page so
-// we can modify how it looks and add elements
-
-// var let const
+// Get table element
 let table = document.querySelector('table');
-// this saves teh table element to the variable
-
 let button = document.getElementById('all-emps')
-// WHEN the button is clicked, we
-// make a call to the server, fetch the JSON
-// DATA and pasrse it and append it to the table
+
 
 // button.addEventListener('click', sayHello)
 button.addEventListener("click", fetchEmps());
+
 
 function buildTable(data) {
 
 
 
-    let header = document.createElement('thead'); // these are HTML elements
+    let header = document.createElement('thead');
     let headerRow = document.createElement('tr');
 
     header.appendChild(headerRow);
@@ -74,6 +68,7 @@ function fetchEmps() {
     // you get back asynchrnously
     let hostname = window.location.hostname;
 
+
    
 
     fetch(`http://${hostname}:8080/proj-01-team07/employees`)
@@ -83,4 +78,5 @@ function fetchEmps() {
                       // The JS object is an array of Employee objects
                       // passes to the build table
 }
+
 
