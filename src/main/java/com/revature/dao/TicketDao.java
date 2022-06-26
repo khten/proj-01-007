@@ -25,13 +25,16 @@ public class TicketDao implements TicketDaoI {
 	@Override
 	public Ticket findById(int ticketId) {
 		return (Ticket) ses.get(Ticket.class, ticketId);
-
 	}
 
 	@Override
 	public List<Ticket> findAll() {
 		return ses.createQuery("from Ticket", Ticket.class).list();
+	}
 
+	@Override
+	public List<Ticket> findByEmpId(int id) {
+		return ses.createQuery("from Ticket where employee_id = " + id, Ticket.class).list();
 	}
 
 	@Override
@@ -47,5 +50,4 @@ public class TicketDao implements TicketDaoI {
 
 		return true;
 	}
-
 }

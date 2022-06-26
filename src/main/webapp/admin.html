@@ -12,17 +12,19 @@
       <input type="submit" name="view-all" value="View All Tickets!" />
     </form>
 
-    
+    <form method="POST" action="admin">
+      <input type="text" name="emp-id" placeholder="Enter a Employee ID" />
+
+      <input type="submit" value="Find Tickets by Employee ID" />
+      <button id="tickets-emp-id">Find Tickets From ID</button>
+    </form>
+
     <form method="POST" action="admin">
     	<label>Update Ticket Status</label>
     	<input type="number" id="acct-id" name="acct-id" min="1" placeholder="Enter a Ticket Number">
     	<input type="submit" name="approve" value="Approve" />
     	<input type="submit" name="denied" value="Denied" />
      </form>
-    
-	
-   
-  
    </body>
 </html>
 

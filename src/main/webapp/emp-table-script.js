@@ -1,22 +1,15 @@
-// grab the table  element from the page so
-// we can modify how it looks and add elements
-
-// var let const
+// Get table element
 let table = document.querySelector('table');
-// this saves teh table element to the variable
-
 let button = document.getElementById('all-emps')
-// WHEN the button is clicked, we
-// make a call to the server, fetch the JSON
-// DATA and pasrse it and append it to the table
 
-// button.addEventListener('click', sayHello)
-button.addEventListener("click", fetchEmps());
+// Add button listener, call fetchEmps() method
+button.addEventListener('click', fetchEmps());
 
 function buildTable(data) {
 
 
-    let header = document.createElement('thead'); // these are HTML elements
+
+    let header = document.createElement('thead');
     let headerRow = document.createElement('tr');
 
     header.appendChild(headerRow);
@@ -47,12 +40,10 @@ function buildTable(data) {
          let td2 = document.createElement('td');
          let td3 = document.createElement('td');
 
-
          //set inner HTML of each cell to the diff properties
          td1.innerHTML = e.firstName;
          td2.innerHTML = e.lastName;
          td3.innerHTML = e.userName;
-
 
 
 
@@ -74,17 +65,14 @@ function fetchEmps() {
     // to make HTTP requests to a server and process the results that 
     // you get back asynchrnously
     let hostname = window.location.hostname;
-  //  console.log(hostname)
 
 
-
+    // Get employee table as array of JSON objects
     fetch(`http://${hostname}:8080/proj-01-team07/employees`)
     .then(response => response.json()) 
-    //.then(obj => console.log(obj))
-    .then(data => buildTable(data)); // this automatically passes the data that's been parsed
-                      // The JS object is an array of Employee objects
-                      // passes to the build table
+    .then(data => buildTable(data)); 
 }
 
+   
 
-
+    
