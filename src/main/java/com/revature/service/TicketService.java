@@ -38,6 +38,11 @@ public class TicketService {
         return tdao.update(t);
 
     }
+    
+
+    public Ticket getById(int id) {
+    	return tdao.findById(id);
+    }
 
     public boolean deleteTicket(int id){
         return tdao.delete(id);
