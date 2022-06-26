@@ -44,7 +44,9 @@ public class EmployeeDao implements EmployeeDaoI {
 
 	@Override
 	public boolean update(Employee e) {
+		Transaction tx = ses.beginTransaction();
 		ses.update(e);
+		tx.commit();
 		return true;
 	}
 

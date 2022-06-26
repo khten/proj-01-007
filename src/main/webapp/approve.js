@@ -7,5 +7,4 @@ button.addEventListener('click', approveTicket());
 
 function approveTicket(){
 
-	
 }

@@ -18,8 +18,8 @@ function fetchPokemon(){
     .then(response => response.json())
     .then(renderPokemon)
     //chain functions to our promise -> parse JSON into an object, then call a function on the object
-    
 }
+
 //create a function to render response
 function renderPokemon(data){
     pokeName.innerHTML=`Name: ${data.name}`;
