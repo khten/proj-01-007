@@ -15,9 +15,7 @@ button.addEventListener('click', fetchEmps());
 
 function buildTable(data) {
 
-    console.log('buildTable method triggered');
 
-    console.log(data);
 
     let header = document.createElement('thead'); // these are HTML elements
     let headerRow = document.createElement('tr');
@@ -42,19 +40,20 @@ function buildTable(data) {
     headerRow.appendChild(th2);
     headerRow.appendChild(th3);
 
+    
     data.forEach(e => {
+        
+         let row = document.createElement('tr');
+         let td1 = document.createElement('td');
+         let td2 = document.createElement('td');
+         let td3 = document.createElement('td');
 
-        console.log(e);
+         //set inner HTML of each cell to the diff properties
+         td1.innerHTML = e.firstName;
+         td2.innerHTML = e.lastName;
+         td3.innerHTML = e.userName;
 
-        let row = document.createElement('tr');
-        let td1 = document.createElement('td');
-        let td2 = document.createElement('td');
-        let td3 = document.createElement('td');
 
-        // set the inner HTML of each cell to the diff propertie s (firstname, lastname, usewrnam )
-        td1.innerHTML = e.firstName;
-        td2.innerHTML = e.lastName;
-        td3.innerHTML = e.username;
 
         // finally append each table cell to the row
         row.appendChild(td1);
@@ -66,6 +65,8 @@ function buildTable(data) {
     });
 }
 
+
+
 function fetchEmps() {
 
     // Fetch API is modern interface that allows you
@@ -73,7 +74,7 @@ function fetchEmps() {
     // you get back asynchrnously
     let hostname = window.location.hostname;
 
-    console.log('fetchEmps triggered')
+   
 
     fetch(`http://${hostname}:8080/proj-01-team07/employees`)
     .then(response => response.json()) 
@@ -83,7 +84,3 @@ function fetchEmps() {
                       // passes to the build table
 }
 
-function sayHello() {
-
-    console.log('Hello there!')
-}
