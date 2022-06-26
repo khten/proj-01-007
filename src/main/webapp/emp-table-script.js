@@ -11,7 +11,7 @@ let button = document.getElementById('all-emps')
 // DATA and pasrse it and append it to the table
 
 // button.addEventListener('click', sayHello)
-button.addEventListener('click', fetchEmps());
+button.addEventListener("click", fetchEmps());
 
 function buildTable(data) {
 
