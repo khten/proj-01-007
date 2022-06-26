@@ -7,9 +7,7 @@ button.addEventListener('click', fetchEmps());
 
 function buildTable(data) {
 
-    console.log('buildTable method triggered');
 
-    console.log(data);
 
     let header = document.createElement('thead');
     let headerRow = document.createElement('tr');
@@ -34,19 +32,20 @@ function buildTable(data) {
     headerRow.appendChild(th2);
     headerRow.appendChild(th3);
 
+    
     data.forEach(e => {
+        
+         let row = document.createElement('tr');
+         let td1 = document.createElement('td');
+         let td2 = document.createElement('td');
+         let td3 = document.createElement('td');
 
-        console.log(e);
+         //set inner HTML of each cell to the diff properties
+         td1.innerHTML = e.firstName;
+         td2.innerHTML = e.lastName;
+         td3.innerHTML = e.userName;
 
-        let row = document.createElement('tr');
-        let td1 = document.createElement('td');
-        let td2 = document.createElement('td');
-        let td3 = document.createElement('td');
 
-        // set the inner HTML of each cell to the diff propertie s (firstname, lastname, usewrnam )
-        td1.innerHTML = e.firstName;
-        td2.innerHTML = e.lastName;
-        td3.innerHTML = e.username;
 
         // finally append each table cell to the row
         row.appendChild(td1);
@@ -58,6 +57,8 @@ function buildTable(data) {
     });
 }
 
+
+
 function fetchEmps() {
 
     // Fetch API is modern interface that allows you
@@ -65,8 +66,21 @@ function fetchEmps() {
     // you get back asynchrnously
     let hostname = window.location.hostname;
 
+<<<<<<< HEAD
     // Get employee table as array of JSON objects
     fetch(`http://${hostname}:8080/proj-01-team07/employees`)
     .then(response => response.json()) 
     .then(data => buildTable(data)); 
 }
+=======
+   
+
+    fetch(`http://${hostname}:8080/proj-01-team07/employees`)
+    .then(response => response.json()) 
+    //.then(obj => console.log(obj))
+    .then(data => buildTable(data)); // this automatically passes the data that's been parsed
+                      // The JS object is an array of Employee objects
+                      // passes to the build table
+}
+
+>>>>>>> fe3d315d43012cef6ac44bf2b00afcabdd45940d

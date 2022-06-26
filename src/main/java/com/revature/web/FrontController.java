@@ -12,6 +12,11 @@ import javax.servlet.http.HttpServletResponse;
 public class FrontController extends HttpServlet {
 
 	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
+	/**
 	 * This method will be responsible for determining what resource the client is
 	 * requesting
 	 */
@@ -39,10 +44,18 @@ public class FrontController extends HttpServlet {
 
 			case "employees":
 				RequestHelper.processEmployees(request, response);
+
 				break;
 
 			case "admin":
-				RequestHelper.showAllTickets(request, response);
+				if (request.getParameter("view-all") != null) {
+					RequestHelper.showAllTickets(request, response);
+
+				} else if (request.getParameter("approve") != null) {
+					RequestHelper.processApproveTicket(request, response);
+				} else if (request.getParameter("denied") != null) {
+					RequestHelper.processDenyTicket(request, response);
+				}
 				break;
 
 			default:

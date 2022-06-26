@@ -15,6 +15,7 @@ import com.revature.dao.EmployeeDao;
 import com.revature.dao.TicketDao;
 import com.revature.models.Employee;
 import com.revature.models.Role;
+import com.revature.models.Status;
 import com.revature.models.Ticket;
 import com.revature.service.EmployeeService;
 import com.revature.service.TicketService;
@@ -167,4 +168,47 @@ public class RequestHelper {
 		out.write(jsonString);
 
 	}
+	public static void processApproveOrDenyTicket(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException{
+		if(request.getParameter("approve") != null) {
+			processApproveTicket(request, response);
+		}else if(request.getParameter("deny") != null){
+			processDenyTicket(request, response);
+		}else {
+			//TODO nothing error chekc
+		}
+		
+	}
+	public static void processApproveTicket(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
+//		
+		 int id = Integer.valueOf(request.getParameter("acct-id"));
+		
+		 Ticket t = tserv.getById(id);
+		 if(t != null) {
+			 t.setStatus(Status.Approved);
+			 tserv.updateTicket(t);
+		 }
+//		 
+//		 
+	   
+		 PrintWriter out = response.getWriter();
+		 out.write("Approved Ticket " + id);
+		 
+	}
+	public static void processDenyTicket(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
+			
+		int id = Integer.valueOf(request.getParameter("acct-id"));
+	     Ticket t = tserv.getById(id);
+		if(t != null) {
+			t.setStatus(Status.Denied);
+		
+		tserv.updateTicket(t);
+		}
+		 PrintWriter out = response.getWriter();
+		 out.write("Denied Ticket " + id);
+	}
+	
+	
 }
