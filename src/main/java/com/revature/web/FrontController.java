@@ -35,37 +35,31 @@ public class FrontController extends HttpServlet {
 		switch (URI) {
 
 			case "login":
-
 				RequestHelper.processLogin(request, response);
 				break;
 
 			case "register":
-
 				RequestHelper.processRegistration(request, response);
 				break;
 
 			case "employees":
-
 				RequestHelper.processEmployees(request, response);
-				
+
 				break;
 
 			case "admin":
 				if (request.getParameter("view-all") != null) {
-					RequestHelper.processShowAllTickets(request, response);
-						
-				}else if(request.getParameter("approve") != null) {
-				    RequestHelper.processApproveTicket(request, response);
-				}else if(request.getParameter("denied") != null) {
+					RequestHelper.showAllTickets(request, response);
+
+				} else if (request.getParameter("approve") != null) {
+					RequestHelper.processApproveTicket(request, response);
+				} else if (request.getParameter("denied") != null) {
 					RequestHelper.processDenyTicket(request, response);
 				}
 				break;
-			
-			
-		
+
 			default:
-				
-				
+				// TODO: Add custom error page
 				break;
 		}
 	}

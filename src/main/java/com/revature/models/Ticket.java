@@ -46,14 +46,13 @@ public class Ticket {
 	/**
 	 * Creates a reimbursement ticket
 	 * 
-	 * @param transactionId The unique id number of the transaction
-	 * @param description
-	 * @param employeeId
-	 * @param status
+	 * @param transactionId - The unique id number of the transaction
+	 * @param description   - A description of the transaction
+	 * @param employeeId    - The employee ID that submitted the ticket
+	 * @param status        - The satus of the ticked, set by Role enum
 	 */
 
 	public Ticket(int transactionId, String description, Employee employeeId, Status status) {
-
 		super();
 		this.transactionId = transactionId;
 		this.description = description;
