@@ -5,6 +5,7 @@ import java.util.Objects;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
@@ -36,7 +37,10 @@ public class Ticket {
 	@JoinColumn(name = "employeeId")
 	private Employee employeeId;
 
-	@Enumerated()
+	@Enumerated(EnumType.STRING)
+
+	@Column(name = "status")
+
 	private Status status;
 
 	public Ticket() {

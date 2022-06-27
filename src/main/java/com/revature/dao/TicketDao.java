@@ -24,11 +24,7 @@ public class TicketDao implements TicketDaoI {
 
 	@Override
 	public Ticket findById(int ticketId) {
-		ses.beginTransaction();
-		Ticket t = (Ticket) ses.get(Ticket.class, ticketId);
-		ses.getTransaction().commit();
-
-		return t;
+		return (Ticket) ses.get(Ticket.class, ticketId);
 	}
 
 	@Override

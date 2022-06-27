@@ -32,19 +32,39 @@ public class RequestHelper {
 	public static void processEmployees(HttpServletRequest request, HttpServletResponse response)
 			throws IOException, ServletException {
 
-		// 1. set the content type .... application/json
+		if (request.getParameter("submitTicket") != null) {
+			// do some stuff
+			String description = request.getParameter("desc");
+			Employee e = (Employee) request.getSession().getAttribute("the-user");
 
+			Ticket t = new Ticket(description, e, Status.Pending);
+			tserv.requestNewTicket(t);
+			e.getTicketList().add(t);
+			eserv.update(e);
+			PrintWriter out = response.getWriter();
+			out.write("Processed submit ticket...but does it persist???");
+		} else if (request.getParameter("password") != null) {
+			Employee e = (Employee) request.getSession().getAttribute("the-user");
+			String passWord = request.getParameter("password");
+			e.setPassword(passWord);
+			PrintWriter out = response.getWriter();
+			out.write("Processed password change...persist???");
+			eserv.update(e);
+		}
+		// 1. set the content type .... application/json
+		// TODO This is to process view all employees...seems to be issue with the
+		// jsonString;
 		// response.setContentType("text/html");
-		response.setContentType("application/json");
-		// 2. Call the getAll() method form the employee service
-		response.addHeader("Access-Control-Allow-Origin", "*");
-		List<Employee> emps = eserv.getAll();
-		// 3. transform the list to a string
-		String jsonString = om.writeValueAsString(emps);
-		// 4. write it out
-		// get printwriter
-		PrintWriter out = response.getWriter();
-		out.write(jsonString); // write the string to the response body
+		// response.setContentType("application/json");
+		// // 2. Call the getAll() method form the employee service
+		// response.addHeader("Access-Control-Allow-Origin", "*");
+		// List<Employee> emps = eserv.getAll();
+		// // 3. transform the list to a string
+		// String jsonString = om.writeValueAsString(emps);
+		// // 4. write it out
+		// // get printwriter
+		// PrintWriter out = response.getWriter();
+		// out.write(jsonString); // write the string to the response body
 	}
 
 	/**
@@ -87,7 +107,8 @@ public class RequestHelper {
 
 			} else if (e.getRole() == Role.Employee) {
 
-				request.getRequestDispatcher("employee.html").forward(request, response);
+				request.getRequestDispatcher("employees.html").forward(request, response);
+				out.println("<h3>You have successfully logged in as Employee!</h3>");
 			}
 
 			// print out the user's data with the print writer
