@@ -5,6 +5,7 @@ import java.util.Objects;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
@@ -34,9 +35,9 @@ public class Ticket {
 
 	@ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
 	@JoinColumn(name = "employeeId")
-	private int employeeId;
+	private Employee employeeId;
 
-	@Enumerated()
+	@Enumerated(EnumType.STRING)
 	private Status status;
 
 	public Ticket() {
@@ -52,7 +53,7 @@ public class Ticket {
 	 * @param status        - The satus of the ticked, set by Role enum
 	 */
 
-	public Ticket(int transactionId, String description, int employeeId, Status status) {
+	public Ticket(int transactionId, String description, Employee employeeId, Status status) {
 		super();
 		this.transactionId = transactionId;
 		this.description = description;
@@ -60,7 +61,7 @@ public class Ticket {
 		this.status = status;
 	}
 
-	public Ticket(String description, int employeeId, Status status) {
+	public Ticket(String description, Employee employeeId, Status status) {
 		super();
 		this.description = description;
 		this.employeeId = employeeId;
@@ -83,11 +84,11 @@ public class Ticket {
 		this.description = description;
 	}
 
-	public int getEmployeeId() {
+	public Employee getEmployeeId() {
 		return employeeId;
 	}
 
-	public void setEmployeeId(int employeeId) {
+	public void setEmployeeId(Employee employeeId) {
 		this.employeeId = employeeId;
 	}
 
