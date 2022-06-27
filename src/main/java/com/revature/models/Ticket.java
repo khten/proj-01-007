@@ -38,6 +38,8 @@ public class Ticket {
 	private Employee employeeId;
 
 	@Enumerated(EnumType.STRING)
+	@Column(name = "status")
+
 	private Status status;
 
 	public Ticket() {

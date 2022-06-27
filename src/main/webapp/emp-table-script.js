@@ -69,14 +69,14 @@ function fetchEmps() {
     let hostname = window.location.hostname;
 
 
-   
 
+    // Get employee table as array of JSON objects
     fetch(`http://${hostname}:8080/proj-01-team07/employees`)
     .then(response => response.json()) 
-    //.then(obj => console.log(obj))
-    .then(data => buildTable(data)); // this automatically passes the data that's been parsed
-                      // The JS object is an array of Employee objects
-                      // passes to the build table
+    .then(data => buildTable(data)); 
 }
 
+   
+
+    
 
