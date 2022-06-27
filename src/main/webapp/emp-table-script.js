@@ -1,9 +1,9 @@
 // Get table element
 let table = document.querySelector('table');
-let button = document.getElementById("all-emps");
+let button = document.getElementById('all-emps');
 
 // Add button listener, call fetchEmps() method
-button.addEventListener("click", fetchEmps());
+button.addEventListener('click', fetchEmps);
 
 function buildTable(data) {
 
@@ -40,7 +40,7 @@ function buildTable(data) {
          //set inner HTML of each cell to the diff properties
          td1.innerHTML = e.firstName;
          td2.innerHTML = e.lastName;
-         td3.innerHTML = e.userName;
+         td3.innerHTML = e.username;
 
         // finally append each table cell to the row
         row.appendChild(td1);

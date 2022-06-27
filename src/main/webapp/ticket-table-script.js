@@ -10,7 +10,6 @@ let button = document.getElementById('all-tickets')
 // make a call to the server, fetch the JSON
 // DATA and pasrse it and append it to the table
 
-// button.addEventListener('click', sayHello)
 button.addEventListener('click', fetchTicket());
 
 function buildTable(data) {
@@ -79,4 +78,3 @@ function fetchTicket() {
                       // The JS object is an array of Employee objects
                       // passes to the build table
 }
-
