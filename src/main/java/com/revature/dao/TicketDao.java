@@ -39,14 +39,19 @@ public class TicketDao implements TicketDaoI {
 
 	@Override
 	public boolean update(Ticket t) {
+		Transaction tx = ses.beginTransaction();
 		ses.update(t);
+		tx.commit();
+		
 		return true;
 	}
 
 	@Override
 	public boolean delete(int id) {
 		Ticket t = findById(id);
+		Transaction tx = ses.beginTransaction();
 		ses.delete(t);
+		tx.commit();
 
 		return true;
 	}
