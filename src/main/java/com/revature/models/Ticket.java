@@ -16,6 +16,8 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 /**
  * A reimbursement ticket
  * 
@@ -39,6 +41,7 @@ public class Ticket implements Serializable{
 	@Column(name = "description", nullable = false, length = 50)
 	private String description;
 
+	@JsonIgnore //add this for tables that are referencing items
 	@ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
 	@JoinColumn(name = "employeeId")
 	private Employee employeeId;
