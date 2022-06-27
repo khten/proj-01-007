@@ -1,5 +1,6 @@
 package com.revature.models;
 
+import java.io.Serializable;
 import java.util.Objects;
 
 import javax.persistence.CascadeType;
@@ -25,7 +26,12 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
  */
 @Entity
 @Table(name = "tickets")
-public class Ticket {
+public class Ticket implements Serializable {
+
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -35,9 +41,9 @@ public class Ticket {
 	@Column(name = "description", nullable = false, length = 50)
 	private String description;
 
+	@JsonIgnore // add this for tables that are referencing items
 	@ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
 	@JoinColumn(name = "employeeId")
-	@JsonIgnore
 	private Employee employeeId;
 
 	@Enumerated(EnumType.STRING)

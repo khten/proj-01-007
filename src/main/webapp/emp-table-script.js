@@ -1,6 +1,9 @@
 // Get table element
-let table = document.querySelector('table');
-let button = document.getElementById('all-emps');
+let table = document.getElementById('employee-table');
+//let button = document.getElementById('all-emps')
+
+
+//button.addEventListener("click", fetchEmps); //should work because we removed () form fetchemps
 
 // Add button listener, call fetchEmps() method
 button.addEventListener('click', fetchEmps);
@@ -58,6 +61,8 @@ function fetchEmps() {
     // to make HTTP requests to a server and process the results that 
     // you get back asynchrnously
     let hostname = window.location.hostname;
+
+	console.log("fetchEmps called")
 
     // Get employee table as array of JSON objects
     fetch(`http://${hostname}:8080/proj-01-team07/employees`)
