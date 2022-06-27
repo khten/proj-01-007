@@ -76,7 +76,3 @@ function fetchEmps() {
     .then(data => buildTable(data)); 
 }
 
-   
-
-    
-
