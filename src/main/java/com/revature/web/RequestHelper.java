@@ -56,19 +56,7 @@ public class RequestHelper {
 			out.write("Processed password change...persist???");
 			eserv.update(e);
 		}
-		// 1. set the content type .... application/json
-//  TODO This is to process view all employees...seems to be issue with the jsonString;
-		// response.setContentType("text/html");
-//		response.setContentType("application/json");
-//		// 2. Call the getAll() method form the employee service
-//		response.addHeader("Access-Control-Allow-Origin", "*");
-//		List<Employee> emps = eserv.getAll();
-//		// 3. transform the list to a string
-//		String jsonString = om.writeValueAsString(emps);
-//		// 4. write it out
-//		// get printwriter
-//		PrintWriter out = response.getWriter();
-//		out.write(jsonString); // write the string to the response body
+	
 	}
 
 	/**
@@ -177,6 +165,28 @@ public class RequestHelper {
 		}
 	}
 
+	public static void processViewAllEmployees(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
+		
+		 //1. set the content type .... application/json
+		  //TODO This is to process view all employees...seems to be issue with the jsonString;
+				
+				response.setContentType("application/json");
+				// 2. Call the getAll() method form the employee service
+				response.addHeader("Access-Control-Allow-Origin", "*");
+				List<Employee> emps = eserv.getAll();
+				// 3. transform the list to a string
+				String jsonString = om.writeValueAsString(emps);
+				// 4. write it out
+				// get printwriter
+				PrintWriter out = response.getWriter();
+				out.write(jsonString); // write the string to the response body
+		
+				
+		
+		
+	
+	}
 	public static void showAllTickets(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 
