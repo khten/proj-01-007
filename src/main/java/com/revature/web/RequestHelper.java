@@ -40,13 +40,17 @@ public class RequestHelper {
 			Ticket t = new Ticket(description, e, Status.Pending);
 			tserv.requestNewTicket(t);
 			e.getTicketList().add(t);
+
 			eserv.update(e);
+
 			PrintWriter out = response.getWriter();
 			out.write("Processed submit ticket...but does it persist???");
+
 		} else if (request.getParameter("password") != null) {
 			Employee e = (Employee) request.getSession().getAttribute("the-user");
 			String passWord = request.getParameter("password");
 			e.setPassword(passWord);
+
 			PrintWriter out = response.getWriter();
 			out.write("Processed password change...persist???");
 			eserv.update(e);

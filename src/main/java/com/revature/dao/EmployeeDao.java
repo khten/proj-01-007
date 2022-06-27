@@ -52,8 +52,10 @@ public class EmployeeDao implements EmployeeDaoI {
 
 	@Override
 	public boolean delete(int id) {
+		Transaction tx = ses.beginTransaction();
 		Employee e = findById(id);
 		ses.delete(e);
+		tx.commit();
 		return true;
 	}
 }
