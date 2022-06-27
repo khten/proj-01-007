@@ -72,7 +72,7 @@ function fetchTicket() {
 
     //console.log('fetchEmps triggered')
 
-    fetch(`http://${hostname}:8080/proj-01-team07/admin`)
+    fetch(`http://${hostname}:8080/proj-01-team07/tickets`)
     .then(response => response.json()) 
     //.then(obj => console.log(obj))
     .then(data => buildTable(data)); // this automatically passes the data that's been parsed

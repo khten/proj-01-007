@@ -1,5 +1,6 @@
 package com.revature.models;
 
+import java.io.Serializable;
 import java.util.Objects;
 
 import javax.persistence.CascadeType;
@@ -23,7 +24,12 @@ import javax.persistence.Table;
  */
 @Entity
 @Table(name = "tickets")
-public class Ticket {
+public class Ticket implements Serializable{
+
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
