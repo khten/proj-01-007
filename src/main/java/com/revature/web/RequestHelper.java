@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Set;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
@@ -191,6 +192,8 @@ public class RequestHelper {
 	}
 	public static void processApproveOrDenyTicket(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException{
+		Ticket t = new Ticket();	
+		
 		if(request.getParameter("approve") != null) {
 			processApproveTicket(request, response);
 		}else if(request.getParameter("deny") != null){
