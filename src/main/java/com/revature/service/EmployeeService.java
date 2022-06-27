@@ -45,4 +45,13 @@ public class EmployeeService {
 	public List<Employee> getAll() {
 		return edao.findAll();
 	}
+	
+	public boolean update(Employee e) {
+		edao.update(e);
+		return true;
+	}
+	public boolean delete(Employee e) {
+		edao.delete(e.getId());
+		return true;
+	}
 }

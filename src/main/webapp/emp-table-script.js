@@ -2,8 +2,10 @@
 let table = document.querySelector('table');
 let button = document.getElementById('all-emps')
 
-// Add button listener, call fetchEmps() method
-button.addEventListener('click', fetchEmps());
+
+// button.addEventListener('click', sayHello)
+button.addEventListener("click", fetchEmps());
+
 
 function buildTable(data) {
 
@@ -67,12 +69,10 @@ function fetchEmps() {
     let hostname = window.location.hostname;
 
 
+
     // Get employee table as array of JSON objects
     fetch(`http://${hostname}:8080/proj-01-team07/employees`)
     .then(response => response.json()) 
     .then(data => buildTable(data)); 
 }
 
-   
-
-    
