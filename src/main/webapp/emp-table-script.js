@@ -68,7 +68,7 @@ function fetchEmps() {
     // you get back asynchrnously
     let hostname = window.location.hostname;
 
-
+	console.log("fetchEmps called")
 
     // Get employee table as array of JSON objects
     fetch(`http://${hostname}:8080/proj-01-team07/employees`)

@@ -43,10 +43,10 @@ public class FrontController extends HttpServlet {
 				break;
 
 			case "employees":
-				RequestHelper.processEmployees(request, response);
+				RequestHelper.processViewAllEmployees(request, response);
 
 				break;
-
+			
 			case "admin":
 				if (request.getParameter("view-all") != null) {
 					RequestHelper.showAllTickets(request, response);
