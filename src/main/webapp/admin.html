@@ -6,24 +6,30 @@
     <title>Admin</title>
   <script src="emp-table-script.js" defer></script>
   <script src="ticket-table-script.js" defer></script>
+  <script src="emp-ticket-table.js" defer></script>
   </head>
   <body>
 
     <h1>Welcome Admin!</h1>
     
 
-    <form method="POST" action="admin">
-      <input type="text" name="emp-id" placeholder="Enter a Employee ID" />
+   <form method="POST" action="admin">
+   <label>Get All Transactions</label>
+    <input type="text" id="emp-username" name="username" placeholder="Enter a Username" />
+    <input type="submit" id="tickets-emp-id" name="tickets-emp-id" onclick="return fetchTicketsByUsername()">Find Tickets From Username</input>
+   
+   </form>
+   
+      
+ 
 
-      <input type="submit" value="Find Tickets by Employee ID" />
-      <button id="tickets-emp-id">Find Tickets From ID</button>
-    </form>
-
     <form method="POST" action="admin">
+    
+  
     	<label>Update Ticket Status</label>
     	<input type="number" id="acct-id" name="acct-id" min="1" placeholder="Enter a Ticket Number">
     	<input type="submit" name="approve" value="Approve" />
-    	<input type="submit" name="denied" value="Denied" />
+    	<input type="submit" name="denied" value="Deny" />
      </form>
 
      <button id="all-tickets" onclick="fetchTickets()">View All Tickets</button>
@@ -31,6 +37,7 @@
 
       <table id ="employee-table" class="table table-striped"></table>
       <table id="ticket-table" class="table table-striped>"></table>
+      <table id="table3" class="table table-striped>"></table>
 
      
      

@@ -13,7 +13,7 @@ public interface TicketDaoI {
 
 	public List<Ticket> findAll();
 
-	public List<Ticket> findByEmpId(int id);
+	public List<Ticket> getTicketsByUsername(String username);
 
 	public boolean update(Ticket t);
 

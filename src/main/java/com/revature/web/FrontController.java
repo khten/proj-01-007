@@ -51,12 +51,7 @@ public class FrontController extends HttpServlet {
 			break;
 
 		case "admin":
-			/*
-			 * if (request.getParameter("view-all") != null) {
-			 * RequestHelper.showAllTickets(request, response);
-			 * 
-			 * } else
-			 */
+
 			RequestHelper.processAdmin(request, response);
 			
 
@@ -64,6 +59,16 @@ public class FrontController extends HttpServlet {
 
 		case "tickets":
 			RequestHelper.showAllTickets(request, response);
+			break;
+			
+		case "viewemps":
+			RequestHelper.processViewAllEmployees(request, response);
+			
+			break;
+			
+		case "tickets_by_username":
+			RequestHelper.processTicketsByUsername(request, response);
+			
 			break;
 
 		default:
