@@ -11,6 +11,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.revature.dao.EmployeeDao;
 import com.revature.dao.TicketDao;
@@ -33,8 +34,26 @@ public class RequestHelper {
 	
 	public static void processAdmin(HttpServletRequest request, HttpServletResponse response)
 			throws IOException, ServletException {
-		if(request.getParameter("all-emps") != null) {
-			processViewAllEmployees(request, response);
+		if(request.getParameter("username") != null) {
+			String username = request.getParameter("username");
+//			PrintWriter out = response.getWriter();
+//			out.print("username" + username);
+			response.setContentType("application/json");
+
+			response.addHeader("Access-Control-Allow-Origin", "*");
+			
+			//PrintWriter out = response.getWriter();
+			//out.write("captured: " + username);
+
+			List<Ticket> allTickets = tserv.getTicketsByUsername(username);
+
+			String jsonString = om.writeValueAsString(allTickets);
+
+			PrintWriter out = response.getWriter();
+			// out.println("<p>Reached</p>");
+			out.write(jsonString);
+
+			//processViewAllEmployees(request, response);
 		}
 		
 	}
@@ -260,6 +279,26 @@ public class RequestHelper {
 		}
 		 PrintWriter out = response.getWriter();
 		 out.write("Denied Ticket " + id);
+	}
+
+
+
+	public static void processTicketsByUsername(HttpServletRequest request, HttpServletResponse response) throws IOException {
+		response.setContentType("application/json");
+
+		response.addHeader("Access-Control-Allow-Origin", "*");
+		String username = request.getParameter("username");
+		//PrintWriter out = response.getWriter();
+		//out.write("captured: " + username);
+
+		List<Ticket> allTickets = tserv.getTicketsByUsername(username);
+
+		String jsonString = om.writeValueAsString(allTickets);
+
+		PrintWriter out = response.getWriter();
+		// out.println("<p>Reached</p>");
+		out.write(jsonString);
+		
 	}
 	
 	

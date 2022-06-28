@@ -33,8 +33,11 @@ public class TicketDao implements TicketDaoI {
 	}
 
 	@Override
-	public List<Ticket> findByEmpId(int id) {
-		return ses.createQuery("from Ticket where employee_id = " + id, Ticket.class).list();
+	public List<Ticket> getTicketsByUsername(String username){
+		String user = "from Ticket t where t.requestedBy = '" + username + "'";
+		System.out.println(username);
+		return ses.createQuery(user, Ticket.class).list();
+		//return ses.createQuery("from Ticket t where t.requested_by = " + username, Ticket.class).list();
 	}
 
 	@Override
