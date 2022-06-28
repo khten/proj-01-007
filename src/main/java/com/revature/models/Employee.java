@@ -43,7 +43,7 @@ public class Employee implements Serializable{
 	private String password;
 
 	@Enumerated(EnumType.STRING)
-	@Column(name = "role_name")
+	@Column(name = "role")
 	private Role role;
 
 	@JsonIgnore
