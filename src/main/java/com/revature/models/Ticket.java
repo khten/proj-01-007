@@ -34,10 +34,10 @@ public class Ticket implements Serializable {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "id")
 	private int transactionId;
-	
+
 	@Column(name = "amount", nullable = false)
 	private double amount;
-	
+
 	@Column(name = "description", nullable = false, length = 50)
 	private String description;
 
@@ -51,7 +51,7 @@ public class Ticket implements Serializable {
 	@Column(name = "status")
 
 	private Status status;
-	
+
 	@Column(name = "requested_by")
 	private String requestedBy;
 
@@ -156,19 +156,4 @@ public class Ticket implements Serializable {
 		return "Ticket [transactionId=" + transactionId + ", amount=" + amount + ", description=" + description
 				+ ", employeeId=" + employeeId + ", status=" + status + ", requestedBy=" + requestedBy + "]";
 	}
-<<<<<<< HEAD
-=======
-
-	/**
-	 * Creates a reimbursement ticket
-	 * 
-	 * @param transactionId - The unique id number of the transaction
-	 * @param description   - A description of the transaction
-	 * @param employeeId    - The employee ID that submitted the ticket
-	 * @param status        - The satus of the ticked, set by Role enum
-	 */
-
-	
-	
->>>>>>> 119a7e1db863f7b16c54f3100aa6322600d11b4a
 }
