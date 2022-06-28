@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Set;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
@@ -29,6 +30,16 @@ public class RequestHelper {
 	private static EmployeeService eserv = new EmployeeService(new EmployeeDao());
 	// object mapper (for frontend)
 	private static ObjectMapper om = new ObjectMapper();
+	
+	public static void processAdmin(HttpServletRequest request, HttpServletResponse response)
+			throws IOException, ServletException {
+		if(request.getParameter("all-emps") != null) {
+			processViewAllEmployees(request, response);
+		}
+		
+	}
+	
+	
 
 	public static void processEmployees(HttpServletRequest request, HttpServletResponse response)
 			throws IOException, ServletException {
@@ -38,7 +49,11 @@ public class RequestHelper {
 			String description = request.getParameter("desc");
 			Employee e = (Employee) request.getSession().getAttribute("the-user");
 			
-			Ticket t = new Ticket(description, e, Status.Pending );
+			double amount = Double.valueOf(request.getParameter("amount"));
+			
+			String username = e.getUsername();
+			
+			Ticket t = new Ticket(amount, description, e, Status.Pending, username);
 			tserv.requestNewTicket(t);
 			e.getTicketList().add(t);
 			
@@ -205,6 +220,8 @@ public class RequestHelper {
 	}
 	public static void processApproveOrDenyTicket(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException{
+		Ticket t = new Ticket();	
+		
 		if(request.getParameter("approve") != null) {
 			processApproveTicket(request, response);
 		}else if(request.getParameter("deny") != null){
