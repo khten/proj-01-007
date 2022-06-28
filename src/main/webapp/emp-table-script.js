@@ -70,7 +70,7 @@ function fetchEmps() {
 	console.log("fetchEmps called")
 
     // Get employee table as array of JSON objects
-    fetch(`http://${hostname}:8080/proj-01-team07/employees`)
+    fetch(`http://${hostname}:8080/proj-01-team07/admin`)
     .then(response => response.json()) 
     .then(data => buildTable(data)); 
 }
