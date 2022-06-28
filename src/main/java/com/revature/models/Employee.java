@@ -43,7 +43,7 @@ public class Employee implements Serializable {
 	private String password;
 
 	@Enumerated(EnumType.STRING)
-	@Column(name = "role")
+	@Column(name = "role_name")
 	private Role role;
 
 	@OneToMany(mappedBy = "employeeId", fetch = FetchType.LAZY)

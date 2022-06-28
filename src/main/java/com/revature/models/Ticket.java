@@ -34,7 +34,10 @@ public class Ticket implements Serializable {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "id")
 	private int transactionId;
-
+	
+	@Column(name = "amount", nullable = false)
+	private double amount;
+	
 	@Column(name = "description", nullable = false, length = 50)
 	private String description;
 
@@ -48,33 +51,32 @@ public class Ticket implements Serializable {
 	@Column(name = "status")
 
 	private Status status;
+	
+	@Column(name = "requested_by")
+	private String requestedBy;
 
 	public Ticket() {
 		super();
 	}
 
-	/**
-	 * Creates a reimbursement ticket
-	 * 
-	 * @param transactionId - The unique id number of the transaction
-	 * @param description   - A description of the transaction
-	 * @param employeeId    - The employee ID that submitted the ticket
-	 * @param status        - The satus of the ticked, set by Role enum
-	 */
-
-	public Ticket(int transactionId, String description, Employee employeeId, Status status) {
+	public Ticket(int transactionId, double amount, String description, Employee employeeId, Status status,
+			String requestedBy) {
 		super();
 		this.transactionId = transactionId;
+		this.amount = amount;
 		this.description = description;
 		this.employeeId = employeeId;
 		this.status = status;
+		this.requestedBy = requestedBy;
 	}
 
-	public Ticket(String description, Employee employeeId, Status status) {
+	public Ticket(double amount, String description, Employee employeeId, Status status, String requestedBy) {
 		super();
+		this.amount = amount;
 		this.description = description;
 		this.employeeId = employeeId;
 		this.status = status;
+		this.requestedBy = requestedBy;
 	}
 
 	public int getTransactionId() {
@@ -83,6 +85,14 @@ public class Ticket implements Serializable {
 
 	public void setTransactionId(int transactionId) {
 		this.transactionId = transactionId;
+	}
+
+	public double getAmount() {
+		return amount;
+	}
+
+	public void setAmount(double amount) {
+		this.amount = amount;
 	}
 
 	public String getDescription() {
@@ -109,9 +119,21 @@ public class Ticket implements Serializable {
 		this.status = status;
 	}
 
+	public String getRequestedBy() {
+		return requestedBy;
+	}
+
+	public void setRequestedBy(String requestedBy) {
+		this.requestedBy = requestedBy;
+	}
+
+	public static long getSerialversionuid() {
+		return serialVersionUID;
+	}
+
 	@Override
 	public int hashCode() {
-		return Objects.hash(description, employeeId, status, transactionId);
+		return Objects.hash(amount, description, employeeId, requestedBy, status, transactionId);
 	}
 
 	@Override
@@ -123,13 +145,30 @@ public class Ticket implements Serializable {
 		if (getClass() != obj.getClass())
 			return false;
 		Ticket other = (Ticket) obj;
-		return Objects.equals(description, other.description) && employeeId == other.employeeId
-				&& status == other.status && transactionId == other.transactionId;
+		return Double.doubleToLongBits(amount) == Double.doubleToLongBits(other.amount)
+				&& Objects.equals(description, other.description) && Objects.equals(employeeId, other.employeeId)
+				&& Objects.equals(requestedBy, other.requestedBy) && status == other.status
+				&& transactionId == other.transactionId;
 	}
 
 	@Override
 	public String toString() {
-		return "Transaction [transactionId=" + transactionId + ", description=" + description + ", employeeId="
-				+ employeeId + ", status=" + status + "]";
+		return "Ticket [transactionId=" + transactionId + ", amount=" + amount + ", description=" + description
+				+ ", employeeId=" + employeeId + ", status=" + status + ", requestedBy=" + requestedBy + "]";
 	}
+<<<<<<< HEAD
+=======
+
+	/**
+	 * Creates a reimbursement ticket
+	 * 
+	 * @param transactionId - The unique id number of the transaction
+	 * @param description   - A description of the transaction
+	 * @param employeeId    - The employee ID that submitted the ticket
+	 * @param status        - The satus of the ticked, set by Role enum
+	 */
+
+	
+	
+>>>>>>> 119a7e1db863f7b16c54f3100aa6322600d11b4a
 }

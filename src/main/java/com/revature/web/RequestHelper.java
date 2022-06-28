@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Set;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
@@ -28,6 +29,16 @@ public class RequestHelper {
 	private static EmployeeService eserv = new EmployeeService(new EmployeeDao());
 	// object mapper (for frontend)
 	private static ObjectMapper om = new ObjectMapper();
+	
+	public static void processAdmin(HttpServletRequest request, HttpServletResponse response)
+			throws IOException, ServletException {
+		if(request.getParameter("all-emps") != null) {
+			processViewAllEmployees(request, response);
+		}
+		
+	}
+	
+	
 
 	public static void processEmployees(HttpServletRequest request, HttpServletResponse response)
 			throws IOException, ServletException {
@@ -36,8 +47,17 @@ public class RequestHelper {
 			// do some stuff
 			String description = request.getParameter("desc");
 			Employee e = (Employee) request.getSession().getAttribute("the-user");
+<<<<<<< HEAD
 
 			Ticket t = new Ticket(description, e, Status.Pending);
+=======
+			
+			double amount = Double.valueOf(request.getParameter("amount"));
+			
+			String username = e.getUsername();
+			
+			Ticket t = new Ticket(amount, description, e, Status.Pending, username);
+>>>>>>> 119a7e1db863f7b16c54f3100aa6322600d11b4a
 			tserv.requestNewTicket(t);
 			e.getTicketList().add(t);
 
@@ -207,7 +227,23 @@ public class RequestHelper {
 		}
 
 	}
+<<<<<<< HEAD
 
+=======
+	public static void processApproveOrDenyTicket(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException{
+		Ticket t = new Ticket();	
+		
+		if(request.getParameter("approve") != null) {
+			processApproveTicket(request, response);
+		}else if(request.getParameter("deny") != null){
+			processDenyTicket(request, response);
+		}else {
+			//TODO nothing error chekc
+		}
+		
+	}
+>>>>>>> 119a7e1db863f7b16c54f3100aa6322600d11b4a
 	public static void processApproveTicket(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 

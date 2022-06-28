@@ -31,14 +31,19 @@ public class FrontController extends HttpServlet {
 		// based on the URI returned
 		switch (URI) {
 
-			case "login":
-				RequestHelper.processLogin(request, response);
-				break;
+		case "login":
+			RequestHelper.processLogin(request, response);
+			break;
 
-			case "register":
-				RequestHelper.processRegistration(request, response);
-				break;
+		case "register":
+			RequestHelper.processRegistration(request, response);
+			break;
 
+		case "employees":
+
+			RequestHelper.processEmployees(request, response);
+
+<<<<<<< HEAD
 			case "employees":
 				RequestHelper.processViewAllEmployees(request, response);
 				// TODO revisit for employee functionality
@@ -66,6 +71,31 @@ public class FrontController extends HttpServlet {
 			default:
 				// TODO: Add custom error page
 				break;
+=======
+			
+//TODO revisit for employee functionality
+			break;
+
+		case "admin":
+			/*
+			 * if (request.getParameter("view-all") != null) {
+			 * RequestHelper.showAllTickets(request, response);
+			 * 
+			 * } else
+			 */
+			RequestHelper.processAdmin(request, response);
+			
+
+			break;
+
+		case "tickets":
+			RequestHelper.showAllTickets(request, response);
+			break;
+
+		default:
+			// TODO: Add custom error page
+			break;
+>>>>>>> 119a7e1db863f7b16c54f3100aa6322600d11b4a
 		}
 	}
 
