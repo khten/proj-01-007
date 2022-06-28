@@ -167,10 +167,6 @@ public class RequestHelper {
 	public static void processViewAllEmployees(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 
-		// 1. set the content type .... application/json
-		// TODO This is to process view all employees...seems to be issue with the
-		// jsonString;
-
 		response.setContentType("application/json");
 		// 2. Call the getAll() method form the employee service
 		response.addHeader("Access-Control-Allow-Origin", "*");

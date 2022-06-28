@@ -41,26 +41,28 @@ public class FrontController extends HttpServlet {
 
 			case "employees":
 				RequestHelper.processViewAllEmployees(request, response);
-//TODO revisit for employee functionality
+				// TODO revisit for employee functionality
 				break;
-			
-			case "admin":
-				/*if (request.getParameter("view-all") != null) {
-					RequestHelper.showAllTickets(request, response);
 
-				}
-				else */
+			case "admin":
+				/*
+				 * if (request.getParameter("view-all") != null) {
+				 * RequestHelper.showAllTickets(request, response);
+				 * 
+				 * }
+				 * else
+				 */
 				if (request.getParameter("approve") != null) {
 					RequestHelper.processApproveTicket(request, response);
 				} else if (request.getParameter("denied") != null) {
 					RequestHelper.processDenyTicket(request, response);
 				}
 				break;
-				
+
 			case "tickets":
 				RequestHelper.showAllTickets(request, response);
 				break;
-				
+
 			default:
 				// TODO: Add custom error page
 				break;

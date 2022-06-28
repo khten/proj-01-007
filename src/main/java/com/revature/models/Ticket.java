@@ -28,9 +28,6 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 @Table(name = "tickets")
 public class Ticket implements Serializable {
 
-	/**
-	 * 
-	 */
 	private static final long serialVersionUID = 1L;
 
 	@Id
