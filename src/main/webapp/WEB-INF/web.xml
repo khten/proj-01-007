@@ -18,6 +18,9 @@
     <url-pattern>/register</url-pattern>
     <url-pattern>/admin</url-pattern>
     <url-pattern>/tickets</url-pattern>
+     <url-pattern>/viewemps</url-pattern>
+        <url-pattern>/tickets_by_username</url-pattern>
+     
     
     <!-- http://localhost:8080/employee-servlet-app/login -->
     <!-- http://localhost:8080/employee-servlet-app/employees -->

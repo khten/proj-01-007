@@ -49,10 +49,20 @@ public class FrontController extends HttpServlet {
 
 				RequestHelper.processAdmin(request, response);
 
-				break;
+				RequestHelper.processAdmin(request, response);
 
 			case "tickets":
 				RequestHelper.showAllTickets(request, response);
+				break;
+
+			case "viewemps":
+				RequestHelper.processViewAllEmployees(request, response);
+
+				break;
+
+			case "tickets_by_username":
+				RequestHelper.processTicketsByUsername(request, response);
+
 				break;
 
 			default:
