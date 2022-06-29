@@ -10,7 +10,6 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.revature.dao.EmployeeDao;
 import com.revature.dao.TicketDao;
@@ -125,7 +124,7 @@ public class RequestHelper {
 			if (e.getRole() == Role.Admin) {
 
 				request.getRequestDispatcher("admin.html").forward(request, response);
-				out.println("<h3>You have successfully logged in Admin!</h3>");
+				out.println("<h3>You have successfully logged in as Admin!</h3>");
 
 			} else if (e.getRole() == Role.Employee) {
 

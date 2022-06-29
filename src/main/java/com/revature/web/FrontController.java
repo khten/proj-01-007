@@ -40,16 +40,12 @@ public class FrontController extends HttpServlet {
 				break;
 
 			case "employees":
-
 				RequestHelper.processEmployees(request, response);
-
 				break;
 
 			case "admin":
-
 				RequestHelper.processAdmin(request, response);
-
-				RequestHelper.processAdmin(request, response);
+				break;
 
 			case "tickets":
 				RequestHelper.showAllTickets(request, response);
@@ -57,12 +53,10 @@ public class FrontController extends HttpServlet {
 
 			case "viewemps":
 				RequestHelper.processViewAllEmployees(request, response);
-
 				break;
 
 			case "tickets_by_username":
 				RequestHelper.processTicketsByUsername(request, response);
-
 				break;
 
 			default:

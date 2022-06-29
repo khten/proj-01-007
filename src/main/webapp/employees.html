@@ -1,33 +1,27 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <meta charset="ISO-8859-1" />
-    <title>Employees</title>
-  </head>
-  <body>
-    <!--    1. We need submit ticket, 
+
+<head>
+  <meta charset="ISO-8859-1" />
+  <title>Employees</title>
+</head>
+
+<body>
+  <!--    1. We need submit ticket, 
 		2. View pending
 		3. View resolved 
 		4. View 
 		5. Update Employee info
 
   -->
-    <form method="POST" action="employees">
-      <label>Ticket Description</label>
-      <input type="text" name="desc" placeholder="Enter Ticket Description" />
-      <input
-        type="number"
-        name="amount"
-        min="0"
-        placeholder="Enter the amount"
-      />
-      <input type="submit" name="submitTicket" value="Submit Request" />
-      <input
-        type="text"
-        name="password"
-        placeholder="Enter Ticket Description"
-      />
-      <input type="submit" name="changePassword" value="Change Password" />
-    </form>
-  </body>
+  <form method="POST" action="employees">
+    <label>Ticket Description</label>
+    <input type="text" name="desc" placeholder="Enter Ticket Description" />
+    <input type="number" name="amount" min="0" placeholder="Enter the amount" />
+    <input type="submit" name="submitTicket" value="Submit Request" />
+    <input type="text" name="password" placeholder="Enter Ticket Description" />
+    <input type="submit" name="changePassword" value="Change Password" />
+  </form>
+</body>
+
 </html>

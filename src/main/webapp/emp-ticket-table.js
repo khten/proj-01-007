@@ -37,10 +37,7 @@ function buildTable3(data) {
 	headerRow.appendChild(th4);
 	headerRow.appendChild(th5);
 
-	data.forEach(t => {
-
-
-
+	data.forEach((t) => {
 		let row = document.createElement('tr');
 		let td1 = document.createElement('td');
 		let td2 = document.createElement('td');
@@ -68,16 +65,13 @@ function buildTable3(data) {
 	});
 }
 
-
 function fetchTicketsByUsername() {
-	
-		let hostname = window.location.hostname;
+	let hostname = window.location.hostname;
 
 	//console.log('fetchEmps triggered')
 
 	fetch(`http://${hostname}:8080/proj-01-team07/tickets_by_username`)
-		.then(response => response.json())
+		.then((response) => response.json())
 		//.then(obj => console.log(obj))
-		.then(data => buildTable3(data));
-
+		.then((data) => buildTable3(data));
 }
