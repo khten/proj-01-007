@@ -245,37 +245,50 @@ public class RequestHelper {
 	
 	public static void processApproveTicket(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-//		
-		 int id = Integer.valueOf(request.getParameter("acct-id"));
-		 PrintWriter out = response.getWriter();
-		 Ticket t = tserv.getById(id);
+		
+		PrintWriter out = response.getWriter();
+		
+		int ticketId = Integer.valueOf(request.getParameter("acct-id"));
+		
+		Ticket t = tserv.getById(ticketId);
+		
+		response.setContentType("application/json");
+		response.addHeader("Access-Control-Allow-Origin", "*");
+		
+		if(request.getParameter("approve") != null) {
+			t.setStatus(Status.Approved);
+			String jsonString = om.writeValueAsString(t);
+			out.write(jsonString);
+
+		}else {
+			response.setContentType("text/html");
+			out.write("Error inside of approve ");
+		}
+		   
 		 
-		 out.write("inside processApproveTicket...id = " + id + "\n");
-		 out.write("Ticket retrieved = " + t);
 		 
-		 //if(t != null) {
-			 t.setStatus(Status.Approved);
-			 tserv.updateTicket(t);
-		// }
-//		 
-//		 
-	   
-		 
-		 out.write("Approved Ticket " + id);
 		 
 	}
 	public static void processDenyTicket(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-			
+		
+		PrintWriter out = response.getWriter();
+		
 		int id = Integer.valueOf(request.getParameter("acct-id"));
 	     Ticket t = tserv.getById(id);
+	     
 		if(t != null) {
 			t.setStatus(Status.Denied);
-		
-		tserv.updateTicket(t);
+	 		tserv.updateTicket(t);
+	 	
+	 		response.setContentType("application/json");
+	 		response.addHeader("Access-Control-Allow-Origin", "*");
+	 		String jsonString = om.writeValueAsString(t);
+			out.write(jsonString);
 		}
-		 PrintWriter out = response.getWriter();
-		 out.write("Denied Ticket " + id);
+		
+		 
+		
 	}
 
 

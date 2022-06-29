@@ -12,6 +12,8 @@
   <body>
 
     <h1>Welcome Admin!</h1>
+    
+    
          
 <!--  
     <form method="POST" action="admin">  
@@ -27,21 +29,37 @@
     	<input type="submit" id = "denied" name="denied" value="Deny" />
      </form>
 -->
-     <button id="get-by-user" onclick="fetchTicketsByUsername()">Get Tickets</button>
-     <button id="all-tickets" onclick="fetchTickets()">View All Tickets</button>
-     <button id="all-emps" onclick="fetchEmps()">View All Employee</button>
+
+    
+    <!-- TODO move this into form when  all other work  
      
-     <label>Update Ticket Status</label>
-     <input type="number" id="acct-id" name="acct-id" min="1" placeholder="Enter a Ticket Number">
-	 <button id="approve" name="approve"  onclick="approveTicket()">Approve Ticket</button>
-	 <button id="deny" name="deny" onclick="denyTicket()">Deny Ticket</button>
-	  <p id= "approve-deny" > </p>
+-->
+<!-- Buttons that are used to capture data must be inside the form to be CAPTURED by the POST request -->
+     <form method = "POST" action="admin">
+        <label>Update Ticket Status</label>
+        <input type="number" id="acct-id" name="acct-id" min="1" placeholder="Enter a Ticket Number">
+   
+	    <button id="approve" name="approve" onclick="approveTicket">Approve Ticket</button>
+	    <button id="deny" name="deny" onclick="denyTicket">Deny Ticket</button>
+	
+	    <br />
+        <input type="text" id="username" placeholder="Find Ticketes by Username" />
+	    <button id="get-by-user" onclick="fetchTicketsByUsername()">Show Tickets</button>
+	 
+	 </form>
+	 <br />
+	 
+	 
+     <br />
+     <button id="all-emps" onclick="fetchEmps()">View All Employee</button>
+     <br />
+     <button id="all-tickets" onclick="fetchTickets()">View All Tickets</button>
+     <br />
+	  <table id= "approve-deny-table" class = "table table-striped"> </table>
 	  <table id = "tickets-by-username-table" class = "table table-striped"></table>
       <table id ="employee-table" class="table table-striped"></table>
       <table id="ticket-table" class="table table-striped>"></table>
       <table id="table3" class="table table-striped>"></table>
-
-     
      
    </body>
 </html>
