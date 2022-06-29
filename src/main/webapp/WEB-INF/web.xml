@@ -21,6 +21,8 @@
     <url-pattern>/tickets</url-pattern>
     <url-pattern>/viewemps</url-pattern>
     <url-pattern>/tickets_by_username</url-pattern>
+    <url-pattern>/approve_ticket</url-pattern>
+    <url-pattern>/deny_ticket</url-pattern>
 
     <!-- http://localhost:8080/employee-servlet-app/login -->
     <!-- http://localhost:8080/employee-servlet-app/employees -->

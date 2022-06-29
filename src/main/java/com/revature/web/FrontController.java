@@ -53,10 +53,21 @@ public class FrontController extends HttpServlet {
 
 			case "viewemps":
 				RequestHelper.processViewAllEmployees(request, response);
+
 				break;
 
 			case "tickets_by_username":
 				RequestHelper.processTicketsByUsername(request, response);
+
+				break;
+
+			case "approve_ticket":
+
+				RequestHelper.processApproveTicket(request, response);
+				break;
+
+			case "deny_ticket":
+				RequestHelper.processDenyTicket(request, response);
 				break;
 
 			default:
