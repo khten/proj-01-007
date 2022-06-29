@@ -34,6 +34,7 @@ public class RequestHelper {
 	
 	public static void processAdmin(HttpServletRequest request, HttpServletResponse response)
 			throws IOException, ServletException {
+		
 		if(request.getParameter("username") != null) {
 			String username = request.getParameter("username");
 //			PrintWriter out = response.getWriter();
@@ -54,6 +55,10 @@ public class RequestHelper {
 			out.write(jsonString);
 
 			//processViewAllEmployees(request, response);
+		}else if(request.getParameter("approve") != null) {
+		    processApproveTicket(request, response);	
+		}else if(request.getParameter("deny") != null) {
+			processDenyTicket(request, response);
 		}
 		
 	}
@@ -237,33 +242,25 @@ public class RequestHelper {
 		out.write(jsonString);
 
 	}
-	public static void processApproveOrDenyTicket(HttpServletRequest request, HttpServletResponse response)
-			throws ServletException, IOException{
-		Ticket t = new Ticket();	
-		
-		if(request.getParameter("approve") != null) {
-			processApproveTicket(request, response);
-		}else if(request.getParameter("deny") != null){
-			processDenyTicket(request, response);
-		}else {
-			//TODO nothing error chekc
-		}
-		
-	}
+	
 	public static void processApproveTicket(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 //		
 		 int id = Integer.valueOf(request.getParameter("acct-id"));
-		
+		 PrintWriter out = response.getWriter();
 		 Ticket t = tserv.getById(id);
-		 if(t != null) {
+		 
+		 out.write("inside processApproveTicket...id = " + id + "\n");
+		 out.write("Ticket retrieved = " + t);
+		 
+		 //if(t != null) {
 			 t.setStatus(Status.Approved);
 			 tserv.updateTicket(t);
-		 }
+		// }
 //		 
 //		 
 	   
-		 PrintWriter out = response.getWriter();
+		 
 		 out.write("Approved Ticket " + id);
 		 
 	}

@@ -71,6 +71,15 @@ public class FrontController extends HttpServlet {
 			
 			break;
 
+		case "approve_ticket":
+			
+			RequestHelper.processApproveTicket(request, response);
+			break;
+		
+		case "deny_ticket":
+			RequestHelper.processDenyTicket(request,response);
+			break;
+			
 		default:
 			// TODO: Add custom error page
 			break;
