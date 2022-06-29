@@ -17,7 +17,7 @@
   <!--  
     <form method="POST" action="admin">  
     
-      <!--     <label>Get All Transactions</label>
+      <label>Get All Transactions</label>
         <input type="text" id="emp-username" name="username" placeholder="Enter a Username" />
         <input type="submit" id="tickets-by-user" name="tickets-by-user" value="Get tickets!">
   		<br />
@@ -41,11 +41,11 @@
     <button id="approve" name="approve" onclick="approveTicket">Approve Ticket</button>
     <button id="deny" name="deny" onclick="denyTicket">Deny Ticket</button>
 
-    <br />
-    <input type="text" id="username" placeholder="Find Ticketes by Username" />
-    <button id="get-by-user" onclick="fetchTicketsByUsername()">Show Tickets</button>
-
   </form>
+
+  <input type="text" id="txtFindUser" placeholder="Find Ticketes by Username" />
+  <button id="get-by-user" onclick="fetchTicketsByUsername()">Show Tickets</button>
+
   <br />
   <br />
 

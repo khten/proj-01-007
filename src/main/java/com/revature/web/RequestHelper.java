@@ -1,6 +1,8 @@
 package com.revature.web;
 
 import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
 import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.List;
@@ -11,6 +13,11 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
+import com.google.gson.JsonElement;
+import com.google.gson.JsonObject;
+import com.google.gson.JsonParser;
 import com.revature.dao.EmployeeDao;
 import com.revature.dao.TicketDao;
 import com.revature.models.Employee;
@@ -244,6 +251,7 @@ public class RequestHelper {
 
 		if (request.getParameter("approve") != null) {
 			t.setStatus(Status.Approved);
+			tserv.updateTicket(t);
 			String jsonString = om.writeValueAsString(t);
 			out.write(jsonString);
 
@@ -264,7 +272,6 @@ public class RequestHelper {
 		if (t != null) {
 			t.setStatus(Status.Denied);
 			tserv.updateTicket(t);
-
 			response.setContentType("application/json");
 			response.addHeader("Access-Control-Allow-Origin", "*");
 			String jsonString = om.writeValueAsString(t);
@@ -276,20 +283,24 @@ public class RequestHelper {
 	public static void processTicketsByUsername(HttpServletRequest request, HttpServletResponse response)
 			throws IOException {
 		response.setContentType("application/json");
+		Gson gson = new Gson();
+		gson = new GsonBuilder().create();
+
+		// JsonElement root = jsonParser.parse(new InputStreamReader((InputStream)
+		// request.getInputStream()));
+		JsonElement root = JsonParser.parseReader(new InputStreamReader((InputStream) request.getInputStream()));
+		JsonObject rootobj = root.getAsJsonObject();
 
 		response.addHeader("Access-Control-Allow-Origin", "*");
-		String username = request.getParameter("username");
-		// PrintWriter out = response.getWriter();
-		// out.write("captured: " + username);
-
-		List<Ticket> allTickets = tserv.getTicketsByUsername(username);
-
-		String jsonString = om.writeValueAsString(allTickets);
+		String u = rootobj.get("username").getAsString();
 
 		PrintWriter out = response.getWriter();
-		// out.println("<p>Reached</p>");
-		out.write(jsonString);
+		System.out.println(u);
 
+		// List<Ticket> allTickets = tserv.getTicketsByUsername(u);
+
+		// String jsonString = gson.toJson(allTickets);
+		// out.write(jsonString);
 	}
 
 }

@@ -65,13 +65,33 @@ function buildTable3(data) {
 	});
 }
 
-function fetchTicketsByUsername() {
+const fetchTicketsByUsername = () => {
 	let hostname = window.location.hostname;
+	const findUsernameTxt = document.getElementById('txtFindUser').value;
 
-	//console.log('fetchEmps triggered')
+	const u = {
+		username: findUsernameTxt,
+	};
 
-	fetch(`http://${hostname}:8080/proj-01-team07/tickets_by_username`)
-		.then((response) => response.json())
-		//.then(obj => console.log(obj))
-		.then((data) => buildTable3(data));
-}
+	console.log('fetchTicketsByUsername triggered');
+	console.log('textbox username: ' + findUsernameTxt);
+	console.log(u);
+
+	fetch(`http://${hostname}:8080/proj-01-team07/tickets_by_username`, {
+		method: 'POST',
+		body: JSON.stringify({
+			// firstName: u.firstName,
+			// lastName: u.lastName,
+			username: u.username,
+			// password: u.password,
+			// role: u.role,
+			// ticketList: u.ticketList,
+		}),
+
+		headers: {
+			'Content-type': 'application/json; charset=UTF-8',
+		},
+	}).then((json) => console.log(json));
+	//.then((response) => response.json());
+	//.then((data) => buildTable3(data))
+};
