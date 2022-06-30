@@ -8,6 +8,7 @@
   <script src="ticket-table-script.js" defer></script>
   <script src="emp-ticket-table.js" defer></script>
   <script src="approve-deny.js" defer></script>
+    <script src="admin-pending-table.js" defer></script>
 </head>
 
 <body>
@@ -49,11 +50,17 @@
   </div>
   <div id = "show-all-employees class = admin-table">
   <table id="employee-table" class="table table-striped"></table>
+
   </div>
+
+  <table id="ticket-table" class="table table-striped>"></table>
+
+  <button id="admin-pending-tickets" onclick="fetchPendingTicketsByUsername()">View All Pending Tickets</button>
+  <table id="admin-pending-table" class="table table-striped>"></table>
+
+
 </body>
 
 </html>
 
-</body>
 
-</html>

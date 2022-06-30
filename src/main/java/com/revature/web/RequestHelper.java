@@ -28,7 +28,8 @@ import com.revature.service.EmployeeService;
 import com.revature.service.TicketService;
 
 public class RequestHelper {
-
+	private static Employee employee = new Employee();
+	
 	protected static TicketService tserv = new TicketService(new TicketDao());
 	private static EmployeeService eserv = new EmployeeService(new EmployeeDao());
 	private static ObjectMapper om = new ObjectMapper();
@@ -120,6 +121,12 @@ public class RequestHelper {
 		if (e.getId() > 0) {
 
 			session.setAttribute("the-user", e);
+			try {
+				employee = e;
+			} catch (Exception e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			}
 
 			PrintWriter out = response.getWriter();
 			out.println("before role" + e.getRole());
@@ -276,7 +283,6 @@ public class RequestHelper {
 
 	public static void processTicketsByUsername(HttpServletRequest request, HttpServletResponse response)
 			throws IOException {
-		// response.setContentType("application/json");
 
 		Gson gson = new GsonBuilder().create();
 
@@ -308,6 +314,7 @@ public class RequestHelper {
 		
 	}
 	
+
 	public static void processTicketsByStatus(HttpServletRequest request, HttpServletResponse response, Status status)
 			throws IOException {
 		
@@ -328,24 +335,10 @@ public class RequestHelper {
 		JsonObject rootobj = root.getAsJsonObject();
 		
 		String statusFilter = (status).toString();
-		
-		
-		
-		
-		System.out.println("Status: " + status );
-
-		//filter ticket list by status 
-		List<Ticket> ticketList =  tserv.getTicketsByStatus(status);
-				
-				//tserv.getAll().stream().filter(t -> t.getStatus().equals(status)).collect(Collectors.toList());
-
-        //
+			
 		
 	
-//		// 4. write it out
-//		// get printwriter
-    	
-		
+		//TEST 
 
 	
 		// TODO TEST this
@@ -358,7 +351,7 @@ public class RequestHelper {
 		// // 4. write it out
 		// // get printwriter
 		 PrintWriter out = response.getWriter();
-		out.write(jsonString); // write the string to the response body
+ 		out.write(jsonString); // write the string to the response body
 
 
 	}

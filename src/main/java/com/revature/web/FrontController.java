@@ -67,6 +67,11 @@ public class FrontController extends HttpServlet {
 			case "deny_ticket":
 				RequestHelper.processDenyTicket(request, response);
 				break;
+				
+			case "pending_tickets":
+				RequestHelper.processStatus(request, response, Status.Pending);
+				break;
+
 
 			case "tickets_by_username":
 				RequestHelper.processTicketsByUsername(request, response);
@@ -86,6 +91,15 @@ public class FrontController extends HttpServlet {
 				RequestHelper.processTicketsByStatus(request, response, Status.Denied);
 				break;
 				
+
+			case "approved_tickets":
+				RequestHelper.processStatus(request, response, Status.Approved);
+				break;
+				
+			case "denied_tickets":
+				RequestHelper.processStatus(request, response, Status.Denied);
+				break;
+
 			default:
 				// TODO: Add custom error page
 				break;
