@@ -33,36 +33,35 @@ public class FrontController extends HttpServlet {
 		// based on the URI returned
 		switch (URI) {
 
-			case "login":
-				RequestHelper.processLogin(request, response);
-				break;
+		case "login":
+			RequestHelper.processLogin(request, response);
+			break;
 
-			case "register":
-				RequestHelper.processRegistration(request, response);
-				break;
+		case "register":
+			RequestHelper.processRegistration(request, response);
+			break;
 
-			case "employees":
-				RequestHelper.processEmployees(request, response);
-				break;
+		case "employees":
+			RequestHelper.processEmployees(request, response);
+			break;
 
-			case "admin":
-				RequestHelper.processAdmin(request, response);
-				break;
+		case "admin":
+			RequestHelper.processAdmin(request, response);
+			break;
 
-			
 
-			case "viewemps":
-				RequestHelper.processViewAllEmployees(request, response);
 
-				break;
+		case "viewemps":
+			RequestHelper.processViewAllEmployees(request, response);
 
-			case "tickets":
-				RequestHelper.showAllTickets(request, response);
-				break;
-			case "approve_ticket":
+			break;
 
-				RequestHelper.processApproveTicket(request, response);
-				break;
+		
+
+		case "approve_ticket":
+
+			RequestHelper.processApproveTicket(request, response);
+			break;
 
 			case "deny_ticket":
 				RequestHelper.processDenyTicket(request, response);
@@ -100,9 +99,24 @@ public class FrontController extends HttpServlet {
 				RequestHelper.processTicketsByStatus(request, response, Status.Denied);
 				break;
 
-			default:
-				// TODO: Add custom error page
-				break;
+			
+
+		case "resolved_tickets":
+			RequestHelper.processStatusResolved(request, response);
+			break;
+
+		case "all_pending_tickets":
+			RequestHelper.processAdminPending(request, response);
+			break;
+
+		case "all_resolved_tickets":
+			RequestHelper.processAdminResolved(request, response);
+			break;
+
+		default:
+			// TODO: Add custom error page
+			break;
+
 		}
 	}
 

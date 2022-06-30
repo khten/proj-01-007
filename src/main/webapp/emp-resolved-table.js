@@ -1,5 +1,5 @@
 // Get table element
-let table6 = document.getElementById('admin-pending-table');
+let table6 = document.getElementById('resolved-tickets-table');
 //let button3 = document.getElementById('tickets-emp-id')
 
 // Add button listener, call fetchEmps() method
@@ -69,15 +69,15 @@ function buildTable6(data) {
 
 }
 
-const fetchAllPending = () => {
+const fetchResolvedTicketsByUsername = () => {
 	let hostname = window.location.hostname;
 	
 
-	console.log('fetchTicketsByUsername triggered');
+	console.log('fetchResolvedTicketsByUsername triggered');
 	
 
 
-	fetch(`http://${hostname}:8080/proj-01-team07/all_pending_tickets`)
+	fetch(`http://${hostname}:8080/proj-01-team07/resolved_tickets`)
 	
 	.then((response) => response.json())
 	.then((data) => buildTable6(data))

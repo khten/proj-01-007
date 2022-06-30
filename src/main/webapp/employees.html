@@ -5,6 +5,7 @@
   <meta charset="ISO-8859-1" />
   <title>Employees</title>
    <script src="emp-pending-table.js" defer></script>
+     <script src="emp-resolved-table.js" defer></script>
 </head>
 
 <body>
@@ -28,6 +29,9 @@
 
      <button id="all-pending-tickets" onclick="fetchPendingTicketsByUsername()">View All Pending Tickets</button>
        <table id="pending-tickets-table" class="table table-striped>"></table>
+       
+          <button id="all-resolved-tickets" onclick="fetchResolvedTicketsByUsername()">View All Resolved Tickets</button>
+       <table id="resolved-tickets-table" class="table table-striped>"></table>
  
 </body>
 
