@@ -11,9 +11,6 @@ import javax.servlet.http.HttpServletResponse;
  */
 public class FrontController extends HttpServlet {
 
-	/**
-	 * 
-	 */
 	private static final long serialVersionUID = 1L;
 
 	/**
@@ -34,55 +31,48 @@ public class FrontController extends HttpServlet {
 		// based on the URI returned
 		switch (URI) {
 
-		case "login":
-			RequestHelper.processLogin(request, response);
-			break;
+			case "login":
+				RequestHelper.processLogin(request, response);
+				break;
 
-		case "register":
-			RequestHelper.processRegistration(request, response);
-			break;
+			case "register":
+				RequestHelper.processRegistration(request, response);
+				break;
 
-		case "employees":
+			case "employees":
+				RequestHelper.processEmployees(request, response);
+				break;
 
-			RequestHelper.processEmployees(request, response);
+			case "admin":
+				RequestHelper.processAdmin(request, response);
+				break;
 
-			
-//TODO revisit for employee functionality
-			break;
+			case "tickets":
+				RequestHelper.showAllTickets(request, response);
+				break;
 
-		case "admin":
+			case "viewemps":
+				RequestHelper.processViewAllEmployees(request, response);
 
-			RequestHelper.processAdmin(request, response);
-			
+				break;
 
-			break;
+			case "tickets_by_username":
+				RequestHelper.processTicketsByUsername(request, response);
 
-		case "tickets":
-			RequestHelper.showAllTickets(request, response);
-			break;
-			
-		case "viewemps":
-			RequestHelper.processViewAllEmployees(request, response);
-			
-			break;
-			
-		case "tickets_by_username":
-			RequestHelper.processTicketsByUsername(request, response);
-			
-			break;
+				break;
 
-		case "approve_ticket":
-			
-			RequestHelper.processApproveTicket(request, response);
-			break;
-		
-		case "deny_ticket":
-			RequestHelper.processDenyTicket(request,response);
-			break;
-			
-		default:
-			// TODO: Add custom error page
-			break;
+			case "approve_ticket":
+
+				RequestHelper.processApproveTicket(request, response);
+				break;
+
+			case "deny_ticket":
+				RequestHelper.processDenyTicket(request, response);
+				break;
+
+			default:
+				// TODO: Add custom error page
+				break;
 		}
 	}
 

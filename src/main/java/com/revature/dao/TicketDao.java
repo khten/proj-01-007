@@ -25,7 +25,7 @@ public class TicketDao implements TicketDaoI {
 	@Override
 	public Ticket findById(int ticketId) {
 		return (Ticket) ses.get(Ticket.class, ticketId);
-		}
+	}
 
 	@Override
 	public List<Ticket> findAll() {
@@ -33,11 +33,11 @@ public class TicketDao implements TicketDaoI {
 	}
 
 	@Override
-	public List<Ticket> getTicketsByUsername(String username){
-		String user = "from Ticket t where t.requestedBy = '" + username + "'";
-		System.out.println(username);
-		return ses.createQuery(user, Ticket.class).list();
-		//return ses.createQuery("from Ticket t where t.requested_by = " + username, Ticket.class).list();
+	public List<Ticket> getTicketsByUsername(String username) {
+	
+		return ses.createQuery("from Ticket t where t.requestedBy = '" + username + "'", Ticket.class).list();
+		// return ses.createQuery("from Ticket t where t.requested_by = " + username,
+		// Ticket.class).list();
 	}
 
 	@Override
@@ -45,7 +45,7 @@ public class TicketDao implements TicketDaoI {
 		Transaction tx = ses.beginTransaction();
 		ses.update(t);
 		tx.commit();
-		
+
 		return true;
 	}
 

@@ -19,11 +19,8 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
 @Table(name = "employees")
-public class Employee implements Serializable{
+public class Employee implements Serializable {
 
-	/**
-	 * 
-	 */
 	private static final long serialVersionUID = 1L;
 
 	@Id
@@ -46,8 +43,8 @@ public class Employee implements Serializable{
 	@Column(name = "role")
 	private Role role;
 
-	@JsonIgnore
 	@OneToMany(mappedBy = "employeeId", fetch = FetchType.LAZY)
+	@JsonIgnore
 	List<Ticket> ticketList;
 
 	public Employee() {

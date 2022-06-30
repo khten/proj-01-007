@@ -34,9 +34,9 @@ public class TicketService {
 		return tdao.delete(id);
 
 	}
-	
-	public List<Ticket> getTicketsByUsername(String username){
+
+	public List<Ticket> getTicketsByUsername(String username) {
 		return tdao.getTicketsByUsername(username);
-		
+
 	}
 }

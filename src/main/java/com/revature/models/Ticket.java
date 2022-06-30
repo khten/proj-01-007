@@ -26,25 +26,22 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
  */
 @Entity
 @Table(name = "tickets")
-public class Ticket implements Serializable{
+public class Ticket implements Serializable {
 
-	/**
-	 * 
-	 */
 	private static final long serialVersionUID = 1L;
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "id")
 	private int transactionId;
-	
+
 	@Column(name = "amount", nullable = false)
 	private double amount;
-	
+
 	@Column(name = "description", nullable = false, length = 50)
 	private String description;
 
-	@JsonIgnore //add this for tables that are referencing items
+	@JsonIgnore // add this for tables that are referencing items
 	@ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
 	@JoinColumn(name = "employeeId")
 	private Employee employeeId;
@@ -54,7 +51,7 @@ public class Ticket implements Serializable{
 	@Column(name = "status")
 
 	private Status status;
-	
+
 	@Column(name = "requested_by")
 	private String requestedBy;
 
@@ -159,16 +156,4 @@ public class Ticket implements Serializable{
 		return "Ticket [transactionId=" + transactionId + ", amount=" + amount + ", description=" + description
 				+ ", employeeId=" + employeeId + ", status=" + status + ", requestedBy=" + requestedBy + "]";
 	}
-
-	/**
-	 * Creates a reimbursement ticket
-	 * 
-	 * @param transactionId - The unique id number of the transaction
-	 * @param description   - A description of the transaction
-	 * @param employeeId    - The employee ID that submitted the ticket
-	 * @param status        - The satus of the ticked, set by Role enum
-	 */
-
-	
-	
 }
