@@ -69,7 +69,7 @@ public class FrontController extends HttpServlet {
 				break;
 				
 			case "pending_tickets":
-				RequestHelper.processStatus(request, response, Status.Pending);
+				RequestHelper.processTicketsByStatus(request, response, Status.Pending);
 				break;
 
 
@@ -93,11 +93,11 @@ public class FrontController extends HttpServlet {
 				
 
 			case "approved_tickets":
-				RequestHelper.processStatus(request, response, Status.Approved);
+				RequestHelper.processTicketsByStatus(request, response, Status.Approved);
 				break;
 				
 			case "denied_tickets":
-				RequestHelper.processStatus(request, response, Status.Denied);
+				RequestHelper.processTicketsByStatus(request, response, Status.Denied);
 				break;
 
 			default:
