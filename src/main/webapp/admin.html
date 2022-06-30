@@ -4,17 +4,52 @@
 <head>
   <meta charset="ISO-8859-1" />
   <title>Admin</title>
+
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous" />
+
   <script src="emp-table-script.js" defer></script>
   <script src="ticket-table-script.js" defer></script>
   <script src="emp-ticket-table.js" defer></script>
   <script src="approve-deny.js" defer></script>
+
+  <style>
+    body {
+      background-color: hsl(0, 0%, 96%);
+      padding: 80px;
+    }
+
+    .card {
+      background-color: hsl(0, 0%, 78%);
+      padding: 1%;
+    }
+
+    form,
+    label {
+      margin: 10px;
+    }
+
+    #buttons form,
+    #buttons form div {
+      display: inline;
+    }
+
+    #buttons button {
+      display: inline;
+      vertical-align: middle;
+    }
+  </style>
 </head>
 
 <body>
 
-  <h1>Welcome Admin!</h1>
+  <div class="container">
+    <div class="card">
+      <div class="shadow-lg">
+        <div class="card-header text-center">
+          <h1>Welcome Admin!</h1>
 
-  <!--  
+          <!--  
     <form method="POST" action="admin">  
     
       <label>Get All Transactions</label>
@@ -30,34 +65,38 @@
 -->
 
 
-  <!-- TODO move this into form when  all other work  
+          <!-- TODO move this into form when  all other work  
      
 -->
-  <!-- Buttons that are used to capture data must be inside the form to be CAPTURED by the POST request -->
-  <form method="POST" action="admin">
-    <label>Update Ticket Status</label>
-    <input type="number" id="acct-id" name="acct-id" min="1" placeholder="Enter a Ticket Number">
+          <!-- Buttons that are used to capture data must be inside the form to be CAPTURED by the POST request -->
+          <form method="POST" action="admin">
+            <label>Update Ticket Status</label>
+            <input type="number" id="acct-id" name="acct-id" min="1" placeholder="Enter a Ticket Number">
 
-    <button id="approve" name="approve" onclick="approveTicket">Approve Ticket</button>
-    <button id="deny" name="deny" onclick="denyTicket">Deny Ticket</button>
+            <button class="btn btn-primary" id="approve" name="approve" onclick="approveTicket">Approve Ticket</button>
+            <button class="btn btn-primary" id="deny" name="deny" onclick="denyTicket">Deny Ticket</button>
 
-  </form>
+          </form>
 
-  <input type="text" id="txtFindUser" placeholder="Find Ticketes by Username" />
-  <button id="get-by-user" onclick="fetchTicketsByUsername()">Show Tickets</button>
+          <input type="text" id="txtFindUser" placeholder="Find Ticketes by Username" />
+          <button class="btn btn-primary" id="get-by-user" onclick="fetchTicketsByUsername()">Show Tickets</button>
 
-  <br />
-  <br />
+          <br />
+          <br />
 
-  <button id="all-emps" onclick="fetchEmps()">View All Employee</button>
-  <br />
-  <button id="all-tickets" onclick="fetchTickets()">View All Tickets</button>
-  <br />
-  <table id="approve-deny-table" class="table table-striped"> </table>
-  <table id="tickets-by-username-table" class="table table-striped"></table>
-  <table id="employee-table" class="table table-striped"></table>
-  <table id="ticket-table" class="table table-striped>"></table>
-  <table id="table3" class="table table-striped>"></table>
+          <button class="btn btn-primary" id="all-emps" onclick="fetchEmps()">View All Employee</button>
+          <br />
+          <button class="btn btn-primary" id="all-tickets" onclick="fetchTickets()">View All Tickets</button>
+          <br />
+          <table id="approve-deny-table" class="table table-bordered table-sm table-light"> </table>
+          <table id="tickets-by-username-table" class="table table-bordered table-sm table-light"></table>
+          <table id="employee-table" class="table table-bordered table-sm table-light"></table>
+          <table id="ticket-table" class="table table-bordered table-sm table-light"></table>
+          <table id="table3" class="table table-bordered table-sm table-light"></table>
+        </div>
+      </div>
+    </div>
+  </div>
 
 </body>
 
