@@ -16,21 +16,20 @@ public class EmployeeDao implements EmployeeDaoI {
 	@Override
 	public int insert(Employee e) {
 
-		// Begin a tx
+		// Insert Employee object into DB
 		Transaction tx = ses.beginTransaction();
-
-		// Capture returned PK from save()
 		int pk = (int) ses.save(e);
-
-		// Commit transaction
 		tx.commit();
 
-		// Return PK
 		return pk;
 	}
 
 	public Employee findByUsername(String username) {
-		return ses.get(Employee.class, username);
+
+		// Find user from username by querying list
+		List<Employee> users = ses.createQuery("from Employee", Employee.class).list();
+		Employee e = users.get(0);
+		return e;
 	}
 
 	@Override
