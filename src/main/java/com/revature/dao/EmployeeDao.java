@@ -1,6 +1,5 @@
 package com.revature.dao;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import org.hibernate.Session;
@@ -17,22 +16,18 @@ public class EmployeeDao implements EmployeeDaoI {
 	@Override
 	public int insert(Employee e) {
 
-		// Begin a tx
+		// Insert Employee object into DB
 		Transaction tx = ses.beginTransaction();
-
-		// Capture returned PK from save()
 		int pk = (int) ses.save(e);
-
-		// Commit transaction
 		tx.commit();
 
-		// Return PK
 		return pk;
 	}
 
 	public Employee findByUsername(String username) {
-		List<Employee> users = new ArrayList<Employee>();
-		users = ses.createQuery("from Employee", Employee.class).list();
+
+		// Find user from username by querying list
+		List<Employee> users = ses.createQuery("from Employee", Employee.class).list();
 		Employee e = users.get(0);
 		return e;
 	}

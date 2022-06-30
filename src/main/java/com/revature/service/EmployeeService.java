@@ -23,18 +23,10 @@ public class EmployeeService {
 
 	public Employee confirmLogin(String username, String password) {
 
-		// Stream through all returned employees
+		// Find employee with username
 		Employee possibleEmp = edao.findByUsername(username);
 
-		/*
-		 * Optional<Employee> possibleEmp = edao.findAll().stream()
-		 * .filter(e -> (e.getUsername().equals(username) &&
-		 * e.getPassword().equals(password)))
-		 * .findFirst();
-		 */
-
-		// Return employee if present, or return empty employee object
-
+		// Check for valid credentials
 		if (possibleEmp.getId() != 0 && possibleEmp.getPassword().equals(password)) {
 			return possibleEmp;
 		} else if (possibleEmp.getPassword() != null) {
@@ -49,7 +41,7 @@ public class EmployeeService {
 			} catch (IncorrectPasswordException e) {
 				e.printStackTrace();
 			}
-		} 
+		}
 
 		return new Employee();
 	}
