@@ -13,8 +13,6 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.google.gson.Gson;
-import com.google.gson.GsonBuilder;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
@@ -279,18 +277,16 @@ public class RequestHelper {
 	public static void processTicketsByUsername(HttpServletRequest request, HttpServletResponse response)
 			throws IOException {
 
-
-		Gson gson = new GsonBuilder().create();
-
-
 		//required to get the json object from the response
 		new JsonObject();
 
-		InputStreamReader p = new InputStreamReader(request.getInputStream());
 
-		JsonElement root = JsonParser.parseReader(p);
+				InputStreamReader p = new InputStreamReader(request.getInputStream());
 
-		JsonObject rootobj = root.getAsJsonObject();
+				JsonElement root = JsonParser.parseReader(p);
+
+				JsonObject rootobj = root.getAsJsonObject();
+
 
 		String u = rootobj.get("username").getAsString();
 
@@ -321,38 +317,14 @@ public class RequestHelper {
 		response.addHeader("Access-Control-Allow-Origin", "*");
 		
 
-		
-		Gson gson = new GsonBuilder().create();
-		
-		//NEEDED THIS LINE
-		new JsonObject();
-		
-		InputStreamReader p = new InputStreamReader(request.getInputStream());
-		
-		JsonElement root = JsonParser.parseReader(p);
-		
-		JsonObject rootobj = root.getAsJsonObject();
-		
-		String statusFilter = (status).toString();
-
-		String u = rootobj.get("username").getAsString();
-		
-		
-
-		
-		System.out.println("Username: " + u );
-
-
 		// TODO TEST this
 		List<Ticket> ticketsByUsername = tserv.getAll().stream().filter(t -> t.getStatus().equals(status))
 				.collect(Collectors.toList());
 
 		String jsonString = om.writeValueAsString(ticketsByUsername);
-//		// 4. write it out
-//		// get printwriter
+
     	PrintWriter out = response.getWriter();
     	out.write(jsonString); // write the string to the response body
-		
 	}
 	
 	public static void processStatus(HttpServletRequest request, HttpServletResponse response, Status s)
@@ -361,12 +333,10 @@ public class RequestHelper {
 		response.setContentType("application/json");
 		response.addHeader("Access-Control-Allow-Origin", "*");
 		
-		HttpSession session = request.getSession();
+		
 		//Employee user = (Employee) session.getAttribute("the-user");
 		String username = employee.getUsername();
-//		System.out.println(username);
 
-//		System.out.println("Status: " + s );
 
 		//TEST 
 		List<Ticket> allTickets =  tserv.getAll().stream().filter(t -> t.getRequestedBy().equals(username))
@@ -376,14 +346,9 @@ public class RequestHelper {
 
 		 String jsonString = om.writeValueAsString(allTickets);
 
-		// // 4. write it out
-		// // get printwriter
+		
 		 PrintWriter out = response.getWriter();
  		out.write(jsonString); // write the string to the response body
-
-
-
-
 
 	}
 
@@ -395,13 +360,10 @@ public class RequestHelper {
 		response.setContentType("application/json");
 		response.addHeader("Access-Control-Allow-Origin", "*");
 		
-		HttpSession session = request.getSession();
+		
 		//Employee user = (Employee) session.getAttribute("the-user");
 		String username = employee.getUsername();
-//		System.out.println(username);
-
-//		System.out.println("Status: " + s );
-
+//		
 		//TEST 
 		List<Ticket> allTickets =  tserv.getAll().stream().filter(t -> t.getRequestedBy().equals(username))
 				.filter(t -> !t.getStatus().equals(Status.Pending)).collect(Collectors.toList());
@@ -420,13 +382,7 @@ public class RequestHelper {
 		response.setContentType("application/json");
 		response.addHeader("Access-Control-Allow-Origin", "*");
 		
-		HttpSession session = request.getSession();
-		//Employee user = (Employee) session.getAttribute("the-user");
-		String username = employee.getUsername();
-//		System.out.println(username);
-
-//		System.out.println("Status: " + s );
-
+		
 		//TEST 
 		List<Ticket> allTickets =  tserv.getAll().stream()
 				.filter(t -> t.getStatus().equals(Status.Pending)).collect(Collectors.toList());
@@ -444,11 +400,7 @@ public class RequestHelper {
 		response.setContentType("application/json");
 		response.addHeader("Access-Control-Allow-Origin", "*");
 		
-		HttpSession session = request.getSession();
-		//Employee user = (Employee) session.getAttribute("the-user");
-		String username = employee.getUsername();
-//		System.out.println(username);
-
+		
 //		System.out.println("Status: " + s );
 
 		//TEST 
@@ -461,7 +413,10 @@ public class RequestHelper {
 
     	PrintWriter out = response.getWriter();
     	out.write(jsonString); // write the string to the response body
+
 		
+
+
 	}
 
 }

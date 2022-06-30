@@ -8,14 +8,13 @@ b2.addEventListener('click', denyTicket);
 */
 function buildApproveDenyTable(data){
 	
+
 	let p1 = document.getElementById('statuschange');
 	console.log("p1 before: " + p1.innerHTML.toString());
 	p1.innerHTML = "Ticket " + data.getId() + " submitted by " + data.getRequestedBy() + " for $" + data.getAmount() + "has been APPROVED" ;
     console.log("p1: after " + p1.innerHTML.toString());
 }
     
-
-
 function approveTicket() {
 
    
