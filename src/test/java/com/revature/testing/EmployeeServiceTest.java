@@ -124,9 +124,43 @@ public class EmployeeServiceTest {
         // Capture the actual output of the method
         List<Employee> actual = eserv.getAll();
 
-        // Assert that they're not equal
+        // Assert that they're equal
         assertEquals(actual, users);
     }
 
-    // ============ update() ============ //
+    // ============ update(Employee e) ============ //
+    @Test
+    public void testUpdate() {
+
+        // Create fake employee
+        Employee e1 = new Employee(23, "John", "Snow", "snowman", "password", Role.Employee, null);
+
+        // Mock update() to provide fake data
+        when(mockdao.update(e1)).thenReturn(true);
+
+        // Capture the actual output of the method, set expected
+        boolean actual = eserv.update(e1);
+        boolean expected = true;
+
+        // Assert that they're equal
+        assertEquals(expected, actual);
+    }
+
+    // ============ delete(Employee e) ============ //
+    @Test
+    public void testDelete() {
+
+        // Create fake employee
+        Employee e1 = new Employee(23, "John", "Snow", "snowman", "password", Role.Employee, null);
+
+        // Mock delete() to provide fake data
+        when(mockdao.delete(e1.getId())).thenReturn(true);
+
+        // Capture the actual output of the method, set expected
+        boolean actual = eserv.delete(e1);
+        boolean expected = true;
+
+        // Assert that they're equal
+        assertEquals(expected, actual);
+    }
 }
