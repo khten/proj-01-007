@@ -316,21 +316,8 @@ public class RequestHelper {
 		//TEST 
 		List<Ticket> allTickets =  tserv.getAll().stream().filter(t -> t.getRequestedBy().equals(u)).collect(Collectors.toList());
 
-		//List<Ticket> ticketList = tserv.getTicketsByUsername(u);
-		//System.out.println(ticketList.get(1));
-//	PrintWriter out = response.getWriter();
-//		System.out.println(u);
-
-			// 2. Call the getAll() method form the employee service
-//		response.addHeader("Access-Control-Allow-Origin", "*");
-		
-//		List<Ticket> ticketList = tserv.getTicketsByUsername(u);
-//		System.out.println("ticket list: " + ticketList);
-//		// 3. transform the list to a string
 		String jsonString = om.writeValueAsString(allTickets);
 	
-//		// 4. write it out
-//		// get printwriter
     	PrintWriter out = response.getWriter();
     	out.write(jsonString); // write the string to the response body
 		
