@@ -12,9 +12,9 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
-
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
@@ -278,12 +278,10 @@ public class RequestHelper {
 
 	public static void processTicketsByUsername(HttpServletRequest request, HttpServletResponse response)
 			throws IOException {
-<<<<<<< HEAD
-<<<<<<< HEAD
+
 
 		Gson gson = new GsonBuilder().create();
-=======
->>>>>>> 61c03d234a96270d7b25098701ffa043c9f7b46b
+
 
 		//required to get the json object from the response
 		new JsonObject();
@@ -300,7 +298,7 @@ public class RequestHelper {
 		response.addHeader("Access-Control-Allow-Origin", "*");
 
 
-<<<<<<< HEAD
+
 		//TODO: look at the service layer / dao and change this function
 		List<Ticket> allTickets =  tserv.getAll().stream().filter(t -> t.getRequestedBy().equals(u)).collect(Collectors.toList());
 
@@ -383,17 +381,9 @@ public class RequestHelper {
 		 PrintWriter out = response.getWriter();
  		out.write(jsonString); // write the string to the response body
 
-=======
-		// TEST
-		List<Ticket> allTickets = tserv.getAll().stream()
-				.filter(t -> t.getRequestedBy().equals(u))
-				.collect(Collectors.toList());
 
-		String jsonString = om.writeValueAsString(allTickets);
 
-		PrintWriter out = response.getWriter();
-		out.write(jsonString);
->>>>>>> 61c03d234a96270d7b25098701ffa043c9f7b46b
+
 
 	}
 
