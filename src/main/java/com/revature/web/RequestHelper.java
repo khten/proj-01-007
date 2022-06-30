@@ -135,7 +135,8 @@ public class RequestHelper {
 
 			if (e.getRole() == Role.Admin) {
 
-				request.getRequestDispatcher("admin.html").forward(request, response);
+				request.getRequestDispatcher("admin.html").forward(request,response);
+				//request.getRequestDispatcher("admin.html").forward(request, response);
 				out.println("<h3>You have successfully logged in as Admin!</h3>");
 
 			} else if (e.getRole() == Role.Employee) {
@@ -286,7 +287,7 @@ public class RequestHelper {
 		
 		Gson gson = new GsonBuilder().create();
 		
-		//NEEDED THIS LINE
+		//NEEDED THIS LINE to GET THE JSON from the request
 		new JsonObject();
 		
 		InputStreamReader p = new InputStreamReader(request.getInputStream());
@@ -304,32 +305,26 @@ public class RequestHelper {
 		
 		System.out.println("Username: " + u );
 
-		//TEST 
+		//TODO: look at the service layer / dao and change this function
 		List<Ticket> allTickets =  tserv.getAll().stream().filter(t -> t.getRequestedBy().equals(u)).collect(Collectors.toList());
 
-		//List<Ticket> ticketList = tserv.getTicketsByUsername(u);
-		//System.out.println(ticketList.get(1));
-//	PrintWriter out = response.getWriter();
-//		System.out.println(u);
-
-			// 2. Call the getAll() method form the employee service
-//		response.addHeader("Access-Control-Allow-Origin", "*");
-		
-//		List<Ticket> ticketList = tserv.getTicketsByUsername(u);
-//		System.out.println("ticket list: " + ticketList);
-//		// 3. transform the list to a string
+//		//  transform the list to a string
 		String jsonString = om.writeValueAsString(allTickets);
 	
 //		// 4. write it out
-//		// get printwriter
+
     	PrintWriter out = response.getWriter();
     	out.write(jsonString); // write the string to the response body
 		
 	}
 	
-	public static void processPendingTickets(HttpServletRequest request, HttpServletResponse response)
+	public static void processTicketsByStatus(HttpServletRequest request, HttpServletResponse response, Status status)
 			throws IOException {
-//		response.setContentType("application/json");
+		
+		//set the content type and headers
+		response.setContentType("application/json");
+		response.addHeader("Access-Control-Allow-Origin", "*");
+		
 		
 		Gson gson = new GsonBuilder().create();
 		
@@ -342,30 +337,20 @@ public class RequestHelper {
 		
 		JsonObject rootobj = root.getAsJsonObject();
 		
-		String pendingStatus = (Status.Pending).toString();
-		String s = rootobj.get(pendingStatus).getAsString();
+		String statusFilter = (status).toString();
 		
 		
-		response.setContentType("application/json");
-		response.addHeader("Access-Control-Allow-Origin", "*");
 		
-		System.out.println("Status: " + s );
+		
+		System.out.println("Status: " + status );
 
-		//TEST 
-		List<Ticket> allTickets =  tserv.getAll().stream().filter(t -> t.getStatus().equals(s)).collect(Collectors.toList());
+		//filter ticket list by status 
+		List<Ticket> ticketList =  tserv.getTicketsByStatus(status);
+				
+				//tserv.getAll().stream().filter(t -> t.getStatus().equals(status)).collect(Collectors.toList());
 
-		//List<Ticket> ticketList = tserv.getTicketsByUsername(u);
-		//System.out.println(ticketList.get(1));
-//	PrintWriter out = response.getWriter();
-//		System.out.println(u);
-
-			// 2. Call the getAll() method form the employee service
-//		response.addHeader("Access-Control-Allow-Origin", "*");
-		
-//		List<Ticket> ticketList = tserv.getTicketsByUsername(u);
-//		System.out.println("ticket list: " + ticketList);
-//		// 3. transform the list to a string
-		String jsonString = om.writeValueAsString(allTickets);
+        //
+		String jsonString = om.writeValueAsString(ticketList);
 	
 //		// 4. write it out
 //		// get printwriter

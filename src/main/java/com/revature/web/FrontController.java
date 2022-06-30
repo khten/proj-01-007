@@ -6,6 +6,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.revature.models.Status;
+
 /**
  * Servlet implementation class FrontController
  */
@@ -47,20 +49,16 @@ public class FrontController extends HttpServlet {
 				RequestHelper.processAdmin(request, response);
 				break;
 
-			case "tickets":
-				RequestHelper.showAllTickets(request, response);
-				break;
+			
 
 			case "viewemps":
 				RequestHelper.processViewAllEmployees(request, response);
 
 				break;
 
-			case "tickets_by_username":
-				RequestHelper.processTicketsByUsername(request, response);
-
+			case "tickets":
+				RequestHelper.showAllTickets(request, response);
 				break;
-
 			case "approve_ticket":
 
 				RequestHelper.processApproveTicket(request, response);
@@ -70,6 +68,24 @@ public class FrontController extends HttpServlet {
 				RequestHelper.processDenyTicket(request, response);
 				break;
 
+			case "tickets_by_username":
+				RequestHelper.processTicketsByUsername(request, response);
+
+				break;
+
+			
+			case "view_pending":
+				RequestHelper.processTicketsByStatus(request, response, Status.Pending);
+				break;
+				
+			case "view_approved":
+				RequestHelper.processTicketsByStatus(request, response, Status.Approved);
+				break;
+				
+			case "view_denied_tickets":
+				RequestHelper.processTicketsByStatus(request, response, Status.Denied);
+				break;
+				
 			default:
 				// TODO: Add custom error page
 				break;
