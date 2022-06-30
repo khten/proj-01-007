@@ -14,8 +14,7 @@ import javax.servlet.http.HttpSession;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.google.gson.Gson;
-import com.google.gson.GsonBuilder;
+
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
@@ -58,7 +57,6 @@ public class RequestHelper {
 		} else if (request.getParameter("deny") != null) {
 			processDenyTicket(request, response);
 		}
-
 	}
 
 	public static void processEmployees(HttpServletRequest request, HttpServletResponse response)
@@ -166,26 +164,22 @@ public class RequestHelper {
 	public static void processRegistration(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 
-		// 1. extract all values from the parameters
 		String firstname = request.getParameter("firstname");
 		String lastname = request.getParameter("lastname");
 		String username = request.getParameter("username");
 		String password = request.getParameter("password");
 
-		// 2. construct a new employee object
 		Employee e = new Employee(firstname, lastname, username, password, Role.Employee, new ArrayList<Ticket>());
 
-		// 3. call the register() method from the service layer
 		int pk = eserv.register(e);
+
+		HttpSession session = request.getSession();
+		session.setAttribute("the-user", e);
 
 		// 4. check it's ID...if it's > 0 it's successfull
 		if (pk > 0) {
 
 			e.setId(pk);
-			// add the user to the session
-			HttpSession session = request.getSession();
-			session.setAttribute("the-user", e);
-
 			request.getRequestDispatcher("index.html").forward(request, response);
 			// using the request dispatcher, forward the request and response to a new
 			// resource...
@@ -285,8 +279,11 @@ public class RequestHelper {
 	public static void processTicketsByUsername(HttpServletRequest request, HttpServletResponse response)
 			throws IOException {
 <<<<<<< HEAD
+<<<<<<< HEAD
 
 		Gson gson = new GsonBuilder().create();
+=======
+>>>>>>> 61c03d234a96270d7b25098701ffa043c9f7b46b
 
 		//required to get the json object from the response
 		new JsonObject();
@@ -303,6 +300,7 @@ public class RequestHelper {
 		response.addHeader("Access-Control-Allow-Origin", "*");
 
 
+<<<<<<< HEAD
 		//TODO: look at the service layer / dao and change this function
 		List<Ticket> allTickets =  tserv.getAll().stream().filter(t -> t.getRequestedBy().equals(u)).collect(Collectors.toList());
 
@@ -385,6 +383,17 @@ public class RequestHelper {
 		 PrintWriter out = response.getWriter();
  		out.write(jsonString); // write the string to the response body
 
+=======
+		// TEST
+		List<Ticket> allTickets = tserv.getAll().stream()
+				.filter(t -> t.getRequestedBy().equals(u))
+				.collect(Collectors.toList());
+
+		String jsonString = om.writeValueAsString(allTickets);
+
+		PrintWriter out = response.getWriter();
+		out.write(jsonString);
+>>>>>>> 61c03d234a96270d7b25098701ffa043c9f7b46b
 
 	}
 
