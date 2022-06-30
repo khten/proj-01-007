@@ -4,6 +4,7 @@
 <head>
   <meta charset="ISO-8859-1" />
   <title>Employees</title>
+   <script src="emp-pending-table.js" defer></script>
 </head>
 
 <body>
@@ -15,13 +16,19 @@
 
   -->
   <form method="POST" action="employees">
+ 
+   
     <label>Ticket Description</label>
     <input type="text" name="desc" placeholder="Enter Ticket Description" />
     <input type="number" name="amount" min="0" placeholder="Enter the amount" />
     <input type="submit" name="submitTicket" value="Submit Request" />
     <input type="text" name="password" placeholder="Enter Ticket Description" />
     <input type="submit" name="changePassword" value="Change Password" />
-  </form>
+      </form>
+
+     <button id="all-pending-tickets" onclick="fetchPendingTicketsByUsername()">View All Pending Tickets</button>
+       <table id="pending-tickets-table" class="table table-striped>"></table>
+ 
 </body>
 
 </html>

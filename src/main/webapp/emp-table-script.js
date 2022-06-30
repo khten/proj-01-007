@@ -1,6 +1,6 @@
 // Get table element
 let table = document.getElementById('employee-table');
-//let button = document.getElementById('all-emps')
+let button = document.getElementById('all-emps')
 
 //button.addEventListener("click", fetchEmps); //should work because we removed () form fetchemps
 
