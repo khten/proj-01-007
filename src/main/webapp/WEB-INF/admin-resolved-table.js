@@ -1,18 +1,18 @@
 // Get table element
-let table6 = document.getElementById('admin-pending-table');
+let table7 = document.getElementById('admin-resolved-table');
 //let button3 = document.getElementById('tickets-emp-id')
 
 // Add button listener, call fetchEmps() method
 //button.addEventListener("click", fetchTicketByUsername());
 
 
-function buildTable6(data) {
+function buildTable7(data) {
     let header = document.createElement('thead'); // these are HTML elements
     let headerRow = document.createElement('tr');
-    table6.innerHTML = "";
+    table7.innerHTML = "";
 
     header.appendChild(headerRow);
-    table6.appendChild(header);
+    table7.appendChild(header);
 
     // create a header column for FirstName
     let th1 = document.createElement('th');
@@ -63,23 +63,23 @@ function buildTable6(data) {
         row.appendChild(td5);
 
         // append the row to table
-        table6.appendChild(row);
+        table7.appendChild(row);
     });
     
 
 }
 
-const fetchAllPending = () => {
+const fetchAllResolved = () => {
 	let hostname = window.location.hostname;
 	
 
-	console.log('fetchTicketsByUsername triggered');
+	console.log('fetchAllResolved triggered');
 	
 
 
-	fetch(`http://${hostname}:8080/proj-01-team07/all_pending_tickets`)
+	fetch(`http://${hostname}:8080/proj-01-team07/all_resolved_tickets`)
 	
 	.then((response) => response.json())
-	.then((data) => buildTable6(data))
+	.then((data) => buildTable7(data))
 
 };

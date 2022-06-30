@@ -23,9 +23,12 @@
     <url-pattern>/tickets_by_username</url-pattern>
     <url-pattern>/approve_ticket</url-pattern>
     <url-pattern>/deny_ticket</url-pattern>
-     <url-pattern>/pending_tickets</url-pattern>
+    <url-pattern>/pending_tickets</url-pattern>
     <url-pattern>/approved_tickets</url-pattern>
     <url-pattern>/denied_tickets</url-pattern>
+    <url-pattern>/resolved_tickets</url-pattern>
+    <url-pattern>/all_pending_tickets</url-pattern>
+    <url-pattern>/all_resolved_tickets</url-pattern>
     
     <!-- http://localhost:8080/employee-servlet-app/login -->
     <!-- http://localhost:8080/employee-servlet-app/employees -->

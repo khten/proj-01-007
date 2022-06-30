@@ -12,6 +12,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
@@ -290,7 +291,8 @@ public class RequestHelper {
 	public static void processTicketsByUsername(HttpServletRequest request, HttpServletResponse response)
 			throws IOException {
 //		response.setContentType("application/json");
-		
+		response.setContentType("application/json");
+		response.addHeader("Access-Control-Allow-Origin", "*");
 		
 		Gson gson = new GsonBuilder().create();
 		
@@ -307,8 +309,7 @@ public class RequestHelper {
 		String u = rootobj.get("username").getAsString();
 		
 		
-		response.setContentType("application/json");
-		response.addHeader("Access-Control-Allow-Origin", "*");
+
 		
 		System.out.println("Username: " + u );
 
@@ -344,30 +345,87 @@ public class RequestHelper {
 		HttpSession session = request.getSession();
 		//Employee user = (Employee) session.getAttribute("the-user");
 		String username = employee.getUsername();
-		System.out.println(username);
-////		response.setContentType("application/json");
-//		
-//		Gson gson = new GsonBuilder().create();
-//		
-//		//NEEDED THIS LINE
-//		new JsonObject();
-//		
-//		InputStreamReader p = new InputStreamReader(request.getInputStream());
-//		
-//		JsonElement root = JsonParser.parseReader(p);
-//		
-//		JsonObject rootobj = root.getAsJsonObject();
-//		
-		//String pendingStatus = (Status.Pending).toString();
-		//String s = rootobj.get(pendingStatus).getAsString();
-		
-	
-		
-		System.out.println("Status: " + s );
+//		System.out.println(username);
+
+//		System.out.println("Status: " + s );
 
 		//TEST 
 		List<Ticket> allTickets =  tserv.getAll().stream().filter(t -> t.getRequestedBy().equals(username))
 				.filter(t -> t.getStatus().equals(s)).collect(Collectors.toList());
+
+
+		String jsonString = om.writeValueAsString(allTickets);
+	
+
+    	PrintWriter out = response.getWriter();
+    	out.write(jsonString); // write the string to the response body
+		
+	}
+
+	public static void processStatusResolved(HttpServletRequest request, HttpServletResponse response) throws IOException {
+		
+		response.setContentType("application/json");
+		response.addHeader("Access-Control-Allow-Origin", "*");
+		
+		HttpSession session = request.getSession();
+		//Employee user = (Employee) session.getAttribute("the-user");
+		String username = employee.getUsername();
+//		System.out.println(username);
+
+//		System.out.println("Status: " + s );
+
+		//TEST 
+		List<Ticket> allTickets =  tserv.getAll().stream().filter(t -> t.getRequestedBy().equals(username))
+				.filter(t -> !t.getStatus().equals(Status.Pending)).collect(Collectors.toList());
+
+
+		String jsonString = om.writeValueAsString(allTickets);
+	
+
+    	PrintWriter out = response.getWriter();
+    	out.write(jsonString); // write the string to the response body
+		
+		
+	}
+
+	public static void processAdminPending(HttpServletRequest request, HttpServletResponse response) throws IOException {
+		response.setContentType("application/json");
+		response.addHeader("Access-Control-Allow-Origin", "*");
+		
+		HttpSession session = request.getSession();
+		//Employee user = (Employee) session.getAttribute("the-user");
+		String username = employee.getUsername();
+//		System.out.println(username);
+
+//		System.out.println("Status: " + s );
+
+		//TEST 
+		List<Ticket> allTickets =  tserv.getAll().stream()
+				.filter(t -> t.getStatus().equals(Status.Pending)).collect(Collectors.toList());
+
+
+		String jsonString = om.writeValueAsString(allTickets);
+	
+
+    	PrintWriter out = response.getWriter();
+    	out.write(jsonString); // write the string to the response body
+		
+	}
+	
+	public static void processAdminResolved(HttpServletRequest request, HttpServletResponse response) throws IOException {
+		response.setContentType("application/json");
+		response.addHeader("Access-Control-Allow-Origin", "*");
+		
+		HttpSession session = request.getSession();
+		//Employee user = (Employee) session.getAttribute("the-user");
+		String username = employee.getUsername();
+//		System.out.println(username);
+
+//		System.out.println("Status: " + s );
+
+		//TEST 
+		List<Ticket> allTickets =  tserv.getAll().stream()
+				.filter(t -> !t.getStatus().equals(Status.Pending)).collect(Collectors.toList());
 
 
 		String jsonString = om.writeValueAsString(allTickets);
