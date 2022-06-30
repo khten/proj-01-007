@@ -5,6 +5,7 @@ import java.util.List;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 
+import com.revature.models.Status;
 import com.revature.models.Ticket;
 import com.revature.util.HibernateUtil;
 
@@ -34,10 +35,17 @@ public class TicketDao implements TicketDaoI {
 
 	@Override
 	public List<Ticket> getTicketsByUsername(String username) {
-	
+
 		return ses.createQuery("from Ticket t where t.requestedBy = '" + username + "'", Ticket.class).list();
 		// return ses.createQuery("from Ticket t where t.requested_by = " + username,
 		// Ticket.class).list();
+	}
+
+	@Override
+	public List<Ticket> getTicketsByStatus(Status status) {
+
+		return ses.createQuery("from Ticket t where t.status = '" + status + "'", Ticket.class).list();
+
 	}
 
 	@Override

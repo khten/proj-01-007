@@ -326,5 +326,52 @@ public class RequestHelper {
     	out.write(jsonString); // write the string to the response body
 		
 	}
+	
+	public static void processPendingTickets(HttpServletRequest request, HttpServletResponse response)
+			throws IOException {
+//		response.setContentType("application/json");
+		
+		Gson gson = new GsonBuilder().create();
+		
+		//NEEDED THIS LINE
+		new JsonObject();
+		
+		InputStreamReader p = new InputStreamReader(request.getInputStream());
+		
+		JsonElement root = JsonParser.parseReader(p);
+		
+		JsonObject rootobj = root.getAsJsonObject();
+		
+		String pendingStatus = (Status.Pending).toString();
+		String s = rootobj.get(pendingStatus).getAsString();
+		
+		
+		response.setContentType("application/json");
+		response.addHeader("Access-Control-Allow-Origin", "*");
+		
+		System.out.println("Status: " + s );
+
+		//TEST 
+		List<Ticket> allTickets =  tserv.getAll().stream().filter(t -> t.getStatus().equals(s)).collect(Collectors.toList());
+
+		//List<Ticket> ticketList = tserv.getTicketsByUsername(u);
+		//System.out.println(ticketList.get(1));
+//	PrintWriter out = response.getWriter();
+//		System.out.println(u);
+
+			// 2. Call the getAll() method form the employee service
+//		response.addHeader("Access-Control-Allow-Origin", "*");
+		
+//		List<Ticket> ticketList = tserv.getTicketsByUsername(u);
+//		System.out.println("ticket list: " + ticketList);
+//		// 3. transform the list to a string
+		String jsonString = om.writeValueAsString(allTickets);
+	
+//		// 4. write it out
+//		// get printwriter
+    	PrintWriter out = response.getWriter();
+    	out.write(jsonString); // write the string to the response body
+		
+	}
 
 }

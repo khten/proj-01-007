@@ -3,6 +3,7 @@ package com.revature.service;
 import java.util.List;
 
 import com.revature.dao.TicketDao;
+import com.revature.models.Status;
 import com.revature.models.Ticket;
 
 public class TicketService {
@@ -37,6 +38,11 @@ public class TicketService {
 
 	public List<Ticket> getTicketsByUsername(String username) {
 		return tdao.getTicketsByUsername(username);
+
+	}
+	
+	public List<Ticket> getTicketsByStatus(Status status) {
+		return tdao.getTicketsByStatus(status);
 
 	}
 }
