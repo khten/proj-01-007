@@ -6,6 +6,7 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 import com.revature.dao.TicketDao;
+import com.revature.models.Status;
 import com.revature.models.Ticket;
 
 public class TicketService {
@@ -47,5 +48,10 @@ public class TicketService {
 	public List<Ticket> getTicketsByUsername(String username) {
 		logger.info("All tickets created by '" + username + "' retrieved");
 		return tdao.getTicketsByUsername(username);
+	}
+	
+	public List<Ticket> getTicketsByStatus(Status status) {
+		return tdao.getTicketsByStatus(status);
+
 	}
 }

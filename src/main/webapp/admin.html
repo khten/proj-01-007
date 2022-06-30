@@ -13,6 +13,8 @@
   <script src="ticket-table-script.js" defer></script>
   <script src="emp-ticket-table.js" defer></script>
   <script src="approve-deny.js" defer></script>
+  <script src="admin-pending-table.js" defer></script>
+  <script src="admin-resolved-table.js" defer></script>
 </head>
 
 <body>
@@ -47,19 +49,22 @@
         <button class="btn btn-primary" id="all-tickets" onclick="fetchTickets()">View All Tickets</button>
         <br />
         <br />
+        <button id="admin-pending-tickets" onclick="fetchAllPending()">View All Pending Tickets</button>
+        <br />
+        <br />
+  		<button id="admin-resolved-tickets" onclick="fetchAllResolved()">View All Resolved Tickets</button>
+    
         <table id="approve-deny-table" class="table table-bordered table-sm table-light"> </table>
         <table id="tickets-by-username-table" class="table table-bordered table-sm table-light"></table>
         <table id="employee-table" class="table table-bordered table-sm table-light"></table>
         <table id="ticket-table" class="table table-bordered table-sm table-light"></table>
-        <table id="table3" class="table table-bordered table-sm table-light"></table>
+        <table id="admin-pending-table" class="table table-striped>"></table>
+        <table id="admin-resolved-table" class="table table-striped>"></table>
 
       </div>
     </div>
   </div>
 
-</body>
-
-</html>
 
 </body>
 

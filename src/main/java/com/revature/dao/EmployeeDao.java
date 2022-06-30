@@ -26,9 +26,8 @@ public class EmployeeDao implements EmployeeDaoI {
 
 	public Employee findByUsername(String username) {
 
-		// Find user from username by querying list
 		Employee e = ses.createQuery("from Employee e where e.username = '" + username + "'", Employee.class)
-				.list().get(0);
+                .list().get(0);
 		return e;
 	}
 

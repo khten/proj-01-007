@@ -1,6 +1,6 @@
 // Get table element
 let table = document.getElementById('employee-table');
-//let button = document.getElementById('all-emps')
+let button = document.getElementById('all-emps')
 
 //button.addEventListener("click", fetchEmps); //should work because we removed () form fetchemps
 
@@ -10,6 +10,7 @@ let table = document.getElementById('employee-table');
 function buildTable(data) {
 	let header = document.createElement('thead');
 	let headerRow = document.createElement('tr');
+	table.innerHTML = "";
 
 	header.appendChild(headerRow);
 	table.appendChild(header);
