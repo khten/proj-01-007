@@ -14,8 +14,7 @@ import javax.servlet.http.HttpSession;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.google.gson.Gson;
-import com.google.gson.GsonBuilder;
+
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
@@ -32,10 +31,7 @@ public class RequestHelper {
 	private static Employee employee = new Employee();
 	
 	protected static TicketService tserv = new TicketService(new TicketDao());
-
-	// employeeservice
 	private static EmployeeService eserv = new EmployeeService(new EmployeeDao());
-	// object mapper (for frontend)
 	private static ObjectMapper om = new ObjectMapper();
 
 	public static void processAdmin(HttpServletRequest request, HttpServletResponse response)
@@ -43,14 +39,9 @@ public class RequestHelper {
 
 		if (request.getParameter("username") != null) {
 			String username = request.getParameter("username");
-			// PrintWriter out = response.getWriter();
-			// out.print("username" + username);
+
 			response.setContentType("application/json");
-
 			response.addHeader("Access-Control-Allow-Origin", "*");
-
-			// PrintWriter out = response.getWriter();
-			// out.write("captured: " + username);
 
 			List<Ticket> allTickets = tserv.getTicketsByUsername(username);
 
@@ -66,7 +57,6 @@ public class RequestHelper {
 		} else if (request.getParameter("deny") != null) {
 			processDenyTicket(request, response);
 		}
-
 	}
 
 	public static void processEmployees(HttpServletRequest request, HttpServletResponse response)
@@ -99,7 +89,6 @@ public class RequestHelper {
 			out.write("Processed password change...persist???");
 			eserv.update(e);
 		}
-
 	}
 
 	/**
@@ -174,27 +163,23 @@ public class RequestHelper {
 	public static void processRegistration(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 
-		// 1. extract all values from the parameters
 		String firstname = request.getParameter("firstname");
 		String lastname = request.getParameter("lastname");
 		String username = request.getParameter("username");
 		String password = request.getParameter("password");
 
-		// 2. construct a new employee object
 		Employee e = new Employee(firstname, lastname, username, password, Role.Employee, new ArrayList<Ticket>());
 
-		// 3. call the register() method from the service layer
 		int pk = eserv.register(e);
+
+		HttpSession session = request.getSession();
+		session.setAttribute("the-user", e);
 
 		// 4. check it's ID...if it's > 0 it's successfull
 		if (pk > 0) {
 
 			e.setId(pk);
-			// add the user to the session
-			HttpSession session = request.getSession();
-			session.setAttribute("the-user", e);
-
-			request.getRequestDispatcher("employee.html").forward(request, response);
+			request.getRequestDispatcher("index.html").forward(request, response);
 			// using the request dispatcher, forward the request and response to a new
 			// resource...
 			// send the user to a new page -- welcome.html
@@ -218,22 +203,20 @@ public class RequestHelper {
 			throws ServletException, IOException {
 
 		response.setContentType("application/json");
-		// 2. Call the getAll() method form the employee service
 		response.addHeader("Access-Control-Allow-Origin", "*");
+
 		List<Employee> emps = eserv.getAll();
-		// 3. transform the list to a string
+
 		String jsonString = om.writeValueAsString(emps);
-		// 4. write it out
-		// get printwriter
+
 		PrintWriter out = response.getWriter();
-		out.write(jsonString); // write the string to the response body
+		out.write(jsonString);
 	}
 
 	public static void showAllTickets(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 
 		response.setContentType("application/json");
-
 		response.addHeader("Access-Control-Allow-Origin", "*");
 
 		List<Ticket> allTickets = tserv.getAll();
@@ -241,7 +224,6 @@ public class RequestHelper {
 		String jsonString = om.writeValueAsString(allTickets);
 
 		PrintWriter out = response.getWriter();
-		// out.println("<p>Reached</p>");
 		out.write(jsonString);
 	}
 
@@ -250,9 +232,9 @@ public class RequestHelper {
 
 		PrintWriter out = response.getWriter();
 
-		int ticketId = Integer.valueOf(request.getParameter("acct-id"));
+		int id = Integer.valueOf(request.getParameter("acct-id"));
 
-		Ticket t = tserv.getById(ticketId);
+		Ticket t = tserv.getById(id);
 
 		response.setContentType("application/json");
 		response.addHeader("Access-Control-Allow-Origin", "*");
@@ -260,7 +242,9 @@ public class RequestHelper {
 		if (request.getParameter("approve") != null) {
 			t.setStatus(Status.Approved);
 			tserv.updateTicket(t);
+
 			String jsonString = om.writeValueAsString(t);
+
 			out.write(jsonString);
 
 		} else {
@@ -280,9 +264,12 @@ public class RequestHelper {
 		if (t != null) {
 			t.setStatus(Status.Denied);
 			tserv.updateTicket(t);
+
 			response.setContentType("application/json");
 			response.addHeader("Access-Control-Allow-Origin", "*");
+
 			String jsonString = om.writeValueAsString(t);
+
 			out.write(jsonString);
 		}
 
@@ -290,37 +277,32 @@ public class RequestHelper {
 
 	public static void processTicketsByUsername(HttpServletRequest request, HttpServletResponse response)
 			throws IOException {
-//		response.setContentType("application/json");
-		response.setContentType("application/json");
-		response.addHeader("Access-Control-Allow-Origin", "*");
-		
-		Gson gson = new GsonBuilder().create();
-		
-		//NEEDED THIS LINE
-		new JsonObject();
-		
-		InputStreamReader p = new InputStreamReader(request.getInputStream());
-		
-		JsonElement root = JsonParser.parseReader(p);
-		
-		JsonObject rootobj = root.getAsJsonObject();
-		
-		
-		String u = rootobj.get("username").getAsString();
-		
-		
+		// NEEDED THIS LINE
+				new JsonObject();
 
-		
-		System.out.println("Username: " + u );
+				InputStreamReader p = new InputStreamReader(request.getInputStream());
 
-		//TEST 
-		List<Ticket> allTickets =  tserv.getAll().stream().filter(t -> t.getRequestedBy().equals(u)).collect(Collectors.toList());
+				JsonElement root = JsonParser.parseReader(p);
 
-		String jsonString = om.writeValueAsString(allTickets);
-	
-    	PrintWriter out = response.getWriter();
-    	out.write(jsonString); // write the string to the response body
-		
+				JsonObject rootobj = root.getAsJsonObject();
+
+				String u = rootobj.get("username").getAsString();
+
+				response.setContentType("application/json");
+				response.addHeader("Access-Control-Allow-Origin", "*");
+
+				System.out.println("Username: " + u);
+
+				// TEST
+				List<Ticket> allTickets = tserv.getAll().stream()
+						.filter(t -> t.getRequestedBy().equals(u))
+						.collect(Collectors.toList());
+
+				String jsonString = om.writeValueAsString(allTickets);
+
+				PrintWriter out = response.getWriter();
+				out.write(jsonString);
+
 	}
 	
 	public static void processStatus(HttpServletRequest request, HttpServletResponse response, Status s)
@@ -420,7 +402,10 @@ public class RequestHelper {
 
     	PrintWriter out = response.getWriter();
     	out.write(jsonString); // write the string to the response body
+
 		
+
+
 	}
 
 }

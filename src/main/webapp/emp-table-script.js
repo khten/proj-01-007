@@ -5,7 +5,7 @@ let button = document.getElementById('all-emps')
 //button.addEventListener("click", fetchEmps); //should work because we removed () form fetchemps
 
 // Add button listener, call fetchEmps() method
-button.addEventListener('click', fetchEmps);
+//button.addEventListener('click', fetchEmps);
 
 function buildTable(data) {
 	let header = document.createElement('thead');
