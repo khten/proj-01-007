@@ -1,5 +1,6 @@
 package com.revature.dao;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.hibernate.Session;
@@ -30,7 +31,10 @@ public class EmployeeDao implements EmployeeDaoI {
 	}
 
 	public Employee findByUsername(String username) {
-		return ses.get(Employee.class, username);
+		List<Employee> users = new ArrayList<Employee>();
+		users = ses.createQuery("from Employee", Employee.class).list();
+		Employee e = users.get(0);
+		return e;
 	}
 
 	@Override
