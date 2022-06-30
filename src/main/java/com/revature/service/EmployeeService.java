@@ -29,7 +29,7 @@ public class EmployeeService {
 		// Check for valid credentials
 		if (possibleEmp.getId() != 0 && possibleEmp.getPassword().equals(password)) {
 			return possibleEmp;
-		} else if (possibleEmp.getPassword() != null) {
+		} else if (possibleEmp.getPassword() == null) {
 			try {
 				throw new NoUserFoundException("User with username " + username + " does not exist!");
 			} catch (NoUserFoundException e) {

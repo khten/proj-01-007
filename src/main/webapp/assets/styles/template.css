@@ -1,0 +1,28 @@
+* {
+    box-sizing: border-box;
+}
+
+body {
+    background-color: hsl(0, 0%, 96%);
+    padding: 80px;
+}
+
+.card {
+    background-color: hsl(0, 0%, 78%);
+    padding: 1%;
+}
+
+form,
+label {
+    margin: 10px;
+}
+
+#buttons form,
+#buttons form div {
+    display: inline;
+}
+
+#buttons button {
+    display: inline;
+    vertical-align: middle;
+}

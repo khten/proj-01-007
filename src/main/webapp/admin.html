@@ -4,6 +4,11 @@
 <head>
   <meta charset="ISO-8859-1" />
   <title>Admin</title>
+
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous" />
+  <link rel="stylesheet" href="assets/styles/template.css" />
+
   <script src="emp-table-script.js" defer></script>
   <script src="ticket-table-script.js" defer></script>
   <script src="emp-ticket-table.js" defer></script>
@@ -12,52 +17,45 @@
 
 <body>
 
-  <h1>Welcome Admin!</h1>
+  <div class="container">
+    <div class="card">
+      <div class="shadow-lg">
+        <div class="card-header text-center">
+          <h1>Welcome Admin!</h1>
+        </div>
+        <form method="POST" action="admin">
+          <label>Update Ticket Status</label>
+          <div class="input-group mb-3">
+            <button class="btn btn-danger" id="deny" name="deny" onclick="denyTicket">Deny Ticket</button>
+            <input class="form-control" type="number" id="acct-id" name="acct-id" min="1"
+              placeholder="Enter a Ticket ID">
+            <button class="btn btn-success" id="button-addon1" name="approve" onclick="approveTicket">Approve
+              Ticket</button>
+          </div>
 
-  <!--  
-    <form method="POST" action="admin">  
-    
-      <label>Get All Transactions</label>
-        <input type="text" id="emp-username" name="username" placeholder="Enter a Username" />
-        <input type="submit" id="tickets-by-user" name="tickets-by-user" value="Get tickets!">
-  		<br />
-  	   
-    	<label>Update Ticket Status</label>
-    	<input type="number" id="acct-id" name="acct-id" min="1" placeholder="Enter a Ticket Number">
-    	<input type="submit" id ="approve" name="approve" value="Approve" />
-    	<input type="submit" id = "denied" name="denied" value="Deny" />
-     </form>
--->
+        </form>
 
+        <input type="text" id="txtFindUser" placeholder="Find Ticketes by Username" />
+        <button class="btn btn-primary" id="get-by-user" onclick="fetchTicketsByUsername()">Show Tickets</button>
 
-  <!-- TODO move this into form when  all other work  
-     
--->
-  <!-- Buttons that are used to capture data must be inside the form to be CAPTURED by the POST request -->
-  <form method="POST" action="admin">
-    <label>Update Ticket Status</label>
-    <input type="number" id="acct-id" name="acct-id" min="1" placeholder="Enter a Ticket Number">
+        <br />
+        <br />
 
-    <button id="approve" name="approve" onclick="approveTicket">Approve Ticket</button>
-    <button id="deny" name="deny" onclick="denyTicket">Deny Ticket</button>
+        <button class="btn btn-primary" id="all-emps" onclick="fetchEmps()">View All Employee</button>
+        <br />
+        <br />
+        <button class="btn btn-primary" id="all-tickets" onclick="fetchTickets()">View All Tickets</button>
+        <br />
+        <br />
+        <table id="approve-deny-table" class="table table-bordered table-sm table-light"> </table>
+        <table id="tickets-by-username-table" class="table table-bordered table-sm table-light"></table>
+        <table id="employee-table" class="table table-bordered table-sm table-light"></table>
+        <table id="ticket-table" class="table table-bordered table-sm table-light"></table>
+        <table id="table3" class="table table-bordered table-sm table-light"></table>
 
-  </form>
-
-  <input type="text" id="txtFindUser" placeholder="Find Ticketes by Username" />
-  <button id="get-by-user" onclick="fetchTicketsByUsername()">Show Tickets</button>
-
-  <br />
-  <br />
-
-  <button id="all-emps" onclick="fetchEmps()">View All Employee</button>
-  <br />
-  <button id="all-tickets" onclick="fetchTickets()">View All Tickets</button>
-  <br />
-  <table id="approve-deny-table" class="table table-striped"> </table>
-  <table id="tickets-by-username-table" class="table table-striped"></table>
-  <table id="employee-table" class="table table-striped"></table>
-  <table id="ticket-table" class="table table-striped>"></table>
-  <table id="table3" class="table table-striped>"></table>
+      </div>
+    </div>
+  </div>
 
 </body>
 
