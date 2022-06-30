@@ -1,11 +1,11 @@
 package com.revature.web;
 
 import java.io.IOException;
-import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
@@ -282,25 +282,49 @@ public class RequestHelper {
 
 	public static void processTicketsByUsername(HttpServletRequest request, HttpServletResponse response)
 			throws IOException {
-		response.setContentType("application/json");
-		Gson gson = new Gson();
-		gson = new GsonBuilder().create();
-
-		// JsonElement root = jsonParser.parse(new InputStreamReader((InputStream)
-		// request.getInputStream()));
-		JsonElement root = JsonParser.parseReader(new InputStreamReader((InputStream) request.getInputStream()));
+//		response.setContentType("application/json");
+		
+		Gson gson = new GsonBuilder().create();
+		
+		//NEEDED THIS LINE
+		new JsonObject();
+		
+		InputStreamReader p = new InputStreamReader(request.getInputStream());
+		
+		JsonElement root = JsonParser.parseReader(p);
+		
 		JsonObject rootobj = root.getAsJsonObject();
-
-		response.addHeader("Access-Control-Allow-Origin", "*");
+		
+		
 		String u = rootobj.get("username").getAsString();
+		
+		
+		response.setContentType("application/json");
+		response.addHeader("Access-Control-Allow-Origin", "*");
+		
+		System.out.println("Username: " + u );
 
-		PrintWriter out = response.getWriter();
-		System.out.println(u);
+		//TEST 
+		List<Ticket> allTickets =  tserv.getAll().stream().filter(t -> t.getRequestedBy().equals(u)).collect(Collectors.toList());
 
-		// List<Ticket> allTickets = tserv.getTicketsByUsername(u);
+		//List<Ticket> ticketList = tserv.getTicketsByUsername(u);
+		//System.out.println(ticketList.get(1));
+//	PrintWriter out = response.getWriter();
+//		System.out.println(u);
 
-		// String jsonString = gson.toJson(allTickets);
-		// out.write(jsonString);
+			// 2. Call the getAll() method form the employee service
+//		response.addHeader("Access-Control-Allow-Origin", "*");
+		
+//		List<Ticket> ticketList = tserv.getTicketsByUsername(u);
+//		System.out.println("ticket list: " + ticketList);
+//		// 3. transform the list to a string
+		String jsonString = om.writeValueAsString(allTickets);
+	
+//		// 4. write it out
+//		// get printwriter
+    	PrintWriter out = response.getWriter();
+    	out.write(jsonString); // write the string to the response body
+		
 	}
 
 }
