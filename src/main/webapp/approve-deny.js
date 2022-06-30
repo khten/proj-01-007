@@ -10,6 +10,7 @@ function buildApproveDenyTable(data){
 	
 	let header = document.createElement('thead'); // these are HTML elements
 	let headerRow = document.createElement('tr');
+	table4.innerHTML = "";
 
 	header.appendChild(headerRow);
 	table4.appendChild(header);

@@ -10,6 +10,7 @@ button.addEventListener('click', fetchEmps);
 function buildTable(data) {
 	let header = document.createElement('thead');
 	let headerRow = document.createElement('tr');
+	table.innerHTML = "";
 
 	header.appendChild(headerRow);
 	table.appendChild(header);

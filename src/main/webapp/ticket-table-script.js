@@ -17,6 +17,7 @@ let table2 = document.getElementById('ticket-table');
 function buildTable2(data) {
     let header = document.createElement('thead'); // these are HTML elements
     let headerRow = document.createElement('tr');
+    table2.innerHTML = "";
 
     header.appendChild(headerRow);
     table2.appendChild(header);
