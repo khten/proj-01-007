@@ -25,10 +25,13 @@
         </div>
         <form method="POST" action="admin">
           <label>Update Ticket Status</label>
-          <input type="number" id="acct-id" name="acct-id" min="1" placeholder="Enter a Ticket Number">
-
-          <button class="btn btn-success" id="approve" name="approve" onclick="approveTicket">Approve Ticket</button>
-          <button class="btn btn-danger" id="deny" name="deny" onclick="denyTicket">Deny Ticket</button>
+          <div class="input-group mb-3">
+            <button class="btn btn-danger" id="deny" name="deny" onclick="denyTicket">Deny Ticket</button>
+            <input class="form-control" type="number" id="acct-id" name="acct-id" min="1"
+              placeholder="Enter a Ticket ID">
+            <button class="btn btn-success" id="button-addon1" name="approve" onclick="approveTicket">Approve
+              Ticket</button>
+          </div>
 
         </form>
 
