@@ -1,26 +1,18 @@
-// grab the table  element from the page so
-// we can modify how it looks and add elements
+// Get table element
+let table6 = document.getElementById('resolved-tickets-table');
+//let button3 = document.getElementById('tickets-emp-id')
 
-// var let const
+// Add button listener, call fetchEmps() method
+//button.addEventListener("click", fetchTicketByUsername());
 
-// this saves teh table element to the variable
 
-//let button2 = document.getElementById('all-tickets')
-// WHEN the button is clicked, we
-// make a call to the server, fetch the JSON
-// DATA and pasrse it and append it to the table
-
-// button.addEventListener('click', sayHello)
-//button2.addEventListener('click', fetchTicket);
-let table2 = document.getElementById('ticket-table');
-
-function buildTable2(data) {
+function buildTable6(data) {
     let header = document.createElement('thead'); // these are HTML elements
     let headerRow = document.createElement('tr');
-    table2.innerHTML = "";
+    table6.innerHTML = "";
 
     header.appendChild(headerRow);
-    table2.appendChild(header);
+    table6.appendChild(header);
 
     // create a header column for FirstName
     let th1 = document.createElement('th');
@@ -71,22 +63,23 @@ function buildTable2(data) {
         row.appendChild(td5);
 
         // append the row to table
-        table2.appendChild(row);
+        table6.appendChild(row);
     });
+    
+
 }
 
-function fetchTickets() {
-    // Fetch API is modern interface that allows you
-    // to make HTTP requests to a server and process the results that
-    // you get back asynchrnously
-    let hostname = window.location.hostname;
+const fetchResolvedTicketsByUsername = () => {
+	let hostname = window.location.hostname;
+	
 
-    //console.log('fetchEmps triggered')
+	console.log('fetchResolvedTicketsByUsername triggered');
+	
 
-    fetch(`http://${hostname}:8080/proj-01-team07/tickets`)
-        .then((response) => response.json())
-        //.then(obj => console.log(obj))
-        .then((data) => buildTable2(data)); // this automatically passes the data that's been parsed
-    // The JS object is an array of Employee objects
-    // passes to the build table
-}
+
+	fetch(`http://${hostname}:8080/proj-01-team07/resolved_tickets`)
+	
+	.then((response) => response.json())
+	.then((data) => buildTable6(data))
+
+};
