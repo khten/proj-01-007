@@ -51,11 +51,9 @@ public class FrontController extends HttpServlet {
 
 			case "viewemps":
 				RequestHelper.processViewAllEmployees(request, response);
-
 				break;
 
 			case "approve_ticket":
-
 				RequestHelper.processApproveTicket(request, response);
 				break;
 
@@ -64,12 +62,11 @@ public class FrontController extends HttpServlet {
 				break;
 
 			case "pending_tickets":
-				RequestHelper.processTicketsByStatus(request, response, Status.Pending);
+				RequestHelper.processStatus(request, response, Status.Pending);
 				break;
 
 			case "tickets_by_username":
 				RequestHelper.processTicketsByUsername(request, response);
-
 				break;
 
 			case "view_pending":

@@ -41,7 +41,7 @@
               <div class="input-group mb-3">
                 <input class="form-control" type="text" id="txtFindUser" placeholder="Find Ticketes by Username" />
                 <div class="input-group-append"></div>
-                <button class="btn btn-primary" id="get-by-user" onclick=fetchTicketsByUsername()>Show
+                <button class="btn btn-primary" id="get-by-user" onclick="fetchTicketsByUsername()">Show
                   Tickets</button>
               </div>
             </div>
@@ -49,17 +49,17 @@
         </div>
       </form>
 
-      <button class="btn btn-primary" id="admin-pending-tickets" onclick=fetchAllPending()>View All Pending
+      <button class="btn btn-primary" id="admin-pending-tickets" onclick="fetchAllPending()">View All Pending
         Tickets</button>
       <br />
-      <button class="btn btn-primary" id="admin-resolved-tickets" onclick=fetchAllResolved()>View All Resolved
+      <button class="btn btn-primary" id="admin-resolved-tickets" onclick="fetchAllResolved()">View All Resolved
         Tickets</button>
 
       <br />
 
-      <button class="btn btn-primary" id="all-emps" onclick=fetchEmps()>View All Employee</button>
+      <button class="btn btn-primary" id="all-emps" onclick="fetchEmps()">View All Employee</button>
       <br />
-      <button class="btn btn-primary" id="all-tickets" onclick=fetchTickets()>View All Tickets</button>
+      <button class="btn btn-primary" id="all-tickets" onclick="fetchTickets()">View All Tickets</button>
 
       <table id="approve-deny-table" class="table table-bordered table-sm table-light"> </table>
       <table id="tickets-by-username-table" class="table table-bordered table-sm table-light"></table>

@@ -6,11 +6,9 @@ let table3 = document.getElementById('tickets-by-username-table');
 //button.addEventListener("click", fetchTicketByUsername());
 
 function buildTable3(data) {
-
-    let header = document.createElement('thead'); // these are HTML elements
-    let headerRow = document.createElement('tr');
-    table3.innerHTML = "";
-
+	let header = document.createElement('thead'); // these are HTML elements
+	let headerRow = document.createElement('tr');
+	table3.innerHTML = '';
 
 	header.appendChild(headerRow);
 	table3.appendChild(header);
