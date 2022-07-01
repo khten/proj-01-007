@@ -26,10 +26,15 @@ public class EmployeeDao implements EmployeeDaoI {
 
 	public Employee findByUsername(String username) {
 
-		Employee e = ses.createQuery("from Employee e where e.username = '" + username + "'", Employee.class)
+
+		// Find user from username by querying list
+
+		return ses.createQuery("from Employee e where e.username = '" + username + "'", Employee.class)
                 .list().get(0);
-		return e;
+		
+
 	}
+	 
 
 	@Override
 	public List<Employee> findAll() {

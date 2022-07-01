@@ -35,6 +35,7 @@ public class TicketDao implements TicketDaoI {
 
 	@Override
 	public List<Ticket> getTicketsByUsername(String username) {
+
 		return ses.createQuery("from Ticket t where t.requestedBy = '" + username + "'", Ticket.class).list();
 	}
 
