@@ -39,7 +39,8 @@
     <url-pattern>/resolved_tickets</url-pattern>
     <url-pattern>/all_pending_tickets</url-pattern>
     <url-pattern>/all_resolved_tickets</url-pattern>
-    
+    <url-pattern>/change_password</url-pattern>
+    <url-pattern>/make_new_ticket</url-pattern>
 
     <!-- http://localhost:8080/employee-servlet-app/login -->
     <!-- http://localhost:8080/employee-servlet-app/employees -->

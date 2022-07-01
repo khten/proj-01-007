@@ -1,6 +1,7 @@
 package com.revature.web;
 
 import java.io.IOException;
+import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.io.PrintWriter;
 import java.util.ArrayList;
@@ -13,6 +14,8 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
@@ -26,7 +29,7 @@ import com.revature.service.EmployeeService;
 import com.revature.service.TicketService;
 
 public class RequestHelper {
-	private static Employee employee = new Employee();
+	public static Employee employee;
 	
 	protected static TicketService tserv = new TicketService(new TicketDao());
 	private static EmployeeService eserv = new EmployeeService(new EmployeeDao());
@@ -65,6 +68,7 @@ public class RequestHelper {
 			String description = request.getParameter("desc");
 			Employee e = (Employee) request.getSession().getAttribute("the-user");
 
+			
 			double amount = Double.valueOf(request.getParameter("amount"));
 
 			String username = e.getUsername();
@@ -126,7 +130,7 @@ public class RequestHelper {
 			}
 
 			PrintWriter out = response.getWriter();
-			out.println("before role" + e.getRole());
+			//out.println("before role" + e.getRole());
 
 			if (e.getRole() == Role.Admin) {
 
@@ -178,7 +182,7 @@ public class RequestHelper {
 		if (pk > 0) {
 
 			e.setId(pk);
-			request.getRequestDispatcher("index.html").forward(request, response);
+			request.getRequestDispatcher("/index.html").forward(request, response);
 			// using the request dispatcher, forward the request and response to a new
 			// resource...
 			// send the user to a new page -- welcome.html
@@ -339,12 +343,12 @@ public class RequestHelper {
 
 
 		//TEST 
-		List<Ticket> allTickets =  tserv.getAll().stream().filter(t -> t.getRequestedBy().equals(username))
-				.filter(t -> t.getStatus().equals(s)).collect(Collectors.toList());
+		List<Ticket> ticketList =  tserv.getAll().stream().filter(t ->  t.getRequestedBy().equals(username))
+				
+		    .filter(t -> t != null &&  !(t.getStatus().equals(Status.Approved)  || t.getStatus().equals(Status.Denied)))
+		   .collect(Collectors.toList());
 
-
-
-		 String jsonString = om.writeValueAsString(allTickets);
+		 String jsonString = om.writeValueAsString(ticketList);
 
 		
 		 PrintWriter out = response.getWriter();
@@ -417,6 +421,87 @@ public class RequestHelper {
 		
 
 
+	}
+
+	public static void processChangePassword(HttpServletRequest request, HttpServletResponse response) throws IOException {
+//
+		response.setContentType("application/json");
+		response.addHeader("Access-Control-Allow-Origin", "*");
+//		
+//		
+//		//required to get the json object from the response
+		Gson gson = new Gson();
+		gson = new GsonBuilder().create();
+		@SuppressWarnings("unused")
+		JsonObject payload = new JsonObject();
+//
+//
+//		
+		InputStreamReader p = new InputStreamReader((InputStream)request.getInputStream());
+//
+		JsonElement root = JsonParser.parseReader(p);
+//
+		JsonObject rootobj = root.getAsJsonObject();
+//
+//      
+	
+	  	 String pwd = rootobj.get("password").getAsString();
+	  	
+	  	
+//
+	  	System.out.println("retrieved new password from JSON:" + pwd);
+//	  	//set employee's password
+		
+//		employee.setPassword(pwd);
+//		
+//		//request update to the db
+//		eserv.update(employee);
+//		
+//	  	String jsonString = om.writeValueAsString(pwd);
+//		
+//
+//    	PrintWriter out = response.getWriter();
+//    	out.write(jsonString); // w
+		Employee e = employee;
+		
+		e.setPassword(pwd);
+		eserv.update(e);
+		//String jsonString = gson.toJson(e);
+//		PrintWriter out = response.getWriter();
+//		out.write("Processed password change...persist???");
+//		out.write(pwd); 
+	}
+
+	public static void processMakeNewTicket(HttpServletRequest request, HttpServletResponse response) throws IOException {
+		response.setContentType("application/json");
+		response.addHeader("Access-Control-Allow-Origin", "*");
+		
+		//required to get the json object from the response
+		Gson gson = new Gson();
+		gson = new GsonBuilder().create();
+		
+		@SuppressWarnings("unused")
+		JsonObject payload = new JsonObject();
+		
+		InputStreamReader p = new InputStreamReader((InputStream)request.getInputStream());
+
+		JsonElement root = JsonParser.parseReader(p);
+
+		JsonObject rootobj = root.getAsJsonObject();      
+	
+	  	 double amount = rootobj.get("amount").getAsDouble();
+	  	 String description = rootobj.get("description").getAsString();
+	  	 
+	  
+	  	 Status status = Status.Pending;
+	  
+
+		final String requestedBy = employee.getUsername();
+		Employee e = employee;
+		Ticket t = new Ticket(amount, description, e, status, requestedBy);
+	
+	    tserv.requestNewTicket(t);
+	    
 	}
 
 }
