@@ -40,13 +40,16 @@ function buildTable2(data) {
     let th5 = document.createElement('th');
     th5.innerHTML = 'Status';
 
+	let th6 = document.createElement('th');
+	th6.innerHTML = 'Resolved By'
     // apend the child nodes onto the header
     headerRow.appendChild(th1);
     headerRow.appendChild(th2);
     headerRow.appendChild(th3);
     headerRow.appendChild(th4);
     headerRow.appendChild(th5);
-
+	headerRow.appendChild(th6);
+	
     data.forEach((t) => {
         let row = document.createElement('tr');
         let td1 = document.createElement('td');
@@ -54,7 +57,7 @@ function buildTable2(data) {
         let td3 = document.createElement('td');
         let td4 = document.createElement('td');
         let td5 = document.createElement('td');
-
+		let td6 = document.createElement('td');
         // set the inner HTML of each cell to the diff propertie s (
         //TODO figure out how to get the employee of the ticket ....
         td1.innerHTML = t.transactionId;
@@ -62,14 +65,16 @@ function buildTable2(data) {
         td3.innerHTML = t.amount;
         td4.innerHTML = t.description;
         td5.innerHTML = t.status;
-
+		td6.innerHTML = t.resolvedBy;
+		
         // finally append each table cell to the row
         row.appendChild(td1);
         row.appendChild(td2);
         row.appendChild(td3);
         row.appendChild(td4);
         row.appendChild(td5);
-
+		row.appendChild(td6);
+		
         // append the row to table
         table2.appendChild(row);
     });
@@ -83,7 +88,8 @@ function fetchTickets() {
 
     //console.log('fetchEmps triggered')
 
-    fetch(`http://${hostname}:8080/proj-01-team07/tickets`)
+
+    fetch(`http://${hostname}:8080/proj-01-team07/view_all_tickets`)
         .then((response) => response.json())
         //.then(obj => console.log(obj))
         .then((data) => buildTable2(data)); // this automatically passes the data that's been parsed

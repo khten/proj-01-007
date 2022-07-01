@@ -39,8 +39,8 @@ public class TicketServiceTest {
     public void testGetAll() {
 
         // Create fake tickets
-        Ticket t1 = new Ticket(4, 754d, "Bought beans for lunchroom", new Employee(), Status.Approved, "snowman");
-        Ticket t2 = new Ticket(5, 345d, "Lost at casino", new Employee(), Status.Pending, "ernie");
+        Ticket t1 = new Ticket(4, 754d, "Bought beans for lunchroom", new Employee(), Status.Approved, "snowman","");
+        Ticket t2 = new Ticket(5, 345d, "Lost at casino", new Employee(), Status.Pending, "ernie", "");
 
         // Create list of tickets
         List<Ticket> tickets = new ArrayList<Ticket>();
@@ -62,7 +62,7 @@ public class TicketServiceTest {
     public void testRequestNewTicket() {
 
         // Create fake ticket
-        Ticket t1 = new Ticket(4, 754d, "Bought beans for lunchroom", new Employee(), Status.Approved, "snowman");
+        Ticket t1 = new Ticket(4, 754d, "Bought beans for lunchroom", new Employee(), Status.Approved, "snowman", "");
 
         // Mock insert() to provide fake data
         when(mockdao.insert(t1)).thenReturn(4);
@@ -80,7 +80,7 @@ public class TicketServiceTest {
     public void testUpdateTicket() {
 
         // Create fake ticket
-        Ticket t1 = new Ticket(4, 754d, "Bought beans for lunchroom", new Employee(), Status.Approved, "snowman");
+        Ticket t1 = new Ticket(4, 754d, "Bought beans for lunchroom", new Employee(), Status.Approved, "snowman","");
 
         // Mock update() to provide fake data
         when(mockdao.update(t1)).thenReturn(true);
@@ -98,7 +98,7 @@ public class TicketServiceTest {
     public void testGetById() {
 
         // Create fake Ticket
-        Ticket t1 = new Ticket(4, 754d, "Bought beans for lunchroom", new Employee(), Status.Approved, "snowman");
+        Ticket t1 = new Ticket(4, 754d, "Bought beans for lunchroom", new Employee(), Status.Approved, "snowman", "");
         int id = 4;
 
         // Mock findById() to provide fake data
@@ -134,8 +134,8 @@ public class TicketServiceTest {
     public void testGetTicketsByUsername() {
 
         // Create fake ticket
-        Ticket t1 = new Ticket(4, 754d, "Bought beans for lunchroom", new Employee(), Status.Approved, "snowman");
-        Ticket t2 = new Ticket(5, 345d, "Lost at casino", new Employee(), Status.Pending, "snowman");
+        Ticket t1 = new Ticket(4, 754d, "Bought beans for lunchroom", new Employee(), Status.Approved, "snowman", "");
+        Ticket t2 = new Ticket(5, 345d, "Lost at casino", new Employee(), Status.Pending, "snowman", "");
 
         // Create list of tickets
         List<Ticket> tickets = new ArrayList<Ticket>();
