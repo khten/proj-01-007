@@ -113,6 +113,14 @@ public class FrontController extends HttpServlet {
 			RequestHelper.processAdminResolved(request, response);
 			break;
 
+		case "change_password":
+			RequestHelper.processChangePassword(request, response);
+			break;
+			
+		case "make_new_ticket":
+			RequestHelper.processMakeNewTicket(request,response);
+			break;
+			
 		default:
 			// TODO: Add custom error page
 			break;
