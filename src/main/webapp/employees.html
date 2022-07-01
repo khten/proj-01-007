@@ -13,7 +13,7 @@
   <script src="emp-resolved-table.js" defer></script>
   <script src="change-password.js" defer></script>
   <script src="emp-make-ticket.js" defer></script>
-
+  <script src="emp-view-info.js" defer></script>
 </head>
 
 <body>
@@ -21,31 +21,14 @@
     <div class="card">
       <div class="shadow-lg">
 
-        <!-- 
-  <form method="POST" action="employees">
- 
-   
-    <label>Ticket Description</label>
-    <input type="text" name="desc" placeholder="Enter Ticket Description" />
-    <input type="number" name="amount" min="0" placeholder="Enter the amount" />
-    <input type="submit" name="submitTicket" value="Submit Request" />
-    <input type="text" name="password" placeholder="Enter Ticket Description" />
-    <input type="submit" name="changePassword" value="Change Password" />
- </form>
--->
-        <!--  THESE GUYS WORK!!!
-    <button id="all-pending-tickets" onclick="fetchPendingTicketsByUsername()">View All Pending Tickets</button>
-       <table id="pending-tickets-table" class="table table-striped>"></table>
-       
-      <button id="all-resolved-tickets" onclick="fetchResolvedTicketsByUsername()">View All Resolved Tickets</button>
-       <table id="resolved-tickets-table" class="table table-striped>"></table>
- 
--->
 
         <div class="card-header text-center">
           <h3>Please enter request information below:</h3>
         </div>
         <!--   <form method="POST" action="employees"> -->
+        <button id="view-my-info" onclick="fetchViewEmpInfo()">View My Info</button>
+        <table id="emp-info-table"></table>
+
 
         <div class="mb-3">
           <label for="exampleFormControlTextarea1" class="form-label">Description:</label>
@@ -82,8 +65,9 @@
 
           <br />
           <br />
-
+          <button onclick="window.location.href = 'index.html';">Log Out</button>
         </div>
+
       </div>
     </div>
   </div>
