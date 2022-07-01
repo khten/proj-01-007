@@ -49,92 +49,23 @@ public class Ticket implements Serializable {
 	@Enumerated(EnumType.STRING)
 
 	@Column(name = "status")
-
 	private Status status;
 
-	@Column(name = "requested_by")
-	private String requestedBy;
-
-	public Ticket() {
-		super();
+	@Override
+	public String toString() {
+		return "Ticket [transactionId=" + transactionId + ", amount=" + amount + ", description=" + description
+				+ ", employeeId=" + employeeId + ", status=" + status + ", requestedBy=" + requestedBy + ", resolvedBy="
+				+ resolvedBy + "]";
 	}
 
-	public Ticket(int transactionId, double amount, String description, Employee employeeId, Status status,
-			String requestedBy) {
-		super();
-		this.transactionId = transactionId;
-		this.amount = amount;
-		this.description = description;
-		this.employeeId = employeeId;
-		this.status = status;
-		this.requestedBy = requestedBy;
-	}
 
-	public Ticket(double amount, String description, Employee employeeId, Status status, String requestedBy) {
-		super();
-		this.amount = amount;
-		this.description = description;
-		this.employeeId = employeeId;
-		this.status = status;
-		this.requestedBy = requestedBy;
-	}
-
-	public int getTransactionId() {
-		return transactionId;
-	}
-
-	public void setTransactionId(int transactionId) {
-		this.transactionId = transactionId;
-	}
-
-	public double getAmount() {
-		return amount;
-	}
-
-	public void setAmount(double amount) {
-		this.amount = amount;
-	}
-
-	public String getDescription() {
-		return description;
-	}
-
-	public void setDescription(String description) {
-		this.description = description;
-	}
-
-	public Employee getEmployeeId() {
-		return employeeId;
-	}
-
-	public void setEmployeeId(Employee employeeId) {
-		this.employeeId = employeeId;
-	}
-
-	public Status getStatus() {
-		return status;
-	}
-
-	public void setStatus(Status status) {
-		this.status = status;
-	}
-
-	public String getRequestedBy() {
-		return requestedBy;
-	}
-
-	public void setRequestedBy(String requestedBy) {
-		this.requestedBy = requestedBy;
-	}
-
-	public static long getSerialversionuid() {
-		return serialVersionUID;
-	}
 
 	@Override
 	public int hashCode() {
-		return Objects.hash(amount, description, employeeId, requestedBy, status, transactionId);
+		return Objects.hash(amount, description, employeeId, requestedBy, resolvedBy, status, transactionId);
 	}
+
+
 
 	@Override
 	public boolean equals(Object obj) {
@@ -147,13 +78,140 @@ public class Ticket implements Serializable {
 		Ticket other = (Ticket) obj;
 		return Double.doubleToLongBits(amount) == Double.doubleToLongBits(other.amount)
 				&& Objects.equals(description, other.description) && Objects.equals(employeeId, other.employeeId)
-				&& Objects.equals(requestedBy, other.requestedBy) && status == other.status
-				&& transactionId == other.transactionId;
+				&& Objects.equals(requestedBy, other.requestedBy) && Objects.equals(resolvedBy, other.resolvedBy)
+				&& status == other.status && transactionId == other.transactionId;
 	}
 
-	@Override
-	public String toString() {
-		return "Ticket [transactionId=" + transactionId + ", amount=" + amount + ", description=" + description
-				+ ", employeeId=" + employeeId + ", status=" + status + ", requestedBy=" + requestedBy + "]";
+
+
+	public int getTransactionId() {
+		return transactionId;
 	}
+
+
+
+	public void setTransactionId(int transactionId) {
+		this.transactionId = transactionId;
+	}
+
+
+
+	public double getAmount() {
+		return amount;
+	}
+
+
+
+	public void setAmount(double amount) {
+		this.amount = amount;
+	}
+
+
+
+	public String getDescription() {
+		return description;
+	}
+
+
+
+	public void setDescription(String description) {
+		this.description = description;
+	}
+
+
+
+	public Employee getEmployeeId() {
+		return employeeId;
+	}
+
+
+
+	public void setEmployeeId(Employee employeeId) {
+		this.employeeId = employeeId;
+	}
+
+
+
+	public Status getStatus() {
+		return status;
+	}
+
+
+
+	public void setStatus(Status status) {
+		this.status = status;
+	}
+
+
+
+	public String getRequestedBy() {
+		return requestedBy;
+	}
+
+
+
+	public void setRequestedBy(String requestedBy) {
+		this.requestedBy = requestedBy;
+	}
+
+
+
+	public String getResolvedBy() {
+		return resolvedBy;
+	}
+
+
+
+	public void setResolvedBy(String resolvedBy) {
+		this.resolvedBy = resolvedBy;
+	}
+
+
+
+	public static long getSerialversionuid() {
+		return serialVersionUID;
+	}
+
+
+
+	public Ticket(double amount, String description, Employee employeeId, Status status, String requestedBy,
+			String resolvedBy) {
+		super();
+		this.amount = amount;
+		this.description = description;
+		this.employeeId = employeeId;
+		this.status = status;
+		this.requestedBy = requestedBy;
+		this.resolvedBy = resolvedBy;
+	}
+
+
+
+	public Ticket(int transactionId, double amount, String description, Employee employeeId, Status status,
+			String requestedBy, String resolvedBy) {
+		super();
+		this.transactionId = transactionId;
+		this.amount = amount;
+		this.description = description;
+		this.employeeId = employeeId;
+		this.status = status;
+		this.requestedBy = requestedBy;
+		this.resolvedBy = resolvedBy;
+	}
+
+
+
+	@Column(name = "requested_by")
+	private String requestedBy;
+
+	@Column(name = "resolved_by")
+	private String resolvedBy;
+	
+	
+	
+	public Ticket() {
+		super();
+	}
+	
+
 }
