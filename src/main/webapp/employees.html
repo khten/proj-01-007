@@ -8,9 +8,13 @@
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet"
     integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous" />
   <link rel="stylesheet" href="assets/styles/template.css" />
-  
+
+
   <script src="emp-pending-table.js" defer></script>
-     <script src="emp-resolved-table.js" defer></script>
+  <script src="emp-resolved-table.js" defer></script>
+ <script src ="change-password.js" defer></script>
+ <script src ="emp-make-ticket.js" defer></script>
+
 </head>
 
 <body>
@@ -18,31 +22,54 @@
     <div class="card">
       <div class="shadow-lg">
 
+<!-- 
+  <form method="POST" action="employees">
+ 
+   
+    <label>Ticket Description</label>
+    <input type="text" name="desc" placeholder="Enter Ticket Description" />
+    <input type="number" name="amount" min="0" placeholder="Enter the amount" />
+    <input type="submit" name="submitTicket" value="Submit Request" />
+    <input type="text" name="password" placeholder="Enter Ticket Description" />
+    <input type="submit" name="changePassword" value="Change Password" />
+ </form>
+-->
+<!--  THESE GUYS WORK!!!
+    <button id="all-pending-tickets" onclick="fetchPendingTicketsByUsername()">View All Pending Tickets</button>
+       <table id="pending-tickets-table" class="table table-striped>"></table>
+       
+      <button id="all-resolved-tickets" onclick="fetchResolvedTicketsByUsername()">View All Resolved Tickets</button>
+       <table id="resolved-tickets-table" class="table table-striped>"></table>
+ 
+-->
+
         <div class="card-header text-center">
           <h3>Please enter request information below:</h3>
         </div>
-        <form method="POST" action="employees">
+       <!--   <form method="POST" action="employees"> -->
 
           <div class="mb-3">
             <label for="exampleFormControlTextarea1" class="form-label">Description:</label>
-            <textarea class="form-control" name="desc" placeholder="Ticket Description" rows="3"></textarea>
+            <textarea id = "description" class="form-control" name="desc" placeholder="Ticket Description" rows="3"></textarea>
           </div>
 
           <div class="input-group mb-3">
             <span class="input-group-text">$</span>
-            <input class="form-control" type="number" name="amount" min="0" placeholder="Request Amount" />
+            <input id = amount class="form-control" type="number" name="amount" min="0" placeholder="Request Amount" />
           </div>
 
-          <input type="button" class="btn btn-primary btn-lg" name="submitTicket" value="Submit Request" />
-
+          <button id="submit-ticket" class="btn btn-primary btn-lg" name="submitTicket" onclick="makeNewTicket()">"Submit Request"</button> 
+          <p id="ticket-submitted"></p>
           <br />
           <br />
 
           <div class="input-group mb-3">
-            <input type="text" name="password" placeholder="New password" />
-            <input type="submit" name="changePassword" value="Change Password" />
+            <input type="text" id = pwd-field name="password" placeholder="New password" />
+            <button id="change-password" name="change-password" onclick="fetchChangePassword()" />Change Password</button>
             
                  <button id="all-pending-tickets" onclick="fetchPendingTicketsByUsername()">View All Pending Tickets</button>
+                 <p id="pwd-change"></p>
+            
        <table id="pending-tickets-table" class="table table-striped>"></table>
        
            <br />
@@ -55,10 +82,11 @@
           <br />
          
           </div>
-        </form>
+        
       </div>
     </div>
   </div>
+
 </body>
 
 </html>

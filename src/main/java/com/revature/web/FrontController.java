@@ -49,40 +49,57 @@ public class FrontController extends HttpServlet {
 			RequestHelper.processAdmin(request, response);
 			break;
 
-		case "tickets":
-			RequestHelper.showAllTickets(request, response);
-			break;
+
 
 		case "viewemps":
 			RequestHelper.processViewAllEmployees(request, response);
 
 			break;
 
-		case "tickets_by_username":
-			RequestHelper.processTicketsByUsername(request, response);
-
-			break;
+		
 
 		case "approve_ticket":
 
 			RequestHelper.processApproveTicket(request, response);
 			break;
 
-		case "deny_ticket":
-			RequestHelper.processDenyTicket(request, response);
-			break;
+			case "deny_ticket":
+				RequestHelper.processDenyTicket(request, response);
+				break;
+				
+			case "pending_tickets":
+				RequestHelper.processTicketsByStatus(request, response, Status.Pending);
+				break;
 
-		case "pending_tickets":
-			RequestHelper.processStatus(request, response, Status.Pending);
-			break;
 
-		case "approved_tickets":
-			RequestHelper.processStatus(request, response, Status.Approved);
-			break;
+			case "tickets_by_username":
+				RequestHelper.processTicketsByUsername(request, response);
 
-		case "denied_tickets":
-			RequestHelper.processStatus(request, response, Status.Denied);
-			break;
+				break;
+
+			
+			case "view_pending":
+				RequestHelper.processTicketsByStatus(request, response, Status.Pending);
+				break;
+				
+			case "view_approved":
+				RequestHelper.processTicketsByStatus(request, response, Status.Approved);
+				break;
+				
+			case "view_denied_tickets":
+				RequestHelper.processTicketsByStatus(request, response, Status.Denied);
+				break;
+				
+
+			case "approved_tickets":
+				RequestHelper.processTicketsByStatus(request, response, Status.Approved);
+				break;
+				
+			case "denied_tickets":
+				RequestHelper.processTicketsByStatus(request, response, Status.Denied);
+				break;
+
+			
 
 		case "resolved_tickets":
 			RequestHelper.processStatusResolved(request, response);
@@ -96,9 +113,18 @@ public class FrontController extends HttpServlet {
 			RequestHelper.processAdminResolved(request, response);
 			break;
 
+		case "change_password":
+			RequestHelper.processChangePassword(request, response);
+			break;
+			
+		case "make_new_ticket":
+			RequestHelper.processMakeNewTicket(request,response);
+			break;
+			
 		default:
 			// TODO: Add custom error page
 			break;
+
 		}
 	}
 
