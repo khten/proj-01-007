@@ -1,13 +1,12 @@
 package com.revature.service;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 import com.revature.dao.EmployeeDao;
-import com.revature.exceptions.IncorrectPasswordException;
-import com.revature.exceptions.NoUserFoundException;
 import com.revature.models.Employee;
 
 public class EmployeeService {
@@ -22,28 +21,33 @@ public class EmployeeService {
 	}
 
 	public Employee confirmLogin(String username, String password) {
-
+		// TODO fix this issue should be OPTIONAL
 		// Find employee with username
-		Employee possibleEmp = edao.findByUsername(username);
-
+		Optional<Employee> possibleEmp = edao.findAll().stream()
+				.filter(e -> (e.getUsername().equals(username) && e.getPassword().equals(password)))
+				.findFirst();
+		return (possibleEmp.isPresent() ? possibleEmp.get() : new Employee());
 		// Check for valid credentials
-		if (possibleEmp.getId() != 0 && possibleEmp.getPassword().equals(password)) {
-			return possibleEmp;
-		} else if (possibleEmp.getPassword() == null) {
-			try {
-				throw new NoUserFoundException("User with username " + username + " does not exist!");
-			} catch (NoUserFoundException e) {
-				e.printStackTrace();
-			}
-		} else if (possibleEmp.getPassword() != null && possibleEmp.getPassword() != password) {
-			try {
-				throw new IncorrectPasswordException("Incorrect password!");
-			} catch (IncorrectPasswordException e) {
-				e.printStackTrace();
-			}
-		}
-
-		return new Employee();
+		//
+		// if (possibleEmp.getId() != 0 && possibleEmp.getPassword().equals(password)) {
+		// return possibleEmp;
+		// } else if (possibleEmp.getPassword() == null) {
+		// try {
+		// throw new NoUserFoundException("User with username " + username + " does not
+		// exist!");
+		// } catch (NoUserFoundException e) {
+		// e.printStackTrace();
+		// }
+		// } else if (possibleEmp.getPassword() != null && possibleEmp.getPassword() !=
+		// password) {
+		// try {
+		// throw new IncorrectPasswordException("Incorrect password!");
+		// } catch (IncorrectPasswordException e) {
+		// e.printStackTrace();
+		// }
+		// }
+		//
+		// return new Employee();
 	}
 
 	public int register(Employee e) {
