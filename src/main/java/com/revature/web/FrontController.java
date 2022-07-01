@@ -57,70 +57,78 @@ public class FrontController extends HttpServlet {
 			break;
 
 		
-
+			//admin
 		case "approve_ticket":
 
 			RequestHelper.processApproveTicket(request, response);
 			break;
 
+			//admin
 			case "deny_ticket":
 				RequestHelper.processDenyTicket(request, response);
 				break;
-				
+			
+			//by employee
 			case "pending_tickets":
-				RequestHelper.processTicketsByStatus(request, response, Status.Pending);
+				RequestHelper.processStatus(request, response, Status.Pending);
 				break;
 
-
+				
+            //admin
 			case "tickets_by_username":
 				RequestHelper.processTicketsByUsername(request, response);
 
 				break;
 
 			
-			case "view_pending":
-				RequestHelper.processTicketsByStatus(request, response, Status.Pending);
-				break;
-				
+//			case "view_pending":
+//				RequestHelper.processTicketsByStatus(request, response, Status.Pending);
+//				break;
+//				
+			
 			case "view_approved":
+			case "approved_tickets": 
 				RequestHelper.processTicketsByStatus(request, response, Status.Approved);
 				break;
-				
-			case "view_denied_tickets":
-				RequestHelper.processTicketsByStatus(request, response, Status.Denied);
-				break;
-				
-
-			case "approved_tickets":
-				RequestHelper.processTicketsByStatus(request, response, Status.Approved);
-				break;
-				
+			
+			case "view_denied_tickets":				
 			case "denied_tickets":
 				RequestHelper.processTicketsByStatus(request, response, Status.Denied);
 				break;
 
 			
-
+		//by emp
 		case "resolved_tickets":
 			RequestHelper.processStatusResolved(request, response);
 			break;
 
+		//used by admin
 		case "all_pending_tickets":
 			RequestHelper.processAdminPending(request, response);
 			break;
 
+		//used by admin
 		case "all_resolved_tickets":
 			RequestHelper.processAdminResolved(request, response);
 			break;
 
+		//used by emp
 		case "change_password":
 			RequestHelper.processChangePassword(request, response);
 			break;
-			
+		
+		//used by emp
 		case "make_new_ticket":
 			RequestHelper.processMakeNewTicket(request,response);
 			break;
 			
+		//used by admin	
+		case "view_all_tickets":
+			RequestHelper.showAllTickets(request, response);
+			break;
+		case "view_emp_info":
+			RequestHelper.viewEmployeeInfo(request, response);
+			break;
 		default:
 			// TODO: Add custom error page
 			break;

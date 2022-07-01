@@ -41,7 +41,8 @@
     <url-pattern>/all_resolved_tickets</url-pattern>
     <url-pattern>/change_password</url-pattern>
     <url-pattern>/make_new_ticket</url-pattern>
-
+    <url-pattern>/view_all_tickets</url-pattern>
+    <url-pattern>/view_emp_info</url-pattern>
     <!-- http://localhost:8080/employee-servlet-app/login -->
     <!-- http://localhost:8080/employee-servlet-app/employees -->
   </servlet-mapping>
