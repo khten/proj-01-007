@@ -6,64 +6,56 @@ let b2 = document.getElementById('deny');
 b1.addEventListener('click', approveTicket);
 b2.addEventListener('click', denyTicket);
 */
-function buildApproveDenyTable(status){
-	
-
+function buildApproveDenyTable(status) {
 	let p1 = document.getElementById('statuschange');
-	console.log("p1 before: " + p1.innerHTML.toString());
-	p1.innerHTML = "Ticket " + document.getElementById('acct-id').value +   " has been "+ status ;
-    console.log("p1: after " + p1.innerHTML.toString());
+	console.log('p1 before: ' + p1.innerHTML.toString());
+	p1.innerHTML =
+		'Ticket ' +
+		document.getElementById('acct-id').value +
+		' has been ' +
+		status;
+	console.log('p1: after ' + p1.innerHTML.toString());
 }
-    
+
 function approveTicket() {
+	// Fetch API is modern interface that allows you
+	// to make HTTP requests to a server and process the results that
+	// you get back asynchrnously
+	let hostname = window.location.hostname;
+	const p1 = document.getElementById('acct-id').value;
 
-   
-    // Fetch API is modern interface that allows you
-    // to make HTTP requests to a server and process the results that 
-    // you get back asynchrnously
-    let hostname = window.location.hostname;
-    const p1 = document.getElementById('acct-id').value;
-    
-	console.log("approveTicket called")
+	console.log('approveTicket called');
 
-    // Get ticket as JSON objects
-    fetch(`http://${hostname}:8080/proj-01-team07/approve_ticket`,{
-		method:"POST",
+	// Get ticket as JSON objects
+	fetch(`http://${hostname}:8080/proj-01-team07/approve_ticket`, {
+		method: 'POST',
 		body: JSON.stringify({
-		   ticketId: p1,
-		   }),
+			ticketId: p1,
+		}),
 		headers: {
 			'Content-type': 'application/json; charset=UTF-8',
-			
-		}
-	
-    })
-    .then(response => response.json())
-    .then(data => buildApproveDenyTable("Approved"));
- 
-   
-  
+		},
+	})
+		.then((response) => response.json())
+		.then((data) => buildApproveDenyTable('Approved'));
 }
 
-function denyTicket(){
+function denyTicket() {
 	let hostname = window.location.hostname;
-    const p1 = document.getElementById('acct-id').value;
-   
-	console.log("denyTicket called");
+	const p1 = document.getElementById('acct-id').value;
 
-    // Get ticket that has been approved
-   fetch(`http://${hostname}:8080/proj-01-team07/deny_ticket`,{
-		method:"POST",
+	console.log('denyTicket called');
+
+	// Get ticket that has been approved
+	fetch(`http://${hostname}:8080/proj-01-team07/deny_ticket`, {
+		method: 'POST',
 		body: JSON.stringify({
-		   ticketId: p1,
-		   }),
+			ticketId: p1,
+		}),
 		headers: {
 			'Content-type': 'application/json; charset=UTF-8',
-			
-		}
-	
-    }) //get response as json
-    .then(response => response.json())  //pars eth jason
-    .then(data => buildApproveDenyTable("DENIED"));    //submit the data to the function for rendering
- 
+		},
+	}) //get response as json
+		.then((response) => response.json()) //pars eth jason
+		.then((data) => buildApproveDenyTable('DENIED')); //submit the data to the function for rendering
 }

@@ -74,11 +74,6 @@ public class FrontController extends HttpServlet {
 				RequestHelper.processTicketsByUsername(request, response);
 				break;
 
-			// case "view_pending":
-			// RequestHelper.processTicketsByStatus(request, response, Status.Pending);
-			// break;
-			//
-
 			case "view_approved":
 			case "approved_tickets":
 				RequestHelper.processTicketsByStatus(request, response, Status.Approved);
@@ -124,7 +119,6 @@ public class FrontController extends HttpServlet {
 			default:
 				// TODO: Add custom error page
 				break;
-
 		}
 	}
 
