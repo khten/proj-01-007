@@ -163,11 +163,6 @@ public class RequestHelper {
 			PrintWriter out = response.getWriter();
 			response.setContentType("text/html");
 			out.println("No user found, sorry");
-
-			// Shout out to Gavin for figuring this out -- 204 doesn't return a response
-			// body
-			// response.setStatus(204); // 204 meants successful connection to the server,
-			// but no content found
 		}
 	}
 
@@ -326,7 +321,6 @@ public class RequestHelper {
 		response.setContentType("application/json");
 		response.addHeader("Access-Control-Allow-Origin", "*");
 
-		// TODO: look at the service layer / dao and change this function
 		List<Ticket> allTickets = tserv.getAll().stream().filter(t -> t.getRequestedBy().equals(u))
 				.collect(Collectors.toList());
 
@@ -347,7 +341,6 @@ public class RequestHelper {
 		response.setContentType("application/json");
 		response.addHeader("Access-Control-Allow-Origin", "*");
 
-		// TODO TEST this
 		List<Ticket> ticketsByUsername = tserv.getAll().stream().filter(t -> t.getStatus().equals(status))
 				.collect(Collectors.toList());
 

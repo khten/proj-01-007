@@ -117,7 +117,7 @@ public class FrontController extends HttpServlet {
 				RequestHelper.viewEmployeeInfo(request, response);
 				break;
 			default:
-				// TODO: Add custom error page
+				request.getRequestDispatcher("/404.html").forward(request, response);
 				break;
 		}
 	}
