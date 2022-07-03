@@ -44,21 +44,25 @@
               <input class="form-control" type="text" id="txtFindUser" placeholder="Find Ticketes by Username" />
               <button class="btn btn-primary" id="get-by-user" onclick="fetchTicketsByUsername()">Show Tickets</button>
             </div>
-            <table id="tickets-by-username-table" class="table table-bordered table-sm table-light"></table>
+            <table id="tickets-by-username-table"
+              class="table table-bordered table-sm table-light table-light table-hover"></table>
 
             <button class="btn btn-primary" id="admin-pending-tickets" onclick="fetchAllPending()">View All Pending
               Tickets</button>
-            <table id="admin-pending-table" class="table table-bordered table-sm table-light"></table>
+            <table id="admin-pending-table" class="table table-bordered table-sm table-light table-light table-hover">
+            </table>
 
             <button class="btn btn-primary" id="admin-resolved-tickets" onclick="fetchAllResolved()">View All Resolved
               Tickets</button>
-            <table id="admin-resolved-table" class="table table-bordered table-sm table-light"></table>
-
-            <button class="btn btn-primary" id="all-emps" onclick="fetchEmps()">View All Employee</button>
-            <table id="employee-table" class="table table-bordered table-sm table-light"></table>
+            <table id="admin-resolved-table" class="table table-bordered table-sm table-light table-light table-hover">
+            </table>
 
             <button class="btn btn-primary" id="all-tickets" onclick="fetchTickets()">View All Tickets</button>
-            <table id="ticket-table" class="table table-bordered table-sm table-light"></table>
+            <table id="ticket-table" class="table table-bordered table-sm table-light table-light table-hover"></table>
+
+            <button class="btn btn-primary" id="all-emps" onclick="fetchEmps()">View All Employee</button>
+            <table id="employee-table" class="table table-bordered table-sm table-light table-light table-hover">
+            </table>
           </div>
 
           <div class="d-grid gap-1 col-2 mx-auto">
@@ -68,4 +72,8 @@
       </div>
     </div>
   </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.5/dist/umd/popper.min.js"
+    integrity="sha384-Xe+8cL9oJa6tN/veChSP7q+mnSPaj5Bcu9mPX5F5xIGE0DVittaqT5lorf0EI7Vk"
+    crossorigin="anonymous"></script>
 </body>
