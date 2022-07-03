@@ -20,46 +20,51 @@
 <body>
   <div class="container">
     <div class="card">
+      <div class="card-header text-center">
+        <h1>Welcome Admin!</h1>
+      </div>
+
       <div class="shadow-lg">
-        <div class="card-header text-center">
-          <h1>Welcome Admin!</h1>
+        <div class="card-body text-center">
+          <div class="d-grid col-5 mx-auto" style="padding-top: 20px">
+            <div class="input-group mb-2">
+              <button class="btn btn-danger" id="deny" name="deny" onclick="denyTicket()">Deny Ticket</button>
+              <input class="form-control" type="number" id="acct-id" name="acct-id" min="1"
+                placeholder="Enter a Ticket ID">
+              <button class="btn btn-success" id="button-addon1" name="approve" onclick="approveTicket()">Approve
+                Ticket</button>
+            </div>
+          </div>
+
+          <p id="statuschange"></p>
+          <hr class="mt-1 mb-3" />
+
+          <div class="d-grid gap-1 col-10 mx-auto">
+            <div class="input-group">
+              <input class="form-control" type="text" id="txtFindUser" placeholder="Find Ticketes by Username" />
+              <button class="btn btn-primary" id="get-by-user" onclick="fetchTicketsByUsername()">Show Tickets</button>
+            </div>
+            <table id="tickets-by-username-table" class="table table-bordered table-sm table-light"></table>
+
+            <button class="btn btn-primary" id="admin-pending-tickets" onclick="fetchAllPending()">View All Pending
+              Tickets</button>
+            <table id="admin-pending-table" class="table table-bordered table-sm table-light"></table>
+
+            <button class="btn btn-primary" id="admin-resolved-tickets" onclick="fetchAllResolved()">View All Resolved
+              Tickets</button>
+            <table id="admin-resolved-table" class="table table-bordered table-sm table-light"></table>
+
+            <button class="btn btn-primary" id="all-emps" onclick="fetchEmps()">View All Employee</button>
+            <table id="employee-table" class="table table-bordered table-sm table-light"></table>
+
+            <button class="btn btn-primary" id="all-tickets" onclick="fetchTickets()">View All Tickets</button>
+            <table id="ticket-table" class="table table-bordered table-sm table-light"></table>
+          </div>
+
+          <div class="d-grid gap-1 col-2 mx-auto">
+            <button class="btn btn-secondary btn-sm" onclick="window.location.href = 'index.html';">Log Out</button>
+          </div>
         </div>
-      </div>
-      <div class="d-grid col-4 mx-auto" style="padding-top: 20px">
-        <div class="input-group mb-2">
-          <button class="btn btn-danger" id="deny" name="deny" onclick="denyTicket()">Deny Ticket</button>
-          <input class="form-control" type="number" id="acct-id" name="acct-id" min="1" placeholder="Enter a Ticket ID">
-          <button class="btn btn-success" id="button-addon1" name="approve" onclick="approveTicket()">Approve
-            Ticket</button>
-        </div>
-      </div>
-
-      <p id="statuschange"></p>
-
-      <div class="d-grid gap-1 col-10 mx-auto">
-        <div class="input-group">
-          <input class="form-control" type="text" id="txtFindUser" placeholder="Find Ticketes by Username" />
-          <button class="btn btn-primary" id="get-by-user" onclick="fetchTicketsByUsername()">Show Tickets</button>
-        </div>
-        <table id="tickets-by-username-table" class="table table-bordered table-sm table-light"></table>
-
-        <button class="btn btn-primary" id="admin-pending-tickets" onclick="fetchAllPending()">View All Pending
-          Tickets</button>
-        <table id="admin-pending-table" class="table table-bordered table-sm table-light"></table>
-
-        <button class="btn btn-primary" id="admin-resolved-tickets" onclick="fetchAllResolved()">View All Resolved
-          Tickets</button>
-        <table id="admin-resolved-table" class="table table-bordered table-sm table-light"></table>
-
-        <button class="btn btn-primary" id="all-emps" onclick="fetchEmps()">View All Employee</button>
-        <table id="employee-table" class="table table-bordered table-sm table-light"></table>
-
-        <button class="btn btn-primary" id="all-tickets" onclick="fetchTickets()">View All Tickets</button>
-        <table id="ticket-table" class="table table-bordered table-sm table-light"></table>
-      </div>
-
-      <div class="d-grid gap-1 col-2 mx-auto">
-        <button class="btn btn-secondary btn-sm" onclick="window.location.href = 'index.html';">Log Out</button>
       </div>
     </div>
   </div>
