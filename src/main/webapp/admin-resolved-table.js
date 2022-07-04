@@ -1,3 +1,5 @@
+
+
 // Get table element
 let table7 = document.getElementById('admin-resolved-table');
 //let button3 = document.getElementById('tickets-emp-id')
@@ -6,7 +8,7 @@ let table7 = document.getElementById('admin-resolved-table');
 //button.addEventListener("click", fetchTicketByUsername());
 
 
-function buildTable7(data) {
+export function buildTable7(data) {
     let header = document.createElement('thead'); // these are HTML elements
     let headerRow = document.createElement('tr');
     table7.innerHTML = "";

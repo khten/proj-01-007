@@ -6,7 +6,7 @@ let table6 = document.getElementById('admin-pending-table');
 //button.addEventListener("click", fetchTicketByUsername());
 
 
-function buildTable6(data) {
+export function buildTable6(data) {
     let header = document.createElement('thead'); // these are HTML elements
     let headerRow = document.createElement('tr');
     table6.innerHTML = "";
@@ -73,7 +73,7 @@ const fetchAllPending = () => {
 	let hostname = window.location.hostname;
 	
 
-	console.log('fetchTicketsByUsername triggered');
+	console.log('fetchAllPending triggered');
 	
 
 

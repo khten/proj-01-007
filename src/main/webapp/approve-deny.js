@@ -6,6 +6,11 @@ let b2 = document.getElementById('deny');
 b1.addEventListener('click', approveTicket);
 b2.addEventListener('click', denyTicket);
 */
+import * as pending from './admin-pending-table.js';
+import * as resolved from './admin-resolved-table.js';
+
+
+
 function buildApproveDenyTable(status){
 	
 
@@ -13,6 +18,7 @@ function buildApproveDenyTable(status){
 	console.log("p1 before: " + p1.innerHTML.toString());
 	p1.innerHTML = "Ticket " + document.getElementById('acct-id').value +   " has been "+ status ;
     console.log("p1: after " + p1.innerHTML.toString());
+    
 }
     
 function approveTicket() {
@@ -39,7 +45,13 @@ function approveTicket() {
 	
     })
     .then(response => response.json())
-    .then(data => buildApproveDenyTable("Approved"));
+    .then(data => {
+                   buildApproveDenyTable("Approved")
+                   pending.buildTable6(data);
+                   resolved.buildTable7(data);
+ 	
+     })   
+    
  
    
   
@@ -64,6 +76,11 @@ function denyTicket(){
 	
     }) //get response as json
     .then(response => response.json())  //pars eth jason
-    .then(data => buildApproveDenyTable("DENIED"));    //submit the data to the function for rendering
- 
+    .then(data => {
+                   buildApproveDenyTable("Approved")
+                   pending.buildTable6(data);
+                   resolved.buildTable7(data);
+ 	
+     })   
+    
 }
