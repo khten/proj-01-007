@@ -33,106 +33,92 @@ public class FrontController extends HttpServlet {
 		// based on the URI returned
 		switch (URI) {
 
-		case "login":
-			RequestHelper.processLogin(request, response);
-			break;
+			case "login":
+				RequestHelper.processLogin(request, response);
+				break;
 
-		case "register":
-			RequestHelper.processRegistration(request, response);
-			break;
+			case "register":
+				RequestHelper.processRegistration(request, response);
+				break;
 
-		case "employees":
-			RequestHelper.processEmployees(request, response);
-			break;
+			case "employees":
+				RequestHelper.processEmployees(request, response);
+				break;
 
-		case "admin":
-			RequestHelper.processAdmin(request, response);
-			break;
+			case "admin":
+				RequestHelper.processAdmin(request, response);
+				break;
 
+			case "viewemps":
+				RequestHelper.processViewAllEmployees(request, response);
+				break;
 
+			// admin
+			case "approve_ticket":
 
-		case "viewemps":
-			RequestHelper.processViewAllEmployees(request, response);
+				RequestHelper.processApproveTicket(request, response);
+				break;
 
-			break;
-
-		
-			//admin
-		case "approve_ticket":
-
-			RequestHelper.processApproveTicket(request, response);
-			break;
-
-			//admin
+			// admin
 			case "deny_ticket":
 				RequestHelper.processDenyTicket(request, response);
 				break;
-			
-			//by employee
+
+			// by employee
 			case "pending_tickets":
 				RequestHelper.processStatus(request, response, Status.Pending);
 				break;
 
-				
-            //admin
+			// admin
 			case "tickets_by_username":
 				RequestHelper.processTicketsByUsername(request, response);
-
 				break;
 
-			
-//			case "view_pending":
-//				RequestHelper.processTicketsByStatus(request, response, Status.Pending);
-//				break;
-//				
-			
 			case "view_approved":
-			case "approved_tickets": 
+			case "approved_tickets":
 				RequestHelper.processTicketsByStatus(request, response, Status.Approved);
 				break;
-			
-			case "view_denied_tickets":				
+
+			case "view_denied_tickets":
 			case "denied_tickets":
 				RequestHelper.processTicketsByStatus(request, response, Status.Denied);
 				break;
 
-			
-		//by emp
-		case "resolved_tickets":
-			RequestHelper.processStatusResolved(request, response);
-			break;
+			// by emp
+			case "resolved_tickets":
+				RequestHelper.processStatusResolved(request, response);
+				break;
 
-		//used by admin
-		case "all_pending_tickets":
-			RequestHelper.processAdminPending(request, response);
-			break;
+			// used by admin
+			case "all_pending_tickets":
+				RequestHelper.processAdminPending(request, response);
+				break;
 
-		//used by admin
-		case "all_resolved_tickets":
-			RequestHelper.processAdminResolved(request, response);
-			break;
+			// used by admin
+			case "all_resolved_tickets":
+				RequestHelper.processAdminResolved(request, response);
+				break;
 
-		//used by emp
-		case "change_password":
-			RequestHelper.processChangePassword(request, response);
-			break;
-		
-		//used by emp
-		case "make_new_ticket":
-			RequestHelper.processMakeNewTicket(request,response);
-			break;
-			
-		//used by admin	
-		case "view_all_tickets":
-			RequestHelper.showAllTickets(request, response);
-			break;
-		case "view_emp_info":
-			RequestHelper.viewEmployeeInfo(request, response);
-			break;
-		default:
-			// TODO: Add custom error page
-			break;
+			// used by emp
+			case "change_password":
+				RequestHelper.processChangePassword(request, response);
+				break;
 
+			// used by emp
+			case "make_new_ticket":
+				RequestHelper.processMakeNewTicket(request, response);
+				break;
+
+			// used by admin
+			case "view_all_tickets":
+				RequestHelper.showAllTickets(request, response);
+				break;
+			case "view_emp_info":
+				RequestHelper.viewEmployeeInfo(request, response);
+				break;
+			default:
+				request.getRequestDispatcher("/404.html").forward(request, response);
+				break;
 		}
 	}
 

@@ -14,32 +14,33 @@
 <body>
   <div class="container">
     <div class="card">
+      <div class="card-header text-center">
+        <h1>Welcome!</h1>
+        <h3>Please login below:</h3>
+      </div>
+
       <div class="shadow-lg">
-        <div class="card-header text-center">
-          <h1>Welcome!</h1>
-          <h3>Please login below:</h3>
+        <div class="card-body text-center" id="buttons">
+          <form method="POST" action="login">
 
-          <div class="card-body text-center" id="buttons">
-            <!--  POST requests obfuscate (hide) the parameters and dont' show it in the URL -->
-            <form method="POST" action="login">
-              <!-- http://localhost:8080/employee-servlet-app/login -->
+            <label>Username</label>
+            <div class="d-grid gap-1 col-3 mx-auto">
+              <input class="form-control" type="text" name="username" placeholder="Enter a username" />
+            </div>
 
-              <label>Username</label>
-              <input type="text" name="username" placeholder="Enter a username" />
-              <br />
+            <label>Password</label>
+            <div class="d-grid gap-1 col-3 mx-auto">
+              <input class="form-control" type="password" name="password" placeholder="Enter a password" />
+            </div>
+            <br />
 
-              <label>Password</label>
-              <input type="password" name="password" placeholder="Enter a password" />
-              <br />
+            <input class="btn btn-primary" type="submit" value="Login!" />
+          </form>
 
-              <input class="btn btn-primary" type="submit" value="Login!" />
-            </form>
+          <form method="GET" action="registration.html">
+            <input class="btn btn-primary" type="submit" value="Register!" />
+          </form>
 
-            <form method="GET" action="registration.html">
-              <input class="btn btn-primary" type="submit" value="Register!" />
-            </form>
-
-          </div>
         </div>
       </div>
     </div>
