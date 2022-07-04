@@ -4,6 +4,10 @@
 <head>
   <meta charset="ISO-8859-1" />
   <title>Registration</title>
+
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous" />
+  <link rel="stylesheet" href="assets/styles/template.css" />
 </head>
 
 <body>
@@ -25,29 +29,39 @@
           <form method="POST" action="register">
             <!-- http://localhost:8080/employee-servlet-app/login -->
 
-            <label>First Name</label>
-            <input type="text" name="firstname" placeholder="Enter a first name" />
-            <br />
+            <div class="row">
+              <div class="col">
+                <label>First Name</label>
+                <input class="form-control" type="text" name="firstname" placeholder="Enter a first name" />
+              </div>
+              <div class="col">
+                <label>Last Name</label>
+                <input class="form-control" type="text" name="lastname" placeholder="Enter a last name" />
+              </div>
+            </div>
 
-            <label>Last Name</label>
-            <input type="text" name="lastname" placeholder="Enter a last name" />
-            <br />
+            <div class="row">
+              <div class="col">
+                <label>Username</label>
+                <input class="form-control" type="text" name="username" placeholder="Enter a username" />
+              </div>
+              <div class="col">
+                <label>Password</label>
+                <input class="form-control" type="password" name="password" placeholder="Enter a password" />
+                <br />
+              </div>
+            </div>
 
-            <label>Username</label>
-            <input type="text" name="username" placeholder="Enter a username" />
-            <br />
-
-            <label>Password</label>
-            <input type="password" name="password" placeholder="Enter a password" />
-
-            <input type="submit" value="Register!" />
-          </form>
+            <div class="d-grid">
+              <input class="btn btn-primary" type="submit" value="Register!" />
+            </div>
         </div>
+        </form>
       </div>
     </div>
   </div>
+  </div>
 
-  <!--  POST requests obfuscate (hide) the parameters and dont' show it in the URL -->
 </body>
 
 </html>
