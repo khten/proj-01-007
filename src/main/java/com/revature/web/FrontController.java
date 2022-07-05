@@ -55,7 +55,6 @@ public class FrontController extends HttpServlet {
 
 			// admin
 			case "approve_ticket":
-
 				RequestHelper.processApproveTicket(request, response);
 				break;
 
@@ -117,7 +116,7 @@ public class FrontController extends HttpServlet {
 				RequestHelper.viewEmployeeInfo(request, response);
 				break;
 			default:
-				request.getRequestDispatcher("/404.html").forward(request, response);
+				request.getRequestDispatcher("404");
 				break;
 		}
 	}
