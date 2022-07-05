@@ -143,7 +143,6 @@ public class RequestHelper {
 			if (e.getRole() == Role.Admin) {
 
 				request.getRequestDispatcher("admin.html").forward(request, response);
-				// request.getRequestDispatcher("admin.html").forward(request, response);
 				out.println("<h3>You have successfully logged in as Admin!</h3>");
 
 			} else if (e.getRole() == Role.Employee) {
