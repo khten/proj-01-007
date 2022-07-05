@@ -1,7 +1,7 @@
 function displayNewTicketSuccess() {
 	let p1 = document.getElementById('ticket-submitted');
 
-	p1.innerHTML = 'Ticket Submitted: ';
+	p1.innerHTML = 'Ticket Submitted';
 }
 
 function makeNewTicket() {
