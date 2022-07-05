@@ -116,7 +116,7 @@ public class FrontController extends HttpServlet {
 				RequestHelper.viewEmployeeInfo(request, response);
 				break;
 			default:
-				request.getRequestDispatcher("/404.html");
+				request.getRequestDispatcher("404");
 				break;
 		}
 	}
