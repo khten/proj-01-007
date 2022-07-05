@@ -40,11 +40,15 @@ public class EmployeeServiceTest {
 
         // Create fake employee
         Employee e1 = new Employee(20, "John", "Snow", "snowman", "password", Role.Employee, null);
+        Employee e2 = new Employee(24, "Bingo", "Bango", "bongo", "password", Role.Employee, null);
 
-        String username = "snowman";
+        // Create list of employees
+        List<Employee> users = new ArrayList<Employee>();
+        users.add(e1);
+        users.add(e2);
 
-        // Mock findByUsername() to provide fake data
-        when(mockdao.findByUsername(username)).thenReturn(e1);
+        // Mock findAll() to provide fake data
+        when(mockdao.findAll()).thenReturn(users);
 
         // Capture the actual output of the method, set expected
         Employee actual = eserv.confirmLogin("snowman", "password");
@@ -57,13 +61,20 @@ public class EmployeeServiceTest {
     @Test
     public void testConfirmLogin_fail() {
 
-        String username = "jimmy";
+        // Create fake employee
+        Employee e1 = new Employee(20, "John", "Snow", "snowman", "password", Role.Employee, null);
+        Employee e2 = new Employee(24, "Bingo", "Bango", "bongo", "password", Role.Employee, null);
 
-        // Mock findByUsername() to provide fake data
-        when(mockdao.findByUsername(username)).thenReturn(new Employee());
+        // Create list of employees
+        List<Employee> users = new ArrayList<Employee>();
+        users.add(e1);
+        users.add(e2);
+
+        // Mock findAll() to provide fake data
+        when(mockdao.findAll()).thenReturn(users);
 
         // Capture the actual output of the method, set expected
-        Employee actual = eserv.confirmLogin(username, "password");
+        Employee actual = eserv.confirmLogin("dingo", "password");
         Employee expected = new Employee();
 
         // Assert that they're equal
